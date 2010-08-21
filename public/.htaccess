@@ -1,0 +1,25 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^.*$ - [NC,L]
+RewriteRule ^.*$ index.php [NC,L]
+
+#php configs
+php_flag short_open_tag on
+php_value magic_quotes_gpc 0
+
+
+
+
+
+# Directory protection
+RedirectMatch 404 /\\.svn(/|$)
+RedirectMatch 404 /\\.git(/|$)
+RedirectMatch 404 /application
+RedirectMatch 404 /library
+RedirectMatch 404 /bin
+RedirectMatch 404 /docs
+RedirectMatch 404 /nbproject
+RedirectMatch 404 /templates
+RedirectMatch 404 /tests

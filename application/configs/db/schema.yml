@@ -1,0 +1,128 @@
+options:
+  type: INNODB
+  collate: utf8_general_ci
+  charset: utf8
+
+UserRole:
+  tableName: user_role
+  columns:
+    id:
+      type: integer
+      primary: true
+      unsigned: true
+      autoincrement: true
+    name: string(255)
+  relations:
+    Users:
+      class: User
+      foreign: role_id
+      local: id
+      type: many
+      onDelete: RESTRICT
+
+
+User:
+  columns:
+    id:
+      type: integer
+      primary: true
+      autoincrement: true
+    name:
+      type: string(255)
+      unique: true
+    email: string(255)
+    login:
+      type: string(50)
+      unique: true
+      notnull: true
+    enabled:
+      type: boolean
+      notnull: true
+      default: false
+    password:
+      type: string(40)
+      notnull: true
+    password_recovery_hash:
+      type: string(40)
+      notnull: false
+    password_recovery_expiration_date:
+      type: datetime
+      notnull: false
+    role_id:
+      type: integer
+      unsigned: true
+      notnull: true
+    image: string(255)
+  actAs: [Timestampable]
+  relations:
+    Role:
+      class: UserRole
+      local: role_id
+      foreign: id
+
+Brand:
+  tableName: brand
+  columns:
+    id:
+      type: integer
+      primary: true
+      unsigned: true
+      autoincrement: true
+    name:
+      type: string(255)
+      unique: true
+      notnull: true
+    logo: string(255)
+  actAs: [Timestampable]
+  relations:
+    Cars:
+      class: Car
+      foreign: brand_id
+      local: id
+      type: many
+      onDelete: RESTRICT
+
+  
+Car:
+  tableName: car
+  columns:
+    id:
+      type: integer
+      primary: true
+      unsigned: true
+      autoincrement: true
+    model:
+      type: string(255)
+      unique: true
+      notnull: true
+    brand_id:
+      type: integer
+      notnull: true
+      unsigned: true
+    price:
+      type: float
+      default: 0
+    showPrice:
+      type: boolean
+      default: false
+      notnull: true
+    year:
+      type: integer
+      notnull: true
+    modelYear:
+      type: integer
+      notnull: true
+    priority:
+      type: integer
+      default: 0
+      notnull: true
+    licensePlate:
+      type: string(8)
+      unique: true
+      notnull: true
+  actAs: [Timestampable]
+  relations:
+    Brand:
+      class: Brand
+      local: brand_id
+      foreign: id

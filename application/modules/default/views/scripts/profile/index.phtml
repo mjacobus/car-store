@@ -1,0 +1,12 @@
+<h2>Profile de <?= $this->user->name ?></h2>
+
+<?= $this->errors()->render() ?>
+<?= $this->flash()->render() ?>
+<?= $this->form ?>
+
+<div class="clear"></div>
+<a href="<?= $this->url(array(
+        'module' => 'default',
+        'controller' => 'profile',
+        'action' => 'change-password'),null,true)
+?>">Alterar senha</a>

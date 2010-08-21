@@ -1,0 +1,45 @@
+<div class="search top"><?= $this->search ?>
+    <div class="total"><?= $this->pagination()->getPager()->getNumResults() ?> registro(s) encontrado(s).</div>
+</div>
+
+<?= $this->flash()->render() ?>
+
+
+
+<?= $this->pagination()->render() ?>
+<table class="crud">
+    <tr>
+        <th>Nome</th>
+        <th><a class="new-register" href="<?= $this->url(array(
+            'module'=>'admin',
+            'controller' => 'brand',
+            'action' => 'add'
+        ),null,true)?>" >Adicionar</a></th>
+
+    </tr>
+    <? foreach($this->registers as $i => $register) : ?>
+        <tr class="r<?=($i%2)?>">
+            <td><?= $register->name ?></td>
+
+
+            <td class="actions">
+                <a class="edit" href="<?= $this->url(array(
+                            'module'=>'admin',
+                            'controller' => 'brand',
+                            'action' => 'edit',
+                            'id' => $register->id
+                        ),null,true)?>" >Editar</a>
+                
+                <a class="del" href="<?= $this->url(array(
+                            'module'=>'admin',
+                            'controller' => 'brand',
+                            'action' => 'del',
+                            'id' => $register->id
+                        ),null,true)?>" >Excluir</a>
+            </td>
+        </tr>
+
+    <? endforeach ?>
+
+</table>
+<?= $this->pagination()->render() ?>

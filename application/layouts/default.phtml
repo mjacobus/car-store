@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <?= $this->headTitle() ?>
+        <?= $this->headMeta()
+                ->appendHttpEquiv('Content-Type','text/html; charset=UTF-8')
+                ->appendHttpEquiv('Content-Language', 'pt_BR') ?>
+        <?= $this->headLink() ?>
+        <?= $this->headStyle() ?>
+        <?= $this->headScript() ?>
+    </head>
+    <body>
+        <div id="container">
+            <?= $this->inlineScript() ?>
+            <div id="header">
+                <?= $this->loginBar() ?>
+            </div>
+
+            <div id="content">
+                <?= $this->layout()->content; ?>
+            </div>
+
+            <div id="footer"></div>
+            <?= $this->inlineScript() ?>
+        </div>
+    </body>
+</html>

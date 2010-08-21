@@ -1,0 +1,251 @@
+<?php
+/**
+ * Description of Abstract
+ *
+ * @author marcelo.jacobus
+ */
+class Form_Abstract extends Zend_Form
+{
+
+    /**
+     * Constructor
+     */
+    public function __construct($options = null)
+    {
+        parent::__construct($options);
+        $this->setAttrib('class', 'validate');
+    }
+
+    /**
+     * Get a Zend_Form_Element_Text with predefined values for date inputs
+     * @param string $name
+     * @param string $label
+     * @param bool $required
+     * @return Zend_Form_Element_Text
+     */
+    public function getDateElement($name,$label,$required = true)
+    {
+        $element = new Zend_Form_Element_Text($name);
+        $element->setLabel($label)
+                ->setAttrib('class', 'date')
+                ->addValidator(new Zend_Validate_Date('dd/mm/yyyy'));
+        $this->setRequired($element,$required);
+        return $element;
+    }
+
+    /**
+     * Add Submit Button wich is a Zend_Form_Element_Submit
+     * @param string $label defaults to Salvar
+     * @param string $name defaults to submit
+     * @return Zend_Form_Element_Select
+     */
+    public function addSubmit($label = 'Salvar',$name = 'submit')
+    {
+        $element = new Zend_Form_Element_Submit($name);
+        $element->setLabel($label);
+        $this->addElement($element);
+        return $this;
+    }
+
+    /**
+     * Get a Zend_Form_Element_Text with some predefined values
+     * @param string $name
+     * @param string $label
+     * @param bool $required
+     * @param array $length default to array('min' => 0, 'max' => 255)
+     * @return Zend_Form_Element_Text
+     */
+    public function getTextElement($name,$label,$required = true ,$length = array('min' => 0, 'max' =>255))
+    {
+        $element = new Zend_Form_Element_Text($name);
+        $element->setLabel($label)
+                ->setRequired($required)
+                ->addValidator(new Zend_Validate_StringLength($length))
+                ->addFilter(new Zend_Filter_StringTrim());
+
+        if ($required) {
+            $element->setAttrib('class', 'required');
+        }
+        if (array_key_exists('max', $length)) {
+            $element->setAttrib('maxlength', $length['max']);
+        }
+
+        return $element;
+    }
+    
+    /**
+     * Get a Zend_Form_Element_Password with some predefined values
+     * @param string $name
+     * @param string $label
+     * @param bool $required
+     * @param array $length default to array('min' => 0, 'max' => 255)
+     * @return Zend_Form_Element_Text
+     */
+    public function getPasswordElement($name,$label,$required = true ,$length = array('min' => 0, 'max' =>255))
+    {
+        $element = new Zend_Form_Element_Password($name);
+        $element->setLabel($label)
+                ->setRequired($required)
+                ->addValidator(new Zend_Validate_StringLength($length))
+                ->addFilter(new Zend_Filter_StringTrim());
+
+        if ($required) {
+            $element->setAttrib('class', 'required');
+        }
+        if (array_key_exists('max', $length)) {
+            $element->setAttrib('maxlength', $length['max']);
+        }
+
+        return $element;
+    }
+
+    /**
+     * Get a Zend_Form_Element_Textarea with some predefined values
+     * @param string $name
+     * @param string $label
+     * @param bool $required
+     * @return Zend_Form_Element_Textarea
+     */
+    public function getTextareaElement($name,$label,$required = true)
+    {
+        $element = new Zend_Form_Element_Textarea($name);
+        $element->setLabel($label)
+                ->setRequired($required)
+                ->addFilter(new Zend_Filter_StringTrim());
+
+        $element->getDecorator('HtmlTag')->setOption('class', 'textarea');
+        $element->getDecorator('Label')->setOption('class', 'textarea');
+        return $element;
+    }
+
+    /**
+     * Get a boolean option
+     * @param string $name
+     * @param string $labelTrue
+     * @param array $options labels for ture and false
+     * @return Zend_Form_Element_Radio
+     */
+    public function getBooleanElement($name, $label ,$options = array('false'=>'false','true','true'),$default = null)
+    {
+        $element = new Zend_Form_Element_Radio($name);
+        $element->setLabel($label)
+                ->setRequired(true);
+        $element->addMultiOption(1, $options['true']);
+        $element->addMultiOption(0, $options['false']);
+        $element->setAttrib('class', 'required boolean');
+
+        if ($default !== null) {
+            $element->setValue((int) $default);
+        }
+
+        $element->getDecorator('HtmlTag')->setOption('class','boolean');
+
+        return $element;
+    }
+
+    /**
+     * Get a Radio option
+     * @param string $name
+     * @param string $labelTrue
+     * @return Zend_Form_Element_Radio
+     */
+    public function getRadioElement($name, $label = '',$required = true, $options = array())
+    {
+        $element = new Zend_Form_Element_Radio($name);
+        $element->setLabel($label);
+        $element->setAttrib('class', 'radio-multi');
+        $element->getDecorator('HtmlTag')->setOption('class',
+                'radio-multi height-' . count($options));
+        $element->addMultiOptions($options);
+        $this->setRequired($element,$required);
+        return $element;
+    }
+    
+    /**
+     * Get a Radio option
+     * @param string $name
+     * @param string $labelTrue
+     * @return Zend_Form_Element_Radio
+     */
+    public function getMultiCheckboxElement($name, $label = '',$required = true, $options = array(),array $checked = array())
+    {
+        $element = new Zend_Form_Element_MultiCheckbox($name);
+        $element->setLabel($label);
+        $element->setAttrib('class', 'radio-multi');
+        $element->getDecorator('HtmlTag')->setOption('class',
+                'radio-multi height-' . count($options));
+        $element->addMultiOptions($options);
+        $element->setValue($checked);
+        $this->setRequired($element,$required);
+        return $element;
+    }
+
+    /**
+     * Return a Textarea with predefined values to behave like a Html Editor
+     * @param string $name
+     * @param string $label
+     * @param bool $required
+     * @return Zend_Form_Element_Textarea
+     */
+    public function getHtmlEditorElement($name,$label,$required = true)
+    {
+        $element = $this->getTextareaElement($name, $label,$required);
+        $element->setAttrib('class', 'editor');
+        $element->getDecorator('HtmlTag')->setOption('class', 'html-editor');
+        $element->getDecorator('Label')->setOption('class', 'html-editor');
+        return $element;
+    }
+
+    /**
+     * Set required and change the element class attribute accordinly
+     * @param string $element element name
+     * @param bool $required
+     * @return Form_Abstract
+     */
+    public function setRequired($element,$required = true)
+    {
+        if (is_string($element)) {
+            $element = $this->{$element};
+        }
+
+        $class = $element->getAttrib('class');
+        $class = str_replace('required', '', $class);
+        $element->setRequired($required);
+
+        if ($required) {
+            $element->setAttrib('class',trim('required '.$class));
+        } else {
+            $element->setAttrib('class',trim($class));
+        }
+        return $this;
+    }
+
+    /**
+     * Add class hidden to the decorator
+     * @param Zend_Form_Element|string $element Element or element name
+     * @return Form_Abstract
+     */
+    public function hideElement($element)
+    {
+        if (false == ($element instanceof Zend_Form_Element)) {
+            $element = $this->{$element};
+        }
+
+        $decorator = $element->getDecorator('Label');
+        $decorator->setOption('class', trim($decorator->getOption('class') . ' hidden'));
+
+        $decorator = $element->getDecorator('HtmlTag');
+        $decorator->setOption('class', trim($decorator->getOption('class') . ' hidden'));
+
+        return $this;
+    }
+
+    /**
+     * @return inline script
+     */
+    public function getInlineScript()
+    {
+        $script = '';
+        return $script;
+    }
+}

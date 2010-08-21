@@ -1,0 +1,248 @@
+/* 
+    Document   : admin.css
+    Created on : 10/06/2010, 14:00:50
+    Author     : marcelo.jacobus
+    Description:
+        Purpose of the stylesheet follows.
+*/
+root { 
+    display: block;
+}
+
+body {
+    background: #667777;
+}
+#header {
+    text-align: center;
+}
+#container {
+    width:980px;
+    margin:0 auto;
+}
+#content {
+    padding:10px 30px;
+    margin:0;
+    width:900px;
+    margin:0 auto 0 0;
+    background:white;
+    min-height:600px;
+    overflow: auto;
+}
+
+.hidden {display:none;}
+
+li {
+    list-style: none;
+}
+
+a, a:hover,a:active,a:visited {
+    color:gray;
+    text-decoration: none;
+}
+
+.fleft {float:left;}
+.clear {clear:both}
+
+#left-menu {
+}
+
+#left-menu ul {
+}
+
+#left-menu ul li {
+    background:#ccc;
+    width: 150px;
+    line-height:30px;
+    list-style:none outside none;
+    height:20px;
+    margin:10px 5px 0px 5px;
+    padding:6px;
+    vertical-align:middle;
+    float: left;
+    text-align: center;
+}
+#left-menu ul li.active, #left-menu ul li.active:hover,#left-menu ul li.active a {
+    background:white;
+    color: black;
+    height:30px;
+    margin:0 5px;
+    font-weight: bold;
+}
+
+#left-menu ul li:hover {
+    background:#eee;
+    height:30px;
+    margin:0 5px;
+    font-weight: bold;
+}
+
+#left-menu a {
+
+}
+
+/* Forms */
+input,select, textarea {
+    width: 600px;
+    margin-left: 10px;
+}
+input[type=checkbox] {
+    width:20px;
+}
+textarea {
+    height:150px;
+}
+dd.textarea,dt.textarea {
+    height:200px;
+}
+dd.html-editor,dt.html-editor {
+    height:220px;
+}
+
+dd, dt {
+    height:60px;
+    margin:0;
+}
+
+dt {
+    width: 220px;
+    text-align: right;
+    float: left;
+}
+
+dd {
+    width: 600px;
+    text-align: left;
+    float: left;
+}
+
+table.crud {
+    width:100%;
+    margin-top: 40px;
+}
+tr.r0 {background: #dddddd;}
+td.actions{width:100px;}
+
+div.messages {
+    border: 3px solid;
+    width: 100%;
+    background: red;
+    color:white;
+}
+
+div.messages.error {
+    border-color: #900;
+    background-color: #ff3333;
+}
+
+div.messages.success {
+    background:#7C7;
+    border-color: #070;
+}
+
+.errors{color:red;}
+
+.pagination {
+    float: left;
+    margin: 15px 0;
+}
+
+.pagination ul li,.pagination ul li a {
+    float:left;
+    width:35px;
+    text-align: center;
+}
+.pagination ul li a:hover {
+    background: #ddd;
+}
+
+.pagination ul li.active,.pagination ul li.active a {
+    color:white;
+    background:gray;
+}
+
+.pagination .first , .pagination .last , .pagination .previous , .pagination .next  {
+    margin:0 5px;
+}
+
+#search {
+    float:right;
+}
+#search input {
+    width:200px;
+    float:left;
+}
+#search .button {
+    width:100px;
+}
+
+div.search {
+    height:40px;
+    margin-left:548px;
+    margin-top:80px;
+    position:absolute;
+    top:0;
+    width:376px;
+}
+
+div.total {
+    color:gray;
+    float:left;
+    margin-left:61px;
+    width:700px;
+}
+
+.boolean label,.boolean input {
+    float:left;
+    width: auto;
+}
+
+.radio-multi label,.radio-multi input {
+    float:left;
+    width: auto;
+}
+dd.radio-multi.height-4 {
+    height:100px;
+}
+dd.radio-multi.height-5 {
+    height:125px;
+}
+dd.radio-multi.height-6 {
+    height:150px;
+}
+dd.radio-multi.height-7 {
+    height:175px;
+}
+dd.radio-multi.height-9 {
+    height:200px;
+}
+
+.errors{
+    z-index: 50;
+}
+
+/* Datepicker */
+.ui-datepicker {
+    padding:0.2em 0.2em 0;
+    width:13em;
+}
+
+.ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next {
+    height:1.2em;
+    top:5px;
+    width:1.2em;
+}
+
+.ui-datepicker table {
+    font-size:0.7em;
+}
+
+.ui-datepicker .ui-datepicker-header {
+    position:relative;
+}
+
+
+.ui-widget-header {
+    font-size:0.7em;
+}
+
+input.date {width:80px}

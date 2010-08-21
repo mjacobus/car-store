@@ -1,0 +1,80 @@
+UserRole:
+  Role_Guest:
+    name: guest
+  Role_Admin:
+    name: admin
+  Role_Member:
+    name: member
+
+User:
+  User_Admin:
+    name: admin
+    email: admin@somedomain.com
+    login: admin
+    # password is changeme with salt "salt"
+    # sha1(concat("salt", "changeme", "salt"))
+    password: f7d7b50eea0db27d64e36cbc12c3b74a8ba4767b
+    Role: Role_Admin
+    enabled: true
+
+Brand:
+  Volksvagen:
+    name: Volksvagen
+  Fiat:
+    name: Fiat
+  Chevrolet:
+    name: Chevrolet
+  Ford:
+    name: Ford
+  Peugeot:
+     name: Peugeot
+  CitroEn:
+     name: Citroën
+  Nissan:
+     name: Nissan
+  Hyundai:
+     name: Hyundai
+  BMW:
+     name: BMW
+  Alfa_Romeo:
+     name: Alfa Romeo
+  Audi:
+     name: Audi
+  Mitsubishi:
+     name: Mitsubishi
+  Honda:
+     name: Honda
+  Renault:
+    name: Renault
+  Chrysler:
+    name: Chrysler
+  Mercedes:
+    name: Mercedes
+  Volvo:
+    name: Volvo
+  Toyota:
+    name: Toyota
+
+
+Car:
+  Voyage:
+    model: Voyage teste
+    price: 5000.56
+    showPrice: true
+    year: 1984
+    modelYear: 1985
+    priority: 0
+    licensePlate: ABC-1234
+    Brand: Volksvagen
+  Uno:
+    model: Uno teste
+    price: 15000.56
+    showPrice: true
+    year: 1999
+    modelYear: 2000
+    priority: 0
+    licensePlate: ABC-1235
+    Brand: Fiat
+
+
+
