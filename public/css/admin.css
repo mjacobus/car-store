@@ -80,6 +80,9 @@ a, a:hover,a:active,a:visited {
 
 }
 
+form.validate {
+    margin-top: 80px;
+}
 /* Forms */
 input,select, textarea {
     width: 600px;
