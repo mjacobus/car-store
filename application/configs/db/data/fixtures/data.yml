@@ -20,40 +20,58 @@ User:
 Brand:
   Volksvagen:
     name: Volksvagen
+    logo: volksvagen.jpg
   Fiat:
     name: Fiat
+    logo: fiat.jpg
   Chevrolet:
     name: Chevrolet
+    logo: chevrolet.jpg
   Ford:
     name: Ford
+    logo: ford.jpg
   Peugeot:
      name: Peugeot
-  CitroEn:
+     logo: peugeot.jpg
+  Citroen:
      name: Citroën
+     logo: citroen.jpg
   Nissan:
      name: Nissan
+     logo: nissan.jpg
   Hyundai:
      name: Hyundai
+     logo: hyundai.jpg
   BMW:
      name: BMW
+     logo: bmw.jpg
   Alfa_Romeo:
      name: Alfa Romeo
+     logo: alfa-romeo.jpg
   Audi:
      name: Audi
+     logo: audi.jpg
   Mitsubishi:
      name: Mitsubishi
+     logo: mitsubishi.jpg
   Honda:
      name: Honda
+     logo: honda.jpg
   Renault:
     name: Renault
+    logo: renault.jpg
   Chrysler:
     name: Chrysler
+    logo: chrysler.jpg
   Mercedes:
     name: Mercedes
+    logo: mercedes.jpg
   Volvo:
     name: Volvo
+    logo: volvo.jpg
   Toyota:
     name: Toyota
+    logo: toyota.jpg
 
 
 Car:

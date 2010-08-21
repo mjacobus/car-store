@@ -8,6 +8,7 @@
 root { 
     display: block;
 }
+.bg-white{background:white}
 
 body {
     background: #667777;

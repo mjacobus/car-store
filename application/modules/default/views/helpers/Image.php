@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Gets url for resized images
  * @author marcelo.jacobus
@@ -14,15 +15,19 @@ class Zend_View_Helper_Image extends Zend_View_Helper_BaseUrl
      */
     public function image($file, $dimentions = '100x100')
     {
-        $parts = explode('x',strtolower($dimentions));
-        if (count($parts) == 2) {
-            $request =  Model_Image::getInstance()
-                ->setFile($file)
-                ->setWidth($parts[0])
-                ->setHeight($parts[1])
-                ->getRequest();
+        try {
+            $parts = explode('x', strtolower($dimentions));
+            if (count($parts) == 2) {
+                $request = Model_Image::getInstance()
+                        ->setFile($file)
+                        ->setWidth($parts[0])
+                        ->setHeight($parts[1])
+                        ->getRequest();
 
-            return $this->baseUrl('image') . $request;
+                return $this->baseUrl('image') . $request;
+            }
+        } catch (Exception $e) {
+
         }
         throw new Zend_View_Exception("Invalid dimensions: $dimentions");
     }
