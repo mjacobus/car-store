@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Form for Category
+ * Form for Brand
  *
  * @author marcelo.jacobus
  */
@@ -21,7 +21,7 @@ class Admin_Form_Brand extends Admin_Form_Abstract
     /**
      * Add Name wich is a Zend_Form_Element_Text
      * length 255
-     * @return Admin_Form_Category
+     * @return Admin_Form_Brand
      */
     public function addName()
     {

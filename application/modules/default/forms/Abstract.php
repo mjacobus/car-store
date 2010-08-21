@@ -248,4 +248,61 @@ class Form_Abstract extends Zend_Form
         $script = '';
         return $script;
     }
+
+    /**
+     * Add a css class to an element
+     * @param string $class
+     * @param Zend_Form_Element $element
+     * @return Form_Abstract
+     */
+    public function addClass($class, Zend_Form_Element $element)
+    {
+        if (!$this->hasClass($class, $element)) {
+            $class = $element->getAttrib('class') . " $class";
+            $element->setAttrib('class',trim($class));
+        }
+        return $this;
+    }
+
+    /**
+     * Remove a css class to an element
+     * @param string $class
+     * @param Zend_Form_Element $element
+     * @return Form_Abstract
+     */
+    public function removeClass($class, Zend_Form_Element $element)
+    {
+        $regexp = "/\b$class\b/";
+        $class = preg_replace($regexp,'', $element->getAttrib('class'));
+        $element->setAttrib('class',trim($class));
+        return $this;
+    }
+
+    /**
+     * Checks wheter element has class
+     * @param string $class
+     * @param Zend_Form_Element $element
+     * @return boolean
+     */
+    public function hasClass($class, Zend_Form_Element $element)
+    {
+        if (strlen($class)) {
+            $regexp = "/\b$class\b/";
+            if (preg_match($regexp, $element->getAttrib('class'))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Get a check box (boolean, 1 or 0)
+     * @return Zend_Form_Element_Checkbox
+     */
+    public function getCheckElement($name){
+        $element = new Zend_Form_Element_Checkbox($name);
+        $element->setLabel('Exibir Valor');
+        $this->addClass('single-check', $element);
+        return $element;
+    }
 }

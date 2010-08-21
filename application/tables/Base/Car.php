@@ -7,6 +7,7 @@
  * 
  * @property integer $id
  * @property string $model
+ * @property string $color
  * @property integer $brand_id
  * @property float $price
  * @property boolean $showPrice
@@ -35,6 +36,11 @@ abstract class Base_Car extends Doctrine_Record
         $this->hasColumn('model', 'string', 255, array(
              'type' => 'string',
              'unique' => true,
+             'notnull' => true,
+             'length' => '255',
+             ));
+        $this->hasColumn('color', 'string', 255, array(
+             'type' => 'string',
              'notnull' => true,
              'length' => '255',
              ));

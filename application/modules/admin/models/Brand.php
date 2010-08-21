@@ -10,14 +10,7 @@ class Admin_Model_Brand extends Admin_Model_Abstract
 
     protected $_tableName = 'Brand';
 
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-
-    }
-
+    
     /**
      * Get the form
      * @return Admin_Form_Brand
@@ -39,6 +32,15 @@ class Admin_Model_Brand extends Admin_Model_Abstract
     {
         $record = $this->getById($this->getTablelName(), $id);
         return sprintf('Tem certeza que deseja excluir a marca "%s"?', $record->name);
+    }
+
+    /**
+     * @return Doctrine_Query
+     */
+    public static function getSelectDql()
+    {
+        return Doctrine_Query::create()
+            ->from('Brand')->orderBy('name ASC');
     }
 
 }

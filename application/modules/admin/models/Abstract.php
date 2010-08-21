@@ -132,7 +132,6 @@ abstract class Admin_Model_Abstract extends Model_Abstract
         } catch (Exception $e) {
             $this->addMessage($this->_crudMessages[self::SAVE_ERROR]);
             $this->addMessage($e->getMessage());
-            $this->addMessage(print_r($values, 1));
         }
         return false;
     }
@@ -255,7 +254,7 @@ abstract class Admin_Model_Abstract extends Model_Abstract
      */
     public static function getSelectDql($id = null)
     {
-        $dql = Doctrine_Query::create()->from($this->getTablelName())->orderBy('name ASC');
+        $dql = Doctrine_Query::create()->from($this->getTablelName());
 
         if ($id !== null) {
             $dql->where('id != ?', $id);

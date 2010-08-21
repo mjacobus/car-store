@@ -95,6 +95,9 @@ Car:
       type: string(255)
       unique: true
       notnull: true
+    color:
+      type: string(255)
+      notnull: true
     brand_id:
       type: integer
       notnull: true

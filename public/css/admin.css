@@ -20,7 +20,7 @@ body {
     margin:0 auto;
 }
 #content {
-    padding:10px 30px;
+    padding:55px 30px 10px 30px;
     margin:0;
     width:900px;
     margin:0 auto 0 0;
@@ -42,6 +42,9 @@ a, a:hover,a:active,a:visited {
 
 .fleft {float:left;}
 .clear {clear:both}
+.left {text-align: left;}
+.right {text-align: right;}
+.center {text-align: center}
 
 #left-menu {
 }
@@ -80,9 +83,6 @@ a, a:hover,a:active,a:visited {
 
 }
 
-form.validate {
-    margin-top: 80px;
-}
 /* Forms */
 input,select, textarea {
     width: 600px;
@@ -120,9 +120,18 @@ dd {
 
 table.crud {
     width:100%;
-    margin-top: 40px;
 }
+table.crud td  {
+    padding: 8px;
+}
+table.crud td.thumb {
+    width:120px;
+    height: 100px;
+    background: gray;
+}
+
 tr.r0 {background: #dddddd;}
+tr.r1 {background: #dde;}
 td.actions{width:100px;}
 
 div.messages {
