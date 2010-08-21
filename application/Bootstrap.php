@@ -108,6 +108,20 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         Zend_Registry::set('securitySalt', $salt);
     }
 
+    /**
+     * Init image token salt
+     */
+    protected function _initImageTokenSalt()
+    {
+        $modelImage = Model_Image::getInstance();
+
+        $modelImage->setOriginalPath(APPLICATION_PATH
+                . '/../files/images/original')
+            ->setResizedPath(APPLICATION_PATH
+                . '/../files/images/resized')
+            ->setTokenSalt('tokensalt');
+    }
+
     public function __initCacheDir()
     {
         $cacheDir = APPLICATION_PATH . '/../tmp/cache';
