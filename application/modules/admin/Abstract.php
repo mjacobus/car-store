@@ -56,8 +56,6 @@ abstract class Admin_Controller_Abstract extends Zend_Controller_Action
      */
     public function indexAction()
     {
-        $this->view->params = $this->_getAllParams();
-
         $namespace = implode('_', array(
                 $this->getRequest()->getModuleName(),
                 $this->getRequest()->getControllerName(),
@@ -98,7 +96,7 @@ abstract class Admin_Controller_Abstract extends Zend_Controller_Action
      */
     public function editAction()
     {
-        $this->processForm($this->getRequest()->getParams());
+        $this->processForm($this->getRequest()->getParam('id', 0));
     }
 
     /**
@@ -106,17 +104,17 @@ abstract class Admin_Controller_Abstract extends Zend_Controller_Action
      */
     public function addAction()
     {
-        $this->processForm($this->getRequest()->getParams());
+        $this->processForm();
     }
 
     /**
      * Process Form
-     * @param int $params
+     * @param int $id
      *
      */
-    public function processForm(array $params = null)
+    public function processForm($id = null)
     {
-        $form = $this->view->form = $this->model->getForm($params);
+        $form = $this->view->form = $this->model->getForm($id);
 
         $this->view->inlineScript(Zend_View_Helper_HeadScript::SCRIPT, $this->model->getForm()->getInlineScript());
 
@@ -124,7 +122,7 @@ abstract class Admin_Controller_Abstract extends Zend_Controller_Action
 
             $id = $this->getRequest()->getParam('id');
             $values = $this->getRequest()->getPost();
-            if ($this->model->save($values, $id)) {
+            if ($this->model->save($values,$id)) {
                 $this->view->flash($this->model->getMessages());
                 $this->_redirect($this->getRequest()->getModuleName()
                     . '/' . $this->getRequest()->getControllerName()
@@ -132,8 +130,8 @@ abstract class Admin_Controller_Abstract extends Zend_Controller_Action
             }
             $this->view->errors($this->model->getMessages());
         } else {
-            if (array_key_exists('id', $params)) {
-                $this->model->populateForm($params['id']);
+            if ($id !== null) {
+                $this->model->populateForm($id);
             }
         }
     }

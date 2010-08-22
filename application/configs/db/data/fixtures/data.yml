@@ -1585,3 +1585,15 @@ Car:
     priority: 0
     color: preto
     Brand: Fiat
+
+CarFeature:
+  4p:
+    description: 4 portas
+    Car: Voyage
+    priority: 2
+  Direcao:
+    description: Dir. Hidráulica
+    priority: 1
+    Car: Voyage
+
+

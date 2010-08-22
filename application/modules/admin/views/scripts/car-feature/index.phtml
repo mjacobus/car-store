@@ -1,0 +1,49 @@
+<div class="search top"><?= $this->search ?>
+    <div class="total"><?= $this->pagination()->getPager()->getNumResults() ?> registro(s) encontrado(s).</div>
+</div>
+
+<?= $this->flash()->render() ?>
+
+
+
+<?= $this->pagination()->render() ?>
+<table class="crud">
+    <tr>
+        <th>Descricão</th>
+        <th>Ordem</th>
+
+        <th><a class="new-register" href="<?= $this->url(array(
+            'module'=>'admin',
+            'controller' => 'car-feature',
+            'action' => 'add',
+            'car' => $this->params['car']
+        ),null,true)?>" >Adicionar</a></th>
+
+    </tr>
+    <? foreach($this->registers as $i => $register) : ?>
+        <tr class="r<?=($i%2)?>">
+            
+            <td><?= $register->description ?></td>
+            <td class="center"><?= $register->priority ?></td>
+
+            <td class="actions">
+                <a class="edit" href="<?= $this->url(array(
+                            'module'=>'admin',
+                            'controller' => 'car-feature',
+                            'action' => 'edit',
+                            'id' => $register->id
+                        ),null,true)?>" >Editar</a>
+                
+                <a class="del" href="<?= $this->url(array(
+                            'module'=>'admin',
+                            'controller' => 'car-feature',
+                            'action' => 'del',
+                            'id' => $register->id
+                        ),null,true)?>" >Excluir</a>
+            </td>
+        </tr>
+
+    <? endforeach ?>
+
+</table>
+<?= $this->pagination()->render() ?>

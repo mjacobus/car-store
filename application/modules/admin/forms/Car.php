@@ -134,7 +134,7 @@ class Admin_Form_Car extends Admin_Form_Abstract
      */
     public function addShowPrice()
     {
-        $element = $this->getCheckElement('showPrice');
+        $element = $this->getCheckElement('showPrice', 'Exibir Valor');
         $this->addElement($element);
         return $this;
     }

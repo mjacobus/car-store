@@ -129,3 +129,46 @@ Car:
       class: Brand
       local: brand_id
       foreign: id
+    Features:
+      class: Feature
+      foreign: car_id
+      local: id
+      type: many
+      onDelete: RESTRICT
+
+CarFeature:
+  tableName: car_feature
+  columns:
+    id:
+      type: integer
+      primary: true
+      unsigned: true
+      autoincrement: true
+    car_id:
+      type: integer
+      unsigned: true
+      notnull: true
+    priority:
+      type: integer
+      unsigned: true
+      notnull: true
+    description:
+      type: string(255)
+      notnull: true
+  actAs: [Timestampable]
+  relations:
+    Car:
+      class: Car
+      local: car_id
+      foreign: id
+  indexes:
+    car_id_description_uk:
+      fields:
+        car_id: []
+        description: []
+      type: unique
+
+
+
+
+

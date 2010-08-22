@@ -16,6 +16,7 @@
  * @property integer $priority
  * @property string $licensePlate
  * @property Brand $Brand
+ * @property Doctrine_Collection $CarFeature
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -89,6 +90,10 @@ abstract class Base_Car extends Doctrine_Record
         $this->hasOne('Brand', array(
              'local' => 'brand_id',
              'foreign' => 'id'));
+
+        $this->hasMany('CarFeature', array(
+             'local' => 'id',
+             'foreign' => 'car_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);

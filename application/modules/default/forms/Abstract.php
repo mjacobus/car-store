@@ -299,10 +299,22 @@ class Form_Abstract extends Zend_Form
      * Get a check box (boolean, 1 or 0)
      * @return Zend_Form_Element_Checkbox
      */
-    public function getCheckElement($name){
+    public function getCheckElement($name, $label){
         $element = new Zend_Form_Element_Checkbox($name);
-        $element->setLabel('Exibir Valor');
+        $element->setLabel($label);
         $this->addClass('single-check', $element);
+        return $element;
+    }
+    
+    /**
+     * Get hidden element
+     * @return Zend_Form_Element_Hidden
+     */
+    public function getHiddenElement($name, $required = true){
+        $element = new Zend_Form_Element_Hidden($name);
+        $element->setRequired($required);
+        //$element->getDecorator($name)
+        
         return $element;
     }
 }
