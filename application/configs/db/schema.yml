@@ -168,7 +168,27 @@ CarFeature:
         description: []
       type: unique
 
-
-
-
+Image:
+  tableName: image
+  columns:
+    id:
+      type: integer
+      primary: true
+      unsigned: true
+      autoincrement: true
+    filename:
+      type: string(255)
+      unique: true
+      notnull: true
+    md5:
+      type: string(32)
+      unique: true
+      notnull: true
+    description:
+      type: string(255)
+      notnull: true
+  actAs: [Timestampable]
+  indexes:
+    description:
+      fields: [description]
 

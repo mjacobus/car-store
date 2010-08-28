@@ -25,6 +25,18 @@ abstract class Admin_Model_Abstract extends Model_Abstract
      */
     protected $_searchForm;
 
+    /**
+     * Mapping of unique keys
+     * @var array
+     */
+    protected $_ukMapping = array(
+        'uk_sample' => array(
+            'field' => 'field',
+            'label' => 'field label',
+            'message' => 'There is already a "{field label}" with value "{value}" '
+        )
+    );
+
     const SAVE_OK = 'SAVE_OK';
     const SAVE_ERROR = 'SAVE_ERROR';
     const REGISTER_NOT_FOUND = 'REGISTER_NOT_FOUND';
@@ -130,6 +142,7 @@ abstract class Admin_Model_Abstract extends Model_Abstract
                 return true;
             }
         } catch (Exception $e) {
+            $message = $e->getMessage();
             $this->addMessage($this->_crudMessages[self::SAVE_ERROR]);
             $this->addMessage($e->getMessage());
         }
