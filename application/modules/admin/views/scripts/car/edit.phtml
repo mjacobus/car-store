@@ -1,5 +1,6 @@
 
 <div class="search top"><?= $this->search ?></div>
-
+<? include '_submenu.phtml' ?>
+<?= $this->flash()->render() ?>
 <?= $this->errors()->render() ?>
 <?= $this->form ?>

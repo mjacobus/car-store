@@ -261,3 +261,34 @@ dd.radio-multi.height-9 {
 }
 
 input.date {width:80px}
+
+
+ul.submenu {
+    width:100%;
+    border-bottom: 1px #bbb solid;
+    height:33px;
+    margin-bottom:50px;
+    margin-top:-35px;
+    padding:0px;
+}
+
+ul.submenu li{
+    float:left;
+    margin: 5px;
+    width: 100px;
+    padding:5px;
+    text-align:center;
+    border:1px solid #dddddd;
+    background:#eeeeee;
+    border-bottom: white solid 0px;
+}
+
+ul.submenu li.active a {
+    color:black;
+}
+
+ul.submenu li.active {
+    background:white;
+    border:1px solid #bbb;
+    border-bottom: white solid 2px;
+}

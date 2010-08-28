@@ -24,12 +24,12 @@ $user = Zend_Auth::getInstance()->getIdentity();
             <div id="left-menu">
                 <ul>
 
-                    <?php foreach ($this->tabs as $controller => $label): ?>
-                        <? $class = ($controllerName == $controller) ? 'active' : '' ?>
+                    <?php foreach ($this->tabs as $label => $controllers ): ?>
+                        <? $class = (in_array($controllerName, $controllers)) ? 'active' : '' ?>
                             <li class="<?= $class ?>">
                             <a href="<?= $this->url(array(
                             'module' => 'admin',
-                            'controller' => $controller,
+                            'controller' => $controllers[0],
                             'action' => ''), null, true)
                         ?>"><?= $label ?></a>
                     </li>

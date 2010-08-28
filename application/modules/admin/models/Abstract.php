@@ -65,15 +65,15 @@ abstract class Admin_Model_Abstract extends Model_Abstract
     /**
      * Try to save a record
      * @param array $values
-     * @return bool
+     * @return bool|int false when its not ok and the record id when it is ok.
      */
     public function save(array $values, $id = null)
     {
         try {
             if ($this->getForm()->isValid($values)) {
-                $this->persist($values, $id);
+                $id = $this->persist($values, $id);
                 $this->addMessage($this->_crudMessages[self::SAVE_OK]);
-                return true;
+                return $id;
             }
         } catch (Exception $e) {
             $this->addMessage($this->_crudMessages[self::SAVE_ERROR]);
@@ -198,7 +198,7 @@ abstract class Admin_Model_Abstract extends Model_Abstract
         }
         $record->fromArray($values);
         $record->save();
-        return $this;
+        return $record->id;
     }
 
     /**

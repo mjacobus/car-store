@@ -56,8 +56,6 @@ abstract class Admin_Controller_Abstract extends Zend_Controller_Action
      */
     public function indexAction()
     {
-        $this->view->params = $this->_getAllParams();
-
         $namespace = implode('_', array(
                 $this->getRequest()->getModuleName(),
                 $this->getRequest()->getControllerName(),
@@ -124,11 +122,9 @@ abstract class Admin_Controller_Abstract extends Zend_Controller_Action
 
             $id = $this->getRequest()->getParam('id');
             $values = $this->getRequest()->getPost();
-            if ($this->model->save($values, $id)) {
-                $this->view->flash($this->model->getMessages());
-                $this->_redirect($this->getRequest()->getModuleName()
-                    . '/' . $this->getRequest()->getControllerName()
-                );
+            $id = $this->model->save($values, $id);
+            if ($id) {
+                $this->onSaveOk($id);
             }
             $this->view->errors($this->model->getMessages());
         } else {
@@ -136,6 +132,26 @@ abstract class Admin_Controller_Abstract extends Zend_Controller_Action
                 $this->model->populateForm($params['id']);
             }
         }
+    }
+
+    /**
+     * After delete, shows message
+     */
+    public function onDeleteOk($savedRecordId = null)
+    {
+        $this->view->flash($this->model->getMessages());
+    }
+    
+    /**
+     * After save succeed, redirects
+     * Displays ok message and redirects
+     */
+    public function onSaveOk($savedRecordId = null)
+    {
+        $this->view->flash($this->model->getMessages());
+        $this->_redirect($this->getRequest()->getModuleName()
+                    . '/' . $this->getRequest()->getControllerName()
+                );
     }
 
     /**
@@ -148,10 +164,11 @@ abstract class Admin_Controller_Abstract extends Zend_Controller_Action
             if (strtolower($this->getRequest()->getPost('confirm')) == 'sim') {
                 $id = $this->getRequest()->getPost('id');
 
-                if (!$this->model->deleteRecord($id)) {
+                $id = $this->model->deleteRecord($id);
+                if (!$id) {
                     $this->view->flash()->setDivClass('error');
                 }
-                $this->view->flash($this->model->getMessages());
+                $this->onDeleteOk($id);
             }
 
             $this->_redirect($this->getRequest()->getModuleName()
@@ -238,7 +255,7 @@ abstract class Admin_Controller_Abstract extends Zend_Controller_Action
                     $this->getRequest()->getControllerName(),
                 ));
 
-            $pattern = '/' . preg_quote($crudUrl, '/') . '\/(edit|add|del)/';
+            $pattern = '/' . preg_quote($crudUrl, '/') . '\/(view|edit|add|del)/';
 
             if (preg_match($pattern, $lastUrl)) {
                 return true;
@@ -250,10 +267,12 @@ abstract class Admin_Controller_Abstract extends Zend_Controller_Action
     public function preDispatch()
     {
         $this->view->tabs = array(
-            'brand' => 'Marcas',
-            'car' => 'Veículos',
-            'image-upload' => 'Imagens',
+            'Veículos' => array('car','car-feature','car-image'),
+            'Marcas' => array('brand'),
+            'Imagens' => array('image-upload'),
+            
         );
+        $this->view->params = $this->_getAllParams();
     }
 
 }

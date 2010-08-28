@@ -1,0 +1,36 @@
+<?
+    $carId = array_key_exists('car',$this->params) ?
+                $this->params['car'] : $this->params['id'];
+
+   $main = $this->url(array(
+            'module'=>'admin',
+            'controller' => 'car',
+            'action' => 'edit',
+            'id' => $carId
+        ),null,true);
+
+   $features = $this->url(array(
+            'module'=>'admin',
+            'controller' => 'car-feature',
+            'action' => 'index',
+            'car' => $carId
+        ),null,true);
+
+   $images = $this->url(array(
+            'module'=>'admin',
+            'controller' => 'car-image',
+            'action' => 'index',
+            'car' => $carId
+        ),null,true);
+
+
+   $controller = $this->params['controller'];
+   ?>
+
+<ul class="submenu">
+    <li <? if ($controller == 'car') echo ' class="active"' ?>><a href="<?= $main ?>">Princial</a></li>
+    <li <? if ($controller == 'car-feature') echo ' class="active"' ?>><a href="<?= $features ?>">Características</a></li>
+    <li <? if ($controller == 'car-image') echo ' class="active"' ?>><a href="<?= $images ?>">Imagens</a></li>
+</ul>
+
+
