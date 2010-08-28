@@ -266,7 +266,7 @@ abstract class Admin_Model_Abstract extends Model_Abstract
 
     /**
      * Populates a form
-     * @param array $params
+     * @param int $id
      * @throws App_Exception_RegisterNotFound case register wont exist
      * @return Admin_Model_Brand
      */

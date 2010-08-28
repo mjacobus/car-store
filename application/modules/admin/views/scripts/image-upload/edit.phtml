@@ -3,10 +3,4 @@
 
 <?= $this->errors()->render() ?>
 
-
-    <div class="crud image">
-        <img src="<?= $this->image($this->form->filename->getValue() . ".png",
-                        '200x200') ?>" alt="imagem não encontrada" />
-    </div>
-
 <?= $this->form ?>

@@ -14,6 +14,8 @@ class Admin_Form_ImageUpload extends Admin_Form_Abstract
     public function __construct(array $params = null, $options = null)
     {
         parent::__construct($options);
+
+        $this->addImage($params);
         $this->addFile($params);
         $this->addFilename();
         $this->addDescription();
@@ -30,7 +32,7 @@ class Admin_Form_ImageUpload extends Admin_Form_Abstract
         $this->addElement($this->getTextElement('description', 'Descricão'));
         return $this;
     }
-    
+
     /**
      * Add filename wich is a Zend_Form_Element_Text
      * length 255
@@ -56,13 +58,30 @@ class Admin_Form_ImageUpload extends Admin_Form_Abstract
             ->addValidator('Size', false, 2097152000) //2MB
             ->setMaxFileSize(2097152);
 
-        if(array_key_exists('id', $params)) {
+        if (array_key_exists('id', $params)) {
             $element->setDescription("Para alterar imagem prencha este campo.");
+            $element->setRequired(true)->setLabel('');
         }
 
         $this->addElement($element);
         return $this;
     }
-    
+
+    /**
+     * Add image wich is a Zend_Form_Element_File
+     * @return Admin_Form_ImageUpload
+     */
+    public function addImage(array $params = array())
+    {
+        if (array_key_exists('id', $params)) {
+            $element = new Zend_Form_Element_Image('image', $options);
+            $element->setLabel('Imagem')
+                ->setAttrib('style', 'width:400px;');
+            $element->getDecorator('HtmlTag')->setOption('style','height:310px;');
+            $this->addElement($element);
+        }
+        return $this;
+    }
+
 }
 

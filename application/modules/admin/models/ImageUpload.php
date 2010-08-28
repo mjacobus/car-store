@@ -37,6 +37,23 @@ class Admin_Model_ImageUpload extends Admin_Model_Abstract
     }
 
     /**
+     * Get request for a image
+     * @return string
+     */
+    public function getRequestFormImage($filename,$width = 200, $height = 200)
+    {
+        $request = Model_Image::getInstance()
+                ->setFile($filename . ".png")
+                ->setWidth($width)
+                ->setHeight($height)
+                ->getRequest();
+
+        $request = Zend_Controller_Front::getInstance()->getBaseUrl()
+            . '/image' . $request;
+        return $request;
+    }
+
+    /**
      * Get a confirmation messages for deleting a record
      * @var int $id the id of the Brand record
      * @return string
@@ -44,15 +61,7 @@ class Admin_Model_ImageUpload extends Admin_Model_Abstract
     public function getDelConfirmationMessage($id)
     {
         $record = $this->getById($this->getTablelName(), $id);
-        $request = Model_Image::getInstance()
-                ->setFile($record->filename . ".png")
-                ->setWidth(200)
-                ->setHeight(200)
-                ->getRequest();
-
-        $request = Zend_Controller_Front::getInstance()->getBaseUrl()
-            . '/image' . $request;
-
+        $this->getRequestFormImage($record->filename);
         $imgTag = '<div><img src="' . $request . '" alt="imagem não encontrada" /></div>';
         return sprintf('Tem certeza que deseja excluir a imagem "%s (%s)"? %s',
             $record->filename, $record->description, $imgTag);
@@ -170,6 +179,22 @@ class Admin_Model_ImageUpload extends Admin_Model_Abstract
         }
         $dir = Model_Image::getInstance()->getOriginalPath();
         unlink("$dir/$name.png");
+    }
+
+    /**
+     * Populates a form
+     * @param int $id
+     * @throws App_Exception_RegisterNotFound case register wont exist
+     * @return Admin_Model_Brand
+     */
+     public function populateForm($id)
+    {
+        parent::populateForm($id);
+        $form = $this->getForm();
+        $filename = $form->getValue('filename');
+        $image = $this->getRequestFormImage($filename,400,400);
+        $form->image->setImage($image);
+        return $this;
     }
 
 }
