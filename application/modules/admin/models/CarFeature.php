@@ -9,7 +9,13 @@ class Admin_Model_CarFeature extends Admin_Model_Abstract
 {
 
     protected $_tableName = 'CarFeature';
-
+    protected $_ukMapping = array(
+        'car_id_description_uk_idx' => array(
+            'field' => 'description',
+            'label' => 'Descricão',
+            'message' => 'Este veículo já possue descricão "{value}" cadastrada.'
+        )
+    );
 
     /**
      * Get the form

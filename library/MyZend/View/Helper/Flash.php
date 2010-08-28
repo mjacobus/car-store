@@ -57,12 +57,15 @@ class MyZend_View_Helper_Flash extends Zend_Controller_Action_Helper_FlashMessen
      *
      * @return string
      */
-    public function render()
+    public function render($escape = false)
     {
         $htmlMessage = '<div class="messages ' . $this->getDivClass() . '"><ul>';
 
         foreach($this->getMessages() as $message) {
-            $htmlMessage .= '<li>' .  htmlentities($message, ENT_COMPAT, 'UTF-8') . '</li>';
+            if ($escape) {
+                $message = htmlentities($message, ENT_COMPAT, 'UTF-8');
+            }
+            $htmlMessage .= '<li>' . $message  . '</li>';
         }
 
         $htmlMessage  .= '</ul></div>';

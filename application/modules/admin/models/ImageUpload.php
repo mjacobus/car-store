@@ -10,6 +10,19 @@ class Admin_Model_ImageUpload extends Admin_Model_Abstract
 
     protected $_tableName = 'Image';
 
+    protected $_ukMapping = array(
+        'filename' => array(
+            'field' => 'filename',
+            'label' => 'Nome do Arquivo',
+            'message' => 'Um registro já existe com "{label}" igual a "{value}" '
+        ),
+        'md5' => array(
+            'field' => 'md5',
+            'label' => 'Imagem',
+            'message' => 'Esta imagem já existe. Por favor troque-a" '
+        )
+    );
+
     /**
      * Get the form
      * @param array $params
@@ -31,8 +44,18 @@ class Admin_Model_ImageUpload extends Admin_Model_Abstract
     public function getDelConfirmationMessage($id)
     {
         $record = $this->getById($this->getTablelName(), $id);
-        return sprintf('Tem certeza que deseja excluir a imagem "%s (%s)"?',
-            $record->filename, $record->description);
+        $request = Model_Image::getInstance()
+                ->setFile($record->filename . ".png")
+                ->setWidth(200)
+                ->setHeight(200)
+                ->getRequest();
+
+        $request = Zend_Controller_Front::getInstance()->getBaseUrl()
+            . '/image' . $request;
+
+        $imgTag = '<div><img src="' . $request . '" alt="imagem não encontrada" /></div>';
+        return sprintf('Tem certeza que deseja excluir a imagem "%s (%s)"? %s',
+            $record->filename, $record->description, $imgTag);
     }
 
     /**
@@ -65,29 +88,42 @@ class Admin_Model_ImageUpload extends Admin_Model_Abstract
         $form = $this->getForm();
         $file = $form->file;
 
+        //on update image is not required
+        if ($id !== null) {
+            $file->setRequired(false);
+        }
+
         if ($form->isValid($values)) {
-            if (!$file->receive()) {
-                $this->addMessage("Não foi possível fazer o upload do arquivo");
-                return false;
-            }
 
-            $mi = Model_Image::getInstance();
-            $saveTo = $mi->getOriginalPath()
-                    . '/' . $form->getValue('filename') . '.png';
+            if (strlen($file->getValue())) {
+                try {
+                    if (!$file->receive()) {
+                        throw new Exception("Não foi possível fazer o upload do arquivo");
+                    }
 
-            try {
-                $savedOn = $file->getFileName();
-                WideImage::load($savedOn)->saveToFile($saveTo);
-                unlink($savedOn);
-            } catch (Exception $e) {
-                $this->addMessage("Não foi possível fazer o upload do arquivo");
-                $this->addMessage($e->getMessage());
+                    $mi = Model_Image::getInstance();
+                    $saveTo = $mi->getOriginalPath()
+                        . '/' . $form->getValue('filename') . '.png';
 
-                $traceArray = explode("\n", $e->getTraceAsString());
-                foreach ($traceArray as $message) {
-                    $this->addMessage($message);
+                    $savedOn = $file->getFileName();
+                    $tmpFile = $savedOn . ".png";
+
+                    WideImage::load($savedOn)->saveToFile($tmpFile);
+
+                    unlink($savedOn);
+                    $md5 = md5_file($tmpFile);
+                    $values['md5'] = $md5;
+                    rename($tmpFile, $saveTo);
+                } catch (Exception $e) {
+                    $this->addMessage("Não foi possível fazer o upload do arquivo");
+
+                    if (file_exits($tmpFile)) {
+                        unlink($tmpFile);
+                    }
+
+                    $this->addMessage($e->getMessage());
+                    return false;
                 }
-                return false;
             }
         }
 
@@ -105,6 +141,11 @@ class Admin_Model_ImageUpload extends Admin_Model_Abstract
             $record->delete();
             $this->deleteImage($record->filename);
         } catch (Exception $e) {
+            //tratar vinculos
+
+
+
+
             $this->addMessage($this->_crudMessages[self::DELETED_ERROR]);
             return false;
         }
@@ -118,7 +159,17 @@ class Admin_Model_ImageUpload extends Admin_Model_Abstract
      */
     public function deleteImage($name)
     {
-        throw new Exception("Implementar regras de negocio da imagem");
+        $pattern = "/^" . $name . "_(\d+)x(\d+)\.png$/i";
+        $dir = Model_Image::getInstance()->getResizedPath();
+        $dh = opendir($dir);
+
+        while (false !== ($filename = readdir($dh))) {
+            if (preg_match($pattern, $filename)) {
+                unlink("$dir/$filename");
+            }
+        }
+        $dir = Model_Image::getInstance()->getOriginalPath();
+        unlink("$dir/$name.png");
     }
 
 }

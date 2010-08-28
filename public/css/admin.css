@@ -119,6 +119,8 @@ dd {
     float: left;
 }
 
+dd p.description{margin:0 15px; color:gray;}
+
 table.crud {
     width:100%;
 }

@@ -30,19 +30,9 @@
             <td><?= $register->filename ?></td>
             <td><?= $register->description ?></td>
             <td class="actions">
-                <a class="edit" href="<?= $this->url(array(
-                            'module'=>'admin',
-                            'controller' => 'image-upload',
-                            'action' => 'edit',
-                            'id' => $register->id
-                        ),null,true)?>" >Editar</a>
+                <a class="edit" href="<?= $register->getEditUrl() ?>" >Editar</a>
                 
-                <a class="del" href="<?= $this->url(array(
-                            'module'=>'admin',
-                            'controller' => 'image-upload',
-                            'action' => 'del',
-                            'id' => $register->id
-                        ),null,true)?>" >Excluir</a>
+                <a class="del" href="<?= $register->getDelUrl() ?>" >Excluir</a>
             </td>
         </tr>
 

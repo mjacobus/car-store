@@ -25,17 +25,6 @@ abstract class Admin_Model_Abstract extends Model_Abstract
      */
     protected $_searchForm;
 
-    /**
-     * Mapping of unique keys
-     * @var array
-     */
-    protected $_ukMapping = array(
-        'uk_sample' => array(
-            'field' => 'field',
-            'label' => 'field label',
-            'message' => 'There is already a "{field label}" with value "{value}" '
-        )
-    );
 
     const SAVE_OK = 'SAVE_OK';
     const SAVE_ERROR = 'SAVE_ERROR';
@@ -52,6 +41,71 @@ abstract class Admin_Model_Abstract extends Model_Abstract
         DELETE_OK => 'Registro excluído com sucesso.',
         DELETE_CONFIRM => 'Tem certeza de que deseja excluir o seguinte registro?',
     );
+
+    /**
+     * Uk Exception patterns
+     * @var array
+     */
+    protected $_ukExceptionPatterns = array(
+        "/validator\sfailed\son\s(\w+)\s\(unique\)/i",
+        "/Duplicate\sentry\s'.+'\sfor\skey\s'(.+)'/i"
+    );
+    /**
+     * Mapping of unique keys
+     * @var array
+     */
+    protected $_ukMapping = array(
+        'filename' => array(
+            'field' => 'filename',
+            'label' => 'Nome do Arquivo',
+            'message' => 'Um registro ja existe com "{label}" igual a "{value}" '
+        )
+    );
+
+    /**
+     * Try to save a record
+     * @param array $values
+     * @return bool
+     */
+    public function save(array $values, $id = null)
+    {
+        try {
+            if ($this->getForm()->isValid($values)) {
+                $this->persist($values, $id);
+                $this->addMessage($this->_crudMessages[self::SAVE_OK]);
+                return true;
+            }
+        } catch (Exception $e) {
+            $this->addMessage($this->_crudMessages[self::SAVE_ERROR]);
+            $message = $e->getMessage();
+
+            $ukPatterns = $this->_ukExceptionPatterns;
+
+            foreach($ukPatterns as $pattern) {
+                if (preg_match($pattern,$message,$matches)) {
+                    if (array_key_exists(1, $matches)) {
+                        $field = $matches[1];
+                        if (array_key_exists($field, $this->_ukMapping)) {
+                            $recordField = $this->_ukMapping[$field]['field'];
+                            $message = $this->replace($this->_ukMapping[$field]['message'],
+                                array(
+                                    '{field}'=> $recordField,
+                                    '{label}'=> $this->_ukMapping[$field]['label'],
+                                    '{value}'=> $values[$recordField],
+                                ));
+                            
+                        } else {
+                            $message = "Registro já existe.";
+                        }
+                        $this->addMessage($message);
+                        return false;
+                    }
+                }
+            }
+            $this->addMessage($e->getMessage());
+        }
+        return false;
+    }
 
     /**
      * Return the ordinariy del form
@@ -126,27 +180,6 @@ abstract class Admin_Model_Abstract extends Model_Abstract
             return $this->_errors[$name];
         }
         throw new Exception(sprintf('Error %s do not exist.', $name));
-    }
-
-    /**
-     * Try to save a record
-     * @param array $values
-     * @return bool
-     */
-    public function save(array $values, $id = null)
-    {
-        try {
-            if ($this->getForm()->isValid($values)) {
-                $this->persist($values, $id);
-                $this->addMessage($this->_crudMessages[self::SAVE_OK]);
-                return true;
-            }
-        } catch (Exception $e) {
-            $message = $e->getMessage();
-            $this->addMessage($this->_crudMessages[self::SAVE_ERROR]);
-            $this->addMessage($e->getMessage());
-        }
-        return false;
     }
 
     /**

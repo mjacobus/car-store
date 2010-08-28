@@ -10,6 +10,14 @@ class Admin_Model_Brand extends Admin_Model_Abstract
 
     protected $_tableName = 'Brand';
 
+    protected $_ukMapping = array(
+        'name' => array(
+            'field' => 'name',
+            'label' => 'Nome',
+            'message' => 'Marca de nome "{value}" já existe no sistema.'
+        )
+    );
+
     
     /**
      * Get the form

@@ -75,7 +75,10 @@ class MyZend_View_Helper_Messager extends Zend_View_Helper_Abstract
         $htmlMessage = '<div class="messages ' . $this->_class . '"><ul>';
 
         foreach($this->_messages as $message) {
-            $htmlMessage .= '<li>' . htmlentities($message, ENT_COMPAT, 'UTF-8') . '</li>';
+            if ($escape) {
+                $message = htmlentities($message, ENT_COMPAT, 'UTF-8');
+            }
+            $htmlMessage .= '<li>' . $message  . '</li>';
         }
 
         $htmlMessage  .= '</ul></div>';

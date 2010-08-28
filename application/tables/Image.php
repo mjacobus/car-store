@@ -13,4 +13,34 @@
 class Image extends Base_Image
 {
 
+    /**
+     * Get the edit url for an image
+     * @return string
+     */
+    public function getEditUrl()
+    {
+        return $this->getCrudControllerUrl('edit/id/' . $this->id);
+    }
+
+    /**
+     * Get the del url for an image
+     * @return string
+     */
+    public function getDelUrl()
+    {
+        return $this->getCrudControllerUrl('del/id/' . $this->id);
+    }
+
+    /**
+     * Get the admin controller for images
+     * @param string $append
+     * @return string
+     */
+    public function getCrudControllerUrl($append = '')
+    {
+        $fc = Zend_Controller_Front::getInstance();
+        $base = $fc->getBaseUrl();
+        return $base . '/admin/image-upload/' . $append;
+    }
+
 }

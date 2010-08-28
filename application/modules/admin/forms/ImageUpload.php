@@ -14,10 +14,9 @@ class Admin_Form_ImageUpload extends Admin_Form_Abstract
     public function __construct(array $params = null, $options = null)
     {
         parent::__construct($options);
-        $this->addFile();
+        $this->addFile($params);
         $this->addFilename();
         $this->addDescription();
-        $this->addMd5();
         $this->addSubmit();
     }
 
@@ -47,27 +46,21 @@ class Admin_Form_ImageUpload extends Admin_Form_Abstract
      * Add file wich is a Zend_Form_Element_File
      * @return Admin_Form_ImageUpload
      */
-    public function addFile()
+    public function addFile(array $params = array())
     {
         $element = new Zend_Form_Element_File('file');
-        $element->setLabel('Imagem')
+        $element->setRequired(true);
+        $element->setLabel('Arquivo')
             ->setDestination(APPLICATION_PATH . '/../tmp/uploads')
             ->addValidator('Extension', false, 'jpg,png,gif') //2MB
             ->addValidator('Size', false, 2097152000) //2MB
             ->setMaxFileSize(2097152);
 
-        $this->addElement($element);
-        return $this;
-    }
+        if(array_key_exists('id', $params)) {
+            $element->setDescription("Para alterar imagem prencha este campo.");
+        }
 
-    /**
-     * Add filename wich is a Zend_Form_Element_Text
-     * length 255
-     * @return Admin_Form_ImageUpload
-     */
-    public function addMd5()
-    {
-        $this->addElement($this->getTextElement('md5', 'Hash'));
+        $this->addElement($element);
         return $this;
     }
     

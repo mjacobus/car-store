@@ -10,6 +10,14 @@ class Admin_Model_Car extends Admin_Model_Abstract
 
     protected $_tableName = 'Car';
 
+    protected $_ukMapping = array(
+        'licensePlate' => array(
+            'field' => 'licensePlate',
+            'label' => 'Placa',
+            'message' => 'Veículo de placa "{value}" já existe no sistema.'
+        )
+    );
+
 
     /**
      * Get the form
