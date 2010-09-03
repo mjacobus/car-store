@@ -135,6 +135,12 @@ Car:
       local: id
       type: many
       onDelete: RESTRICT
+    Image:
+      class: CarImage
+      foreign: car_id
+      local: id
+      type: many
+      onDelete: NULLIFY
 
 CarFeature:
   tableName: car_feature
@@ -168,6 +174,56 @@ CarFeature:
         description: []
       type: unique
 
+CarImage:
+  tableName: car_image
+  columns:
+    id:
+      type: integer
+      primary: true
+      unsigned: true
+      autoincrement: true
+    car_id:
+      type: integer
+      unsigned: true
+      notnull: true
+    image_id:
+      type: integer
+      unsigned: true
+      notnull: true
+    priority:
+      type: integer
+      unsigned: true
+      notnull: true
+    priority:
+      type: integer
+      unsigned: true
+      notnull: true
+    alt:
+      type: string(255)
+      notnull: true
+    title:
+      type: string(255)
+      notnull: true
+    description:
+      type: string(255)
+      notnull: true
+  actAs: [Timestampable]
+  relations:
+    Car:
+      class: Car
+      local: car_id
+      foreign: id
+    Image:
+      class: Image
+      local: image_id
+      foreign: id
+  indexes:
+    car_id_image_id:
+      fields:
+        image_id: []
+        car_id: []
+      type: unique
+
 Image:
   tableName: image
   columns:
@@ -187,6 +243,13 @@ Image:
     description:
       type: string(255)
       notnull: true
+  relations:
+    CarImage:
+      class: CarImage
+      foreign: image_id
+      local: id
+      type: many
+      onDelete: RESTRICT
   actAs: [Timestampable]
   indexes:
     description:

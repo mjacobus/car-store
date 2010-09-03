@@ -57,7 +57,8 @@ class MyZend_Form_Element_DoctrineSelect extends Zend_Form_Element_Select
                 $this->addMultiOption($row->$propertyValue, $row->$propertyLabel);
             }
         } catch(Exception $e) {
-            throw new MyZend_Form_Doctrine_Element_Exception($e->getMessage());
+            require 'MyZend/Form/Element/DoctrineException.php';
+            throw new MyZend_Form_Element_DoctrineException($e->getMessage());
         }
         return $this;
     }

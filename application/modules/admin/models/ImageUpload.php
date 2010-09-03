@@ -9,7 +9,6 @@ class Admin_Model_ImageUpload extends Admin_Model_Abstract
 {
 
     protected $_tableName = 'Image';
-
     protected $_ukMapping = array(
         'filename' => array(
             'field' => 'filename',
@@ -19,7 +18,7 @@ class Admin_Model_ImageUpload extends Admin_Model_Abstract
         'md5' => array(
             'field' => 'md5',
             'label' => 'Imagem',
-            'message' => 'Esta imagem já existe. Por favor troque-a" '
+            'message' => 'Esta imagem já está cadastrada. Para encontrá-la pesquise por "{value}"'
         )
     );
 
@@ -40,7 +39,7 @@ class Admin_Model_ImageUpload extends Admin_Model_Abstract
      * Get request for a image
      * @return string
      */
-    public function getRequestFormImage($filename,$width = 200, $height = 200)
+    public function getRequestFormImage($filename, $width = 200, $height = 200)
     {
         $request = Model_Image::getInstance()
                 ->setFile($filename . ".png")
@@ -187,14 +186,30 @@ class Admin_Model_ImageUpload extends Admin_Model_Abstract
      * @throws App_Exception_RegisterNotFound case register wont exist
      * @return Admin_Model_Brand
      */
-     public function populateForm($id)
+    public function populateForm($id)
     {
         parent::populateForm($id);
         $form = $this->getForm();
         $filename = $form->getValue('filename');
-        $image = $this->getRequestFormImage($filename,400,400);
+        $image = $this->getRequestFormImage($filename, 400, 400);
         $form->image->setImage($image);
         return $this;
+    }
+
+    /**
+     * Get DQL responsible for populating combo boxes
+     * @param int $id
+     * @return Doctrine_Query
+     */
+    public static function getSelectDql($id = null)
+    {
+        $dql = Doctrine_Query::create()->from('Image');
+
+        if ($id !== null) {
+            $dql->where('id != ?', $id);
+        }
+
+        return $dql;
     }
 
 }

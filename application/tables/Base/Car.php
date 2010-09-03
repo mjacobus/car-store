@@ -16,6 +16,7 @@
  * @property integer $priority
  * @property string $licensePlate
  * @property Brand $Brand
+ * @property Doctrine_Collection $Image
  * @property Doctrine_Collection $CarFeature
  * 
  * @package    ##PACKAGE##
@@ -90,6 +91,11 @@ abstract class Base_Car extends Doctrine_Record
         $this->hasOne('Brand', array(
              'local' => 'brand_id',
              'foreign' => 'id'));
+
+        $this->hasMany('CarImage as Image', array(
+             'local' => 'id',
+             'foreign' => 'car_id',
+             'onDelete' => 'NULLIFY'));
 
         $this->hasMany('CarFeature', array(
              'local' => 'id',

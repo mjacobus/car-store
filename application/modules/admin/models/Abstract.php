@@ -293,20 +293,4 @@ abstract class Admin_Model_Abstract extends Model_Abstract
         return true;
     }
 
-    /**
-     * Get DQL responsible for populating combo boxes
-     * @param int $id
-     * @return Doctrine_Query
-     */
-    public static function getSelectDql($id = null)
-    {
-        $dql = Doctrine_Query::create()->from($this->getTablelName());
-
-        if ($id !== null) {
-            $dql->where('id != ?', $id);
-        }
-
-        return $dql;
-    }
-
 }

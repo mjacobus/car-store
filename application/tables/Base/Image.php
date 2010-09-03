@@ -9,6 +9,7 @@
  * @property string $filename
  * @property string $md5
  * @property string $description
+ * @property Doctrine_Collection $CarImage
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -59,6 +60,11 @@ abstract class Base_Image extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
+        $this->hasMany('CarImage', array(
+             'local' => 'id',
+             'foreign' => 'image_id',
+             'onDelete' => 'RESTRICT'));
+
         $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);
     }

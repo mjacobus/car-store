@@ -1,0 +1,62 @@
+<? include dirname(__FILE__) .'/../car/_submenu.phtml' ?>
+
+<div class="search top"><?= $this->search ?>
+    <div class="total"><?= $this->pagination()->getPager()->getNumResults() ?> registro(s) encontrado(s).</div>
+</div>
+
+<?= $this->flash()->render() ?>
+
+
+
+<?= $this->pagination()->render() ?>
+<table class="crud">
+    <tr>
+        <th>Imagem</th>
+        <th>Texto Alternativo</th>
+        <th>Título</th>
+        <th>Descricão</th>
+
+        <th><a class="new-register" href="<?= $this->url(array(
+            'module'=>'admin',
+            'controller' => 'car-image',
+            'action' => 'add',
+            'car' => $this->params['car']
+        ),null,true)?>" >Adicionar</a></th>
+
+    </tr>
+    <? foreach($this->registers as $i => $register) : ?>
+        <tr class="r<?=($i%2)?>">
+            
+            
+            <td>
+                <div class="img center bg-white fleft middle" style="width:100px;height:100px">
+                    <img src="<?= $this->image($register->Image->filename . '.png','100x100')?>"
+                         title="<?= $register->title ?>" alt="<?= $register->alt ?>" />
+                </div>
+            </td>
+            <td><?= $register->alt ?></td>
+            <td><?= $register->title ?></td>
+            <td><?= $register->description ?></td>
+            <td><?= $register->priority ?></td>
+
+            <td class="actions">
+                <a class="edit" href="<?= $this->url(array(
+                            'module'=>'admin',
+                            'controller' => 'car-image',
+                            'action' => 'edit',
+                            'id' => $register->id
+                        ),null,true)?>" >Editar</a>
+                
+                <a class="del" href="<?= $this->url(array(
+                            'module'=>'admin',
+                            'controller' => 'car-image',
+                            'action' => 'del',
+                            'id' => $register->id
+                        ),null,true)?>" >Excluir</a>
+            </td>
+        </tr>
+
+    <? endforeach ?>
+
+</table>
+<?= $this->pagination()->render() ?>

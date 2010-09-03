@@ -313,7 +313,7 @@ class Form_Abstract extends Zend_Form
     public function getHiddenElement($name, $required = true){
         $element = new Zend_Form_Element_Hidden($name);
         $element->setRequired($required);
-        //$element->getDecorator($name)
+        $element->setDecorators(array('ViewHelper'));
         
         return $element;
     }

@@ -5,15 +5,15 @@
  *
  * @author marcelo.jacobus
  */
-class Admin_Model_CarFeature extends Admin_Model_Abstract
+class Admin_Model_CarImage extends Admin_Model_Abstract
 {
 
-    protected $_tableName = 'CarFeature';
+    protected $_tableName = 'CarImage';
     protected $_ukMapping = array(
-        'car_id_description_uk_idx' => array(
-            'field' => 'description',
-            'label' => 'Descricão',
-            'message' => 'Este veículo já possue descricão "{value}" cadastrada.'
+        'car_id_image_id_idx' => array(
+            'field' => 'image_id',
+            'label' => 'Imagem',
+            'message' => 'Este veículo já possue esta imagem cadastrada.'
         )
     );
 
@@ -25,7 +25,7 @@ class Admin_Model_CarFeature extends Admin_Model_Abstract
     public function getForm($id = null)
     {
         if ($this->_form == null) {
-            $this->_form = new Admin_Form_CarFeature($id);
+            $this->_form = new Admin_Form_CarImage($id);
         }
         return $this->_form;
     }
@@ -57,8 +57,17 @@ class Admin_Model_CarFeature extends Admin_Model_Abstract
 
         if (array_key_exists('search', $params) && $params['search']) {
             $search = "%" . $params['search'] . "%";
-            $where = "(description like ?)";
-            $dql->addWhere($where, $search);
+            
+            $where = "(alt like ? OR title like ? OR description like ? )";
+            
+            preg_match_all("/\?/", $where,$matches);
+
+            $params = array();
+            foreach($matches[0] as $tmp) {
+                $params[] = $search;
+            }
+            
+            $dql->addWhere($where, $params);
         }
 
         return $dql;
