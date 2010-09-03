@@ -54,34 +54,68 @@ a, a:hover,a:active,a:visited {
 }
 
 #left-menu ul li {
-    background:#ccc;
     width: 150px;
-    line-height:30px;
+    line-height:26px;
     list-style:none outside none;
-    height:20px;
+    height:26px;
     margin:10px 5px 0px 5px;
-    padding:6px;
     vertical-align:middle;
     float: left;
     text-align: center;
+    border:1px solid #dddddd;
+    background:#eeeeee;
+    border-bottom: #dddddd solid 4px;
 }
-#left-menu ul li.active, #left-menu ul li.active:hover,#left-menu ul li.active a {
-    background:white;
+
+#left-menu ul li.active a {
     color: black;
-    height:30px;
-    margin:0 5px;
-    font-weight: bold;
+}
+
+#left-menu ul li.active, #left-menu ul li.active:hover{
+    background:white;
+    border:1px solid #bbb;
+    border-bottom: white solid 4px;
+    color: black;
 }
 
 #left-menu ul li:hover {
     background:#eee;
-    height:30px;
-    margin:0 5px;
-    font-weight: bold;
 }
 
 #left-menu a {
 
+}
+
+
+ul.submenu {
+    width:100%;
+    border-bottom: 1px #bbb solid;
+    height:33px;
+    margin-bottom:50px;
+    margin-top:-35px;
+    padding:0px;
+}
+
+ul.submenu li{
+    float:left;
+    margin: 2px;
+    width: 100px;
+    padding:5px;
+    text-align:center;
+    border:1px solid #dddddd;
+    background:#eeeeee;
+    border-bottom: #ddd solid 2px;
+    margin-top:5px;
+}
+
+ul.submenu li.active a {
+    color:black;
+}
+
+ul.submenu li.active {
+    background:white;
+    border:1px solid #bbb;
+    border-bottom: white solid 3px;
 }
 
 /* Forms */
@@ -262,33 +296,3 @@ dd.radio-multi.height-9 {
 
 input.date {width:80px}
 
-
-ul.submenu {
-    width:100%;
-    border-bottom: 1px #bbb solid;
-    height:33px;
-    margin-bottom:50px;
-    margin-top:-35px;
-    padding:0px;
-}
-
-ul.submenu li{
-    float:left;
-    margin: 5px;
-    width: 100px;
-    padding:5px;
-    text-align:center;
-    border:1px solid #dddddd;
-    background:#eeeeee;
-    border-bottom: white solid 0px;
-}
-
-ul.submenu li.active a {
-    color:black;
-}
-
-ul.submenu li.active {
-    background:white;
-    border:1px solid #bbb;
-    border-bottom: white solid 2px;
-}
