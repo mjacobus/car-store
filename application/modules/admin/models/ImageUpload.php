@@ -146,19 +146,12 @@ class Admin_Model_ImageUpload extends Admin_Model_Abstract
     {
         try {
             $record = $this->getById($this->getTablelName(), $id);
-            $record->delete();
-            $this->deleteImage($record->filename);
-        } catch (Exception $e) {
-            //tratar vinculos
-
-
-
-
-            $this->addMessage($this->_crudMessages[self::DELETED_ERROR]);
-            return false;
-        }
-        $this->addMessage($this->_crudMessages[self::DELETE_OK]);
-        return true;
+            if (parent::deleteRecord($id)) {
+                $this->deleteImage($record->filename);
+                return true;
+            } 
+        } catch (Exception $e) {}
+        return false;
     }
 
     /**

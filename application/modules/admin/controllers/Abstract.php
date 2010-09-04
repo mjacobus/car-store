@@ -176,9 +176,9 @@ abstract class Admin_Controller_Abstract extends Zend_Controller_Action
             );
         }
 
-        $id = $this->_getParam('id');
-        $this->view->errors($this->model->getDelConfirmationMessage($id));
-        $this->view->form = $this->model->getDelForm($id);
+        $params = $this->getRequest()->getParams();
+        $this->view->errors($this->model->getDelConfirmationMessage($params['id']));
+        $this->view->form = $this->model->getDelForm($params);
     }
 
     /**

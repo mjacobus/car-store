@@ -44,7 +44,11 @@ class Admin_CarFeatureController extends Admin_Controller_Abstract
     public function onDeleteOk($savedRecordId = null)
     {
         $this->view->flash($this->model->getMessages());
-        header("Location: " . $_SERVER['HTTP_REFERER']);
+        $url = $this->getRequest()->getModuleName()
+            . '/' . $this->getRequest()->getControllerName();
+        $url .= "/index/car/" . $this->_getParam('car_id');
+        $this->_redirect($url);
+
     }
 
     /**

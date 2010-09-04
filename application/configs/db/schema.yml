@@ -142,13 +142,11 @@ Car:
       foreign: car_id
       local: id
       type: many
-      onDelete: RESTRICT
     Images:
       class: CarImage
       foreign: car_id
       local: id
       type: many
-      onDelete: NULLIFY
 
 CarFeature:
   tableName: car_feature
@@ -175,6 +173,7 @@ CarFeature:
       class: Car
       local: car_id
       foreign: id
+      onDelete: CASCADE
   indexes:
     car_id_description_uk:
       fields:
@@ -221,6 +220,7 @@ CarImage:
       class: Car
       local: car_id
       foreign: id
+      onDelete: CASCADE
     Image:
       class: Image
       local: image_id

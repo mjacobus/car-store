@@ -6,16 +6,17 @@
  */
 class Admin_Form_Del extends Admin_Form_Abstract
 {
-    public function __construct($registerId = null)
+    public function __construct(array $params = array())
     {
         parent::__construct();
         $this->setAttrib('class','del');
 
-        $id = new Zend_Form_Element_Hidden('id');
-        $id->setValue($registerId);
-        $id->removeDecorator('tag');
-        $this->addElement($id);
-
+        foreach($params as $name => $value) {
+            
+            $element = $this->getHiddenElement($name);
+            $element->setValue($value);
+            $this->addElement($element);
+        }
 
         $cancel = new Zend_Form_Element_Submit('cancel');
         $cancel->setValue('cancel')->setLabel('Não');

@@ -29,19 +29,20 @@ abstract class Admin_Model_Abstract extends Model_Abstract
     const SAVE_OK = 'SAVE_OK';
     const SAVE_ERROR = 'SAVE_ERROR';
     const REGISTER_NOT_FOUND = 'REGISTER_NOT_FOUND';
-    const DELETED_ERROR = 'DELETED_ERROR';
+    const DELETE_CONSTRAINT_ERROR = 'DELETE_CONSTRAINT_ERROR';
+    const DELETE_ERROR = 'DELETE_ERROR';
     const DELETE_OK = 'DELETE_OK';
     const DELETE_CONFIRM = 'DELETE_CONFIRM';
 
     protected $_crudMessages = array(
-        SAVE_OK => 'Registro salvo com sucesso.',
-        SAVE_ERROR => '* Erro ao salvar registro:',
-        REGISTER_DO_NOT_EXIST => 'Registro não encontrado.',
-        DELETE_ERROR => 'O regististro não pode ser excluído. Certifique-se de que o mesmo exista e não possue vínculos.',
-        DELETE_OK => 'Registro excluído com sucesso.',
-        DELETE_CONFIRM => 'Tem certeza de que deseja excluir o seguinte registro?',
+        'SAVE_OK' => 'Registro salvo com sucesso.',
+        'SAVE_ERROR' => '* Erro ao salvar registro:',
+        'REGISTER_DO_NOT_EXIST' => 'Registro não encontrado.',
+        'DELETE_CONSTRAINT_ERROR' => 'O regististro não pode ser excluído pois possue vínculos.',
+        'DELETE_ERROR' => 'O regististro não pode ser excluído.',
+        'DELETE_OK' => 'Registro excluído com sucesso.',
+        'DELETE_CONFIRM' => 'Tem certeza de que deseja excluir o seguinte registro?',
     );
-
     /**
      * Uk Exception patterns
      * @var array
@@ -81,19 +82,18 @@ abstract class Admin_Model_Abstract extends Model_Abstract
 
             $ukPatterns = $this->_ukExceptionPatterns;
 
-            foreach($ukPatterns as $pattern) {
-                if (preg_match($pattern,$message,$matches)) {
+            foreach ($ukPatterns as $pattern) {
+                if (preg_match($pattern, $message, $matches)) {
                     if (array_key_exists(1, $matches)) {
                         $field = $matches[1];
                         if (array_key_exists($field, $this->_ukMapping)) {
                             $recordField = $this->_ukMapping[$field]['field'];
                             $message = $this->replace($this->_ukMapping[$field]['message'],
-                                array(
-                                    '{field}'=> $recordField,
-                                    '{label}'=> $this->_ukMapping[$field]['label'],
-                                    '{value}'=> $values[$recordField],
+                                    array(
+                                        '{field}' => $recordField,
+                                        '{label}' => $this->_ukMapping[$field]['label'],
+                                        '{value}' => $values[$recordField],
                                 ));
-                            
                         } else {
                             $message = "Registro já existe.";
                         }
@@ -111,10 +111,10 @@ abstract class Admin_Model_Abstract extends Model_Abstract
      * Return the ordinariy del form
      * @return Admin_Form_Del
      */
-    public function getDelForm($id)
+    public function getDelForm(array $params = array())
     {
         if ($this->_delForm == null) {
-            $this->_delForm = new Admin_Form_Del($id);
+            $this->_delForm = new Admin_Form_Del($params);
         }
         return $this->_delForm;
     }
@@ -284,9 +284,21 @@ abstract class Admin_Model_Abstract extends Model_Abstract
     public function deleteRecord($id)
     {
         try {
-            $record = $this->getById($this->getTablelName(), $id)->delete();
+            $record = $record = $this->getById($this->getTablelName(), $id);
+            $record->delete();
+        } catch (App_Exception_RegisterNotFound $e) {
+            throw $e;
         } catch (Exception $e) {
-            $this->addMessage($this->_crudMessages[self::DELETED_ERROR]);
+            $message = $e->getMessage();
+            $dependencyRegexp = '/Integrity\sconstraint\sviolation/';
+
+            if (preg_match($dependencyRegexp, $message)) {
+                $message = $this->_crudMessages[self::DELETE_CONSTRAINT_ERROR];
+            } else {
+                $message = $this->_crudMessages[self::DELETE_ERROR];
+            }
+
+            $this->addMessage($message);
             return false;
         }
         $this->addMessage($this->_crudMessages[self::DELETE_OK]);

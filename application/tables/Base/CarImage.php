@@ -85,7 +85,8 @@ abstract class Base_CarImage extends Doctrine_Record
         parent::setUp();
         $this->hasOne('Car', array(
              'local' => 'car_id',
-             'foreign' => 'id'));
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
 
         $this->hasOne('Image', array(
              'local' => 'image_id',

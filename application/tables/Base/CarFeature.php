@@ -66,7 +66,8 @@ abstract class Base_CarFeature extends Doctrine_Record
         parent::setUp();
         $this->hasOne('Car', array(
              'local' => 'car_id',
-             'foreign' => 'id'));
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);
