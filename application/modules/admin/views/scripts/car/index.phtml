@@ -28,7 +28,22 @@
     </tr>
     <? foreach($this->registers as $i => $register) : ?>
         <tr class="r<?=($i%2)?>">
-            <td class="thumb">picture</td>
+            <td class="thumb">
+
+            <?php
+                $image = $register->getImage();
+            ?>
+                <? if ($image) : ?>
+                    <img src="<?= $this->image($image->Image->filename . '.png', '100x100') ?>"
+                         alt="<?= $image->alt ?>" title="<?= $image->title ?>" />
+                <? else: ?>
+                    Sem imagem.
+                <? endif; ?>
+            
+
+            </td>
+
+
             <td><?= $register->model ?></td>
             <td><?= $register->color ?></td>
             <td class="right"><?= $register->year ?>/<?= $register->modelYear ?></td>

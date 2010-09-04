@@ -101,8 +101,9 @@ class Admin_Form_CarImage extends Admin_Form_Abstract
      */
     public function addPriority()
     {
-        $element = $this->getTextElement('priority', 'Prioridade');
+        $element = $this->getTextElement('priority', 'Ordem');
         $element->addValidator(new Zend_Validate_Int());
+        $element->addValidator(new Zend_Validate_Between(0,500));
         $this->addElement($element);
         return $this;
     }

@@ -12,5 +12,23 @@
  */
 class Car extends Base_Car
 {
+    /**
+     * Get the main image
+     * @return Doctrine_Record|stdClass
+     */
+    public function getImage()
+    {
+        $dql = Doctrine_Query::create()
+            ->from('CarImage CI')
+            ->leftJoin('CI.Image')
+            ->where('car_id = ?', $this->id)
+            ->orderBy('priority ASC');
+        if ($dql->count()) {
+            $image = $dql->fetchOne();
+            return $image;
+        }
 
+        return false;
+
+    }
 }

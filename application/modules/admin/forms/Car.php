@@ -162,6 +162,7 @@ class Admin_Form_Car extends Admin_Form_Abstract
     {
         $element = $this->getTextElement('priority', 'Prioridade');
         $element->addValidator(new Zend_Validate_Int());
+        $element->addValidator(new Zend_Validate_Between(0,500));
         $this->addElement($element);
         return $this;
     }

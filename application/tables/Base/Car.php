@@ -103,7 +103,7 @@ abstract class Base_Car extends Doctrine_Record
              'local' => 'brand_id',
              'foreign' => 'id'));
 
-        $this->hasMany('CarImage as Image', array(
+        $this->hasMany('CarImage as Images', array(
              'local' => 'id',
              'foreign' => 'car_id',
              'onDelete' => 'NULLIFY'));
