@@ -16,6 +16,7 @@
         <th>Valor</th>
         <th>Marca</th>
         <th>Placa</th>
+        <th>Situação</th>
 
 
         <th><a class="new-register" href="<?= $this->url(array(
@@ -34,6 +35,11 @@
             <td class="right"><?= $register->price ?></td>
             <td><?= $register->Brand->name ?></td>
             <td class="right"><?= $register->licensePlate ?></td>
+            <td>
+                <div class="status-<?= $register->status_id ?>" >
+                </div>
+                <?= $register->Status->name ?>
+            </td>
 
 
             <td class="actions">

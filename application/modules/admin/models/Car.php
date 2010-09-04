@@ -9,7 +9,6 @@ class Admin_Model_Car extends Admin_Model_Abstract
 {
 
     protected $_tableName = 'Car';
-
     protected $_ukMapping = array(
         'licensePlate' => array(
             'field' => 'licensePlate',
@@ -17,7 +16,6 @@ class Admin_Model_Car extends Admin_Model_Abstract
             'message' => 'Veículo de placa "{value}" já existe no sistema.'
         )
     );
-
 
     /**
      * Get the form
@@ -40,7 +38,7 @@ class Admin_Model_Car extends Admin_Model_Abstract
     {
         $record = $this->getById($this->getTablelName(), $id);
         return sprintf('Tem certeza que deseja excluir o veiculo "%s/%s" (%s)?',
-            $record->Brand->name,$record->model,$record->licensePlate);
+            $record->Brand->name, $record->model, $record->licensePlate);
     }
 
     /**
@@ -53,6 +51,7 @@ class Admin_Model_Car extends Admin_Model_Abstract
         $dql = Doctrine_Core::getTable($this->getTablelName())
                 ->createQuery('C')
                 ->innerJoin('C.Brand B')
+                ->innerJoin('C.Status S')
                 ->orderBy('C.model ASC,B.name ASC');
 
         if (array_key_exists('search', $params) && $params['search']) {
@@ -63,7 +62,24 @@ class Admin_Model_Car extends Admin_Model_Abstract
                 ->orWhere('C.year like ?', "%$search%")
                 ->orWhere('C.color like ?', "%$search%")
                 ->orWhere('C.modelYear like ?', "%$search%");
+
+            $status = strtolower($search);
+            if (($status == 'cancelado') || ($status == 'vendido') || ($status == 'disponível') || ($status == 'disponivel')) {
+                $dql->where('S.name = ?', $status);
+            }
         }
+        return $dql;
+    }
+
+    /**
+     * Get dql for listing statuses
+     * @return Doctrine_Query
+     */
+    public static function getStatusDql()
+    {
+        $dql = Doctrine_Query::create()
+                ->from('CarStatus')
+                ->orderBy('id');
         return $dql;
     }
 

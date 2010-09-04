@@ -102,6 +102,10 @@ Car:
       type: integer
       notnull: true
       unsigned: true
+    status_id:
+      type: integer
+      notnull: true
+      unsigned: true
     price:
       type: float
       default: 0
@@ -125,6 +129,10 @@ Car:
       notnull: true
   actAs: [Timestampable]
   relations:
+    Status:
+      class: CarStatus
+      local: status_id
+      foreign: id
     Brand:
       class: Brand
       local: brand_id
@@ -223,6 +231,25 @@ CarImage:
         image_id: []
         car_id: []
       type: unique
+
+CarStatus:
+  tableName: car_status
+  columns:
+    id:
+      type: integer
+      primary: true
+      unsigned: true
+      autoincrement: true
+    name:
+      type: string(255)
+      notnull: true
+      unique: ture
+  relations:
+    Cars:
+      class: Car
+      local: id
+      foreign: status_id
+
 
 Image:
   tableName: image

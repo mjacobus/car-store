@@ -29,7 +29,7 @@ class Admin_Form_ImageUpload extends Admin_Form_Abstract
      */
     public function addDescription()
     {
-        $this->addElement($this->getTextElement('description', 'Descricão'));
+        $this->addElement($this->getTextElement('description', 'Descrição'));
         return $this;
     }
 

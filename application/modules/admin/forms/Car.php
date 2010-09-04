@@ -31,6 +31,7 @@ class Admin_Form_Car extends Admin_Form_Abstract
         $this->addPrice();
         $this->addShowPrice();
         $this->addPriority();
+        $this->addStatus();
         $this->addSubmit();
     }
 
@@ -135,6 +136,20 @@ class Admin_Form_Car extends Admin_Form_Abstract
     public function addShowPrice()
     {
         $element = $this->getCheckElement('showPrice', 'Exibir Valor');
+        $this->addElement($element);
+        return $this;
+    }
+
+    /**
+     * Add priority
+     * @return Admin_Form_Car
+     */
+    public function addStatus()
+    {
+        $dql = Admin_Model_Car::getStatusDql();
+        $element = new MyZend_Form_Element_DoctrineSelect('status_id');
+        $element->addMultiOptionFromDql($dql, 'id', 'name');
+        $element->setRequired(true)->setLabel('Situação');
         $this->addElement($element);
         return $this;
     }

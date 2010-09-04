@@ -9,12 +9,14 @@
  * @property string $model
  * @property string $color
  * @property integer $brand_id
+ * @property integer $status_id
  * @property float $price
  * @property boolean $showPrice
  * @property integer $year
  * @property integer $modelYear
  * @property integer $priority
  * @property string $licensePlate
+ * @property CarStatus $Status
  * @property Brand $Brand
  * @property Doctrine_Collection $Image
  * @property Doctrine_Collection $CarFeature
@@ -47,6 +49,11 @@ abstract class Base_Car extends Doctrine_Record
              'length' => '255',
              ));
         $this->hasColumn('brand_id', 'integer', null, array(
+             'type' => 'integer',
+             'notnull' => true,
+             'unsigned' => true,
+             ));
+        $this->hasColumn('status_id', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
              'unsigned' => true,
@@ -88,6 +95,10 @@ abstract class Base_Car extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
+        $this->hasOne('CarStatus as Status', array(
+             'local' => 'status_id',
+             'foreign' => 'id'));
+
         $this->hasOne('Brand', array(
              'local' => 'brand_id',
              'foreign' => 'id'));
