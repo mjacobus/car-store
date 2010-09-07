@@ -28,9 +28,9 @@ class Admin_Form_CarImage extends Admin_Form_Abstract
 
 
     /**
-     * Add Image wich is a Zend_Form_Element_Text
+     * Add Image wich is a Zend_Form_Element_Select
      * length 255
-     * @return Admin_Form_Car
+     * @return Admin_Form_CarImage
      */
     public function addImage()
     {

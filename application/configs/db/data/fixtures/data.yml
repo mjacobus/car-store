@@ -21,51 +21,39 @@ Brand:
   Volksvagen:
     name: Volksvagen
     url: volksvagen
-    logo: volksvagen.jpg
   Fiat:
     name: Fiat
     url: Fiat
-    logo: fiat.jpg
   Chevrolet:
     name: Chevrolet
     url: chevrolet
-    logo: chevrolet.jpg
   Ford:
     url: Ford
     name: ford
-    logo: ford.jpg
   Peugeot:
      name: Peugeot
      url: peugeot
-     logo: peugeot.jpg
   Citroen:
      name: Citroën
      url: citroen
-     logo: citroen.jpg
   Nissan:
      name: Nissan
      url: nissan
-     logo: nissan.jpg
   Hyundai:
      name: Hyundai
      url: hyundai
-     logo: hyundai.jpg
   BMW:
      name: BMW
      url: bmw
-     logo: bmw.jpg
   Alfa_Romeo:
      name: Alfa Romeo
      url: alfa-romeo
-     logo: alfa-romeo.jpg
   Audi:
      name: Audi
      url: audi
-     logo: audi.jpg
   Mitsubishi:
      name: Mitsubishi
      url: mitsubishi
-     logo: mitsubishi.jpg
   Honda:
      name: Honda
      url: honda
@@ -77,20 +65,15 @@ Brand:
   Chrysler:
     name: Chrysler
     url: chrysler
-    logo: chrysler.jpg
   Mercedes:
     name: Mercedes
     url: mercedes
-    logo: mercedes.jpg
   Volvo:
     name: Volvo
     url: volvo
-    logo: volvo.jpg
   Toyota:
     name: Toyota
     url: toyota
-    logo: toyota.jpg
-
 
 Car:
   Voyage:

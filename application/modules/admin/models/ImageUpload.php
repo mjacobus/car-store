@@ -93,49 +93,74 @@ class Admin_Model_ImageUpload extends Admin_Model_Abstract
      */
     public function save(array $values, $id = null)
     {
+        $values['filename'] = Util_String::toUrl($values['filename']);
         $form = $this->getForm();
-        $file = $form->file;
+        $fileRenamed = false;
+        $savedOn = false;
 
         //on update image is not required
         if ($id !== null) {
-            $file->setRequired(false);
+            $form->file->setRequired(false);
+            $register = $this->getById($this->getTablelName(), $id);
+            $oldFilename = $register->filename;
+            $fileRenamed = ($oldFilename !== $values['filename']);
         }
 
+        //get image
         if ($form->isValid($values)) {
-
-            if (strlen($file->getValue())) {
+            if (strlen($form->file->getValue())) {
                 try {
-                    if (!$file->receive()) {
-                        throw new Exception("Não foi possível fazer o upload do arquivo");
-                    }
-
-                    $mi = Model_Image::getInstance();
-                    $saveTo = $mi->getOriginalPath()
-                        . '/' . $form->getValue('filename') . '.png';
-
-                    $savedOn = $file->getFileName();
-                    $tmpFile = $savedOn . ".png";
-
-                    WideImage::load($savedOn)->saveToFile($tmpFile);
-
-                    unlink($savedOn);
-                    $md5 = md5_file($tmpFile);
-                    $values['md5'] = $md5;
-                    rename($tmpFile, $saveTo);
+                    $savedOn = $this->saveFile($form);
+                    $values['md5'] = md5_file($savedOn);
                 } catch (Exception $e) {
-                    $this->addMessage("Não foi possível fazer o upload do arquivo");
-
-                    if (file_exits($tmpFile)) {
-                        unlink($tmpFile);
-                    }
-
                     $this->addMessage($e->getMessage());
                     return false;
                 }
             }
         }
 
-        return parent::save($values, $id);
+
+
+        if (parent::save($values, $id)) {
+
+            $model = Model_Image::getInstance();
+            $path = $model->getOriginalPath();
+
+            if ($savedOn) {
+                $this->deleteImage($oldFilename);
+                $saveTo = $path . '/' . $form->getValue('filename') . '.png';
+                rename($savedOn, $saveTo);
+            } else if ($fileRenamed) {
+                $this->deleteResized($oldFilename);
+                $oldName = "$path/$oldFilename.png";
+                $newName = "$path/" . $form->getValue('filename') . ".png";
+                rename($oldName,$newName);
+            }
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     *
+     * @param Admin_Form_ImageUpload $form
+     * @return string md5
+     */
+    public function saveFile(Admin_Form_ImageUpload $form)
+    {
+        $file = $form->file;
+
+        if (!$file->receive()) {
+            throw new Exception("Não foi possível fazer o upload do arquivo");
+        }
+
+        $savedOn = $file->getFileName();
+        $tmpFile = $savedOn . ".png";
+
+        WideImage::load($savedOn)->saveToFile($tmpFile);
+        unlink($savedOn);
+        return $tmpFile;
     }
 
     /**
@@ -149,8 +174,10 @@ class Admin_Model_ImageUpload extends Admin_Model_Abstract
             if (parent::deleteRecord($id)) {
                 $this->deleteImage($record->filename);
                 return true;
-            } 
-        } catch (Exception $e) {}
+            }
+        } catch (Exception $e) {
+
+        }
         return false;
     }
 
@@ -160,7 +187,18 @@ class Admin_Model_ImageUpload extends Admin_Model_Abstract
      */
     public function deleteImage($name)
     {
-        $pattern = "/^" . $name . "_(\d+)x(\d+)\.png$/i";
+        $this->deleteResized($name);
+        $dir = Model_Image::getInstance()->getOriginalPath();
+        unlink("$dir/$name.png");
+    }
+
+    /**
+     * Delete resized versions of a image
+     * @param string $name
+     */
+    public function deleteResized($name)
+    {
+        $pattern = "/^" . preg_quote($name) . "_(\d+)x(\d+)\.png$/i";
         $dir = Model_Image::getInstance()->getResizedPath();
         $dh = opendir($dir);
 
@@ -169,8 +207,6 @@ class Admin_Model_ImageUpload extends Admin_Model_Abstract
                 unlink("$dir/$filename");
             }
         }
-        $dir = Model_Image::getInstance()->getOriginalPath();
-        unlink("$dir/$name.png");
     }
 
     /**

@@ -15,6 +15,7 @@ class Admin_Form_Brand extends Admin_Form_Abstract
     {
         parent::__construct($options);
         $this->addName();
+        $this->addLogo();
         $this->addSubmit();
     }
 
@@ -26,6 +27,26 @@ class Admin_Form_Brand extends Admin_Form_Abstract
     public function addName()
     {
         $this->addElement($this->getTextElement('name', 'Nome'));
+        return $this;
+    }
+
+    /**
+     * Add Logotipo wich is a Zend_Form_Element_Select
+     * length 255
+     * @return Admin_Form_Brand
+     */
+    public function addLogo()
+    {
+        $element = new MyZend_Form_Element_DoctrineSelect('image_id');
+        $element->setLabel('Logotipo')
+            ->addMultiOptionFromDql(
+                Admin_Model_ImageUpload::getSelectDql(),
+                'id',
+                'filename',
+                array(null => 'Selecione')
+        );
+        $this->setRequired($element);
+        $this->addElement($element);
         return $this;
     }
 

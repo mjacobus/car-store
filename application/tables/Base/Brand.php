@@ -7,9 +7,11 @@
  * 
  * @property integer $id
  * @property string $name
+ * @property integer $image_id
  * @property string $logo
  * @property string $url
  * @property Doctrine_Collection $Cars
+ * @property Image $Logo
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -33,6 +35,11 @@ abstract class Base_Brand extends Doctrine_Record
              'notnull' => true,
              'length' => '255',
              ));
+        $this->hasColumn('image_id', 'integer', null, array(
+             'type' => 'integer',
+             'unsigned' => true,
+             'notnull' => false,
+             ));
         $this->hasColumn('logo', 'string', 255, array(
              'type' => 'string',
              'length' => '255',
@@ -55,6 +62,11 @@ abstract class Base_Brand extends Doctrine_Record
         $this->hasMany('Car as Cars', array(
              'local' => 'id',
              'foreign' => 'brand_id',
+             'onDelete' => 'RESTRICT'));
+
+        $this->hasOne('Image as Logo', array(
+             'local' => 'image_id',
+             'foreign' => 'id',
              'onDelete' => 'RESTRICT'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();

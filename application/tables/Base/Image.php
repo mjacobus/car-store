@@ -10,6 +10,7 @@
  * @property string $md5
  * @property string $description
  * @property Doctrine_Collection $CarImage
+ * @property Doctrine_Collection $Brands
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -61,6 +62,11 @@ abstract class Base_Image extends Doctrine_Record
     {
         parent::setUp();
         $this->hasMany('CarImage', array(
+             'local' => 'id',
+             'foreign' => 'image_id',
+             'onDelete' => 'RESTRICT'));
+
+        $this->hasMany('Brand as Brands', array(
              'local' => 'id',
              'foreign' => 'image_id',
              'onDelete' => 'RESTRICT'));

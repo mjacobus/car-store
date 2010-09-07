@@ -72,6 +72,10 @@ Brand:
       type: string(255)
       unique: true
       notnull: true
+    image_id:
+      type: integer
+      unsigned: true
+      notnull: false
     logo: string(255)
     url:
       type: string(255)
@@ -84,6 +88,11 @@ Brand:
       foreign: brand_id
       local: id
       type: many
+      onDelete: RESTRICT
+    Logo:
+      class: Image
+      local: image_id
+      foreign: id
       onDelete: RESTRICT
 
   
@@ -285,6 +294,12 @@ Image:
   relations:
     CarImage:
       class: CarImage
+      foreign: image_id
+      local: id
+      type: many
+      onDelete: RESTRICT
+    Brands:
+      class: Brand
       foreign: image_id
       local: id
       type: many
