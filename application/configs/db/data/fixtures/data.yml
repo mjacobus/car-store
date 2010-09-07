@@ -20,57 +20,75 @@ User:
 Brand:
   Volksvagen:
     name: Volksvagen
+    url: volksvagen
     logo: volksvagen.jpg
   Fiat:
     name: Fiat
+    url: Fiat
     logo: fiat.jpg
   Chevrolet:
     name: Chevrolet
+    url: chevrolet
     logo: chevrolet.jpg
   Ford:
-    name: Ford
+    url: Ford
+    name: ford
     logo: ford.jpg
   Peugeot:
      name: Peugeot
+     url: peugeot
      logo: peugeot.jpg
   Citroen:
      name: Citroën
+     url: citroen
      logo: citroen.jpg
   Nissan:
      name: Nissan
+     url: nissan
      logo: nissan.jpg
   Hyundai:
      name: Hyundai
+     url: hyundai
      logo: hyundai.jpg
   BMW:
      name: BMW
+     url: bmw
      logo: bmw.jpg
   Alfa_Romeo:
      name: Alfa Romeo
+     url: alfa-romeo
      logo: alfa-romeo.jpg
   Audi:
      name: Audi
+     url: audi
      logo: audi.jpg
   Mitsubishi:
      name: Mitsubishi
+     url: mitsubishi
      logo: mitsubishi.jpg
   Honda:
      name: Honda
+     url: honda
      logo: honda.jpg
   Renault:
     name: Renault
+    url: renault
     logo: renault.jpg
   Chrysler:
     name: Chrysler
+    url: chrysler
     logo: chrysler.jpg
   Mercedes:
     name: Mercedes
+    url: mercedes
     logo: mercedes.jpg
   Volvo:
     name: Volvo
+    url: volvo
     logo: volvo.jpg
   Toyota:
     name: Toyota
+    url: toyota
     logo: toyota.jpg
 
 
@@ -87,6 +105,7 @@ Car:
     licensePlate: BC-1234
     color: Branco
     Brand: Volksvagen
+    url: /volksvagen/voyage/BC-1234
   Uno:
     model: Uno teste
     Status: Disponivel
@@ -99,6 +118,7 @@ Car:
     licensePlate: BC-1235
     color: preto
     Brand: Fiat
+    url: /fiat/uno/BC-1235
   Uno1:
     model: Uno teste 1
     Status: Disponivel
@@ -110,6 +130,8 @@ Car:
     priority: 0
     color: preto
     Brand: Fiat
+    url: /fiat/uno/BC1231
+
   Uno2:
     model: Uno teste 2
     Status: Disponivel
@@ -121,700 +143,10 @@ Car:
     priority: 0
     color: preto
     Brand: Fiat
-  Uno3:
-    model: Uno teste 3
-    Status: Disponivel
-    licensePlate: ABC1233
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno4:
-    model: Uno teste 4
-    Status: Disponivel
-    licensePlate: ABC1234
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno5:
-    model: Uno teste 5
-    Status: Disponivel
-    licensePlate: ABC1235
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno6:
-    model: Uno teste 6
-    Status: Disponivel
-    licensePlate: ABC1236
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno7:
-    model: Uno teste 7
-    Status: Disponivel
-    licensePlate: ABC1237
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno8:
-    model: Uno teste 8
-    Status: Disponivel
-    licensePlate: ABC1238
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno9:
-    model: Uno teste 9
-    Status: Disponivel
-    licensePlate: ABC1239
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno10:
-    model: Uno teste 10
-    Status: Disponivel
-    licensePlate: BC12310
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno11:
-    model: Uno teste 11
-    Status: Disponivel
-    licensePlate: BC12311
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno12:
-    model: Uno teste 12
-    Status: Disponivel
-    licensePlate: BC12312
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno13:
-    model: Uno teste 13
-    Status: Disponivel
-    licensePlate: BC12313
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno14:
-    model: Uno teste 14
-    Status: Disponivel
-    licensePlate: BC12314
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno15:
-    model: Uno teste 15
-    Status: Disponivel
-    licensePlate: BC12315
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno16:
-    model: Uno teste 16
-    Status: Disponivel
-    licensePlate: BC12316
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno17:
-    model: Uno teste 17
-    Status: Disponivel
-    licensePlate: BC12317
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno18:
-    model: Uno teste 18
-    Status: Disponivel
-    licensePlate: BC12318
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno19:
-    model: Uno teste 19
-    Status: Disponivel
-    licensePlate: BC12319
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno20:
-    model: Uno teste 20
-    Status: Disponivel
-    licensePlate: BC12320
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno21:
-    model: Uno teste 21
-    Status: Disponivel
-    licensePlate: BC12321
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno22:
-    model: Uno teste 22
-    Status: Disponivel
-    licensePlate: BC12322
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno23:
-    model: Uno teste 23
-    Status: Disponivel
-    licensePlate: BC12323
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno24:
-    model: Uno teste 24
-    Status: Disponivel
-    licensePlate: BC12324
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno25:
-    model: Uno teste 25
-    Status: Disponivel
-    licensePlate: BC12325
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno26:
-    model: Uno teste 26
-    Status: Disponivel
-    licensePlate: BC12326
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno27:
-    model: Uno teste 27
-    Status: Disponivel
-    licensePlate: BC12327
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno28:
-    model: Uno teste 28
-    Status: Disponivel
-    licensePlate: BC12328
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno29:
-    model: Uno teste 29
-    Status: Disponivel
-    licensePlate: BC12329
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno30:
-    model: Uno teste 30
-    Status: Disponivel
-    licensePlate: BC12330
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno31:
-    model: Uno teste 31
-    Status: Disponivel
-    licensePlate: BC12331
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno32:
-    model: Uno teste 32
-    Status: Disponivel
-    licensePlate: BC12332
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno33:
-    model: Uno teste 33
-    Status: Disponivel
-    licensePlate: BC12333
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno34:
-    model: Uno teste 34
-    Status: Disponivel
-    licensePlate: BC12334
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno35:
-    model: Uno teste 35
-    Status: Disponivel
-    licensePlate: BC12335
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno36:
-    model: Uno teste 36
-    Status: Disponivel
-    licensePlate: BC12336
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno37:
-    model: Uno teste 37
-    Status: Disponivel
-    licensePlate: BC12337
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno38:
-    model: Uno teste 38
-    Status: Disponivel
-    licensePlate: BC12338
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno39:
-    model: Uno teste 39
-    Status: Disponivel
-    licensePlate: BC12339
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno40:
-    model: Uno teste 40
-    Status: Disponivel
-    licensePlate: BC12340
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno41:
-    model: Uno teste 41
-    Status: Disponivel
-    licensePlate: BC12341
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno42:
-    model: Uno teste 42
-    Status: Disponivel
-    licensePlate: BC12342
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno43:
-    model: Uno teste 43
-    Status: Disponivel
-    licensePlate: BC12343
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno44:
-    model: Uno teste 44
-    Status: Disponivel
-    licensePlate: BC12344
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno45:
-    model: Uno teste 45
-    Status: Disponivel
-    licensePlate: BC12345
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno46:
-    model: Uno teste 46
-    Status: Disponivel
-    licensePlate: BC12346
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno47:
-    model: Uno teste 47
-    Status: Disponivel
-    licensePlate: BC12347
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno48:
-    model: Uno teste 48
-    Status: Disponivel
-    licensePlate: BC12348
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno49:
-    model: Uno teste 49
-    Status: Disponivel
-    licensePlate: BC12349
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno50:
-    model: Uno teste 50
-    Status: Disponivel
-    licensePlate: BC12350
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno51:
-    model: Uno teste 51
-    Status: Disponivel
-    licensePlate: BC12351
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno52:
-    model: Uno teste 52
-    Status: Disponivel
-    licensePlate: BC12352
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno53:
-    model: Uno teste 53
-    Status: Disponivel
-    licensePlate: BC12353
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno54:
-    model: Uno teste 54
-    Status: Disponivel
-    licensePlate: BC12354
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno55:
-    model: Uno teste 55
-    Status: Disponivel
-    licensePlate: BC12355
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno56:
-    model: Uno teste 56
-    Status: Disponivel
-    licensePlate: BC12356
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno57:
-    model: Uno teste 57
-    Status: Disponivel
-    licensePlate: BC12357
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno58:
-    model: Uno teste 58
-    Status: Disponivel
-    licensePlate: BC12358
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno59:
-    model: Uno teste 59
-    Status: Disponivel
-    licensePlate: BC12359
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno60:
-    model: Uno teste 60
-    Status: Disponivel
-    licensePlate: BC12360
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno61:
-    model: Uno teste 61
-    Status: Disponivel
-    licensePlate: BC12361
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno62:
-    model: Uno teste 62
-    Status: Disponivel
-    licensePlate: BC12362
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno63:
-    model: Uno teste 63
-    Status: Cancelado
-    licensePlate: BC12363
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno64:
-    model: Uno teste 64
-    Status: Cancelado
-    licensePlate: BC12364
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  Uno65:
-    model: Uno teste 65
-    Status: Cancelado
-    licensePlate: BC12365
-    price: 15000.56
-    showPrice: true
-    year: 1999
-    modelYear: 2000
-    priority: 0
-    color: preto
-    Brand: Fiat
-  
+    url: uno
+
+
+
 CarFeature:
   4p:
     description: 4 portas

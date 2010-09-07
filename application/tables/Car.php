@@ -12,6 +12,7 @@
  */
 class Car extends Base_Car
 {
+
     /**
      * Get the main image
      * @return Doctrine_Record|stdClass
@@ -19,16 +20,40 @@ class Car extends Base_Car
     public function getImage()
     {
         $dql = Doctrine_Query::create()
-            ->from('CarImage CI')
-            ->leftJoin('CI.Image')
-            ->where('car_id = ?', $this->id)
-            ->orderBy('priority ASC');
+                ->from('CarImage CI')
+                ->leftJoin('CI.Image')
+                ->where('car_id = ?', $this->id)
+                ->orderBy('priority ASC');
         if ($dql->count()) {
             $image = $dql->fetchOne();
             return $image;
         }
 
         return false;
-
     }
+
+    /**
+     * pre save rotines.
+     */
+    public function preSave()
+    {
+        $this->calculateUrl();
+    }
+
+    /**
+     * calculates and sets url
+     */
+    private function calculateUrl()
+    {
+        $urlParts = array(
+            $this->Brand->name,
+            $this->model,
+            $this->licensePlate,
+        );
+
+        $url = Util_String::arrayToUrl($urlParts);
+
+        $this->_set('url', $url);
+    }
+
 }

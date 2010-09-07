@@ -16,6 +16,7 @@
  * @property integer $modelYear
  * @property integer $priority
  * @property string $licensePlate
+ * @property string $url
  * @property CarStatus $Status
  * @property Brand $Brand
  * @property Doctrine_Collection $Images
@@ -86,7 +87,22 @@ abstract class Base_Car extends Doctrine_Record
              'notnull' => true,
              'length' => '8',
              ));
+        $this->hasColumn('url', 'string', 255, array(
+             'type' => 'string',
+             'unique' => true,
+             'notnull' => true,
+             'length' => '255',
+             ));
 
+
+        $this->index('model', array(
+             'fields' => 
+             array(
+              'model' => 
+              array(
+              ),
+             ),
+             ));
         $this->option('type', 'INNODB');
         $this->option('collate', 'utf8_general_ci');
         $this->option('charset', 'utf8');

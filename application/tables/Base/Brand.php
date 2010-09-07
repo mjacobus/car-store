@@ -8,6 +8,7 @@
  * @property integer $id
  * @property string $name
  * @property string $logo
+ * @property string $url
  * @property Doctrine_Collection $Cars
  * 
  * @package    ##PACKAGE##
@@ -34,6 +35,12 @@ abstract class Base_Brand extends Doctrine_Record
              ));
         $this->hasColumn('logo', 'string', 255, array(
              'type' => 'string',
+             'length' => '255',
+             ));
+        $this->hasColumn('url', 'string', 255, array(
+             'type' => 'string',
+             'unique' => true,
+             'notnull' => true,
              'length' => '255',
              ));
 

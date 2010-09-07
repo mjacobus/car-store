@@ -13,4 +13,30 @@
 class Brand extends Base_Brand
 {
 
+    /**
+     * pre save rotines.
+     */
+    public function preSave()
+    {
+        if ($this->isModified()) {
+            $this->calculateUrl();
+        }
+    }
+
+    /**
+     * calculates and sets url
+     */
+    private function calculateUrl()
+    {
+        $modified = $this->getModified();
+
+        if (array_key_exists('name', $modified)) {
+            $url = Util_String::toUrl($this->name);
+            $this->_set('url',$url);
+            foreach ($this->Cars as $car) {
+                $car->save();
+            }
+        }
+    }
+
 }

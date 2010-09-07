@@ -9,6 +9,7 @@
 <?= $this->pagination()->render() ?>
 <table class="crud">
     <tr>
+        <th>Image</th>
         <th>Nome</th>
         <th><a class="new-register" href="<?= $this->url(array(
             'module'=>'admin',
@@ -25,7 +26,7 @@
                     <img src="<?= $this->image($register->logo,'40x40')?>" title="<?= $register->name ?>" alt="<?= $register->name ?>" />
                 </div>
             </td>
-
+            <td><?= $register->name ?></td>
             <td class="actions">
                 <a class="edit" href="<?= $this->url(array(
                             'module'=>'admin',

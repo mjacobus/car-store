@@ -73,6 +73,10 @@ Brand:
       unique: true
       notnull: true
     logo: string(255)
+    url:
+      type: string(255)
+      unique: true
+      notnull: true
   actAs: [Timestampable]
   relations:
     Cars:
@@ -127,7 +131,15 @@ Car:
       type: string(8)
       unique: true
       notnull: true
+    url:
+      type: string(255)
+      unique: true
+      notnull: true
   actAs: [Timestampable]
+  indexes:
+    model:
+      fields:
+        model: []
   relations:
     Status:
       class: CarStatus
