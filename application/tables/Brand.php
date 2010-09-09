@@ -34,7 +34,7 @@ class Brand extends Base_Brand
             $url = Util_String::toUrl($this->name);
             $this->_set('url',$url);
             foreach ($this->Cars as $car) {
-                $car->save();
+                //loop to force changes
             }
         }
     }
