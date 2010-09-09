@@ -76,7 +76,6 @@ Brand:
       type: integer
       unsigned: true
       notnull: false
-    logo: string(255)
     url:
       type: string(255)
       unique: true

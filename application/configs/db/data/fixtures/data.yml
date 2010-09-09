@@ -17,63 +17,158 @@ User:
     Role: Role_Admin
     enabled: true
 
+Image:
+  LogotipoAlfaRomeo:
+    filename: logotipo-alfa-romeo
+    md5: 2dfe839cced51f61717a52c3271a5f8b
+    description: Logotipo Alfa Romeo
+  LogotipoAudi:
+    filename: logotipo-audi
+    md5: b6abad92ca01ff5d45ea9cfa5db37d8b
+    description: Logotipo da Audi
+  LogotipoBmw:
+    filename: logotipo-bmw
+    md5: 9b688ca48b14f4688a4913dce018eb4a
+    description: Logotipo da BMW
+  LogotipoChevrolet:
+    filename: logotipo-chevrolet
+    md5: 682b78c073dbcdc810fba5fb2ae96dec
+    description: Logotipo Chevrolet
+  LogotipoChrysler:
+    filename: logotipo-chrysler
+    md5: ba57f6d43c00411baa807d8551d3fe67
+    description: Logotipo da Chrysler
+  LogotipoCitroen:
+    filename: logotipo-citroen
+    md5: e11b89aa15424a1a5dc8c11c3b1f6569
+    description: Logotipo da Citroën
+  LogotipoFiat:
+    filename: logotipo-fiat
+    md5: 40df5e4d6f44195e832e8b8791482e4c
+    description: Logotipo da Fiat
+  LogotipoFord:
+    filename: logotipo-ford
+    md5: 4470bafa21447881e984034f53dbe9e8
+    description: Logotipo da Ford
+  LogotipoHonda:
+    filename: logotipo-honda
+    md5: f90215dc9e1df69da4c66aa4a268665e
+    description: Logotipo da Honda
+  LogotipoHyundai:
+    filename: logotipo-hyundai
+    md5: eac424e1b810149cc07ad0b8f3a757a9
+    description: Logotipo Hyundai
+  LogotipoMercedes:
+    filename: logotipo-mercedes
+    md5: a2735ec25ee570135879fca9b8bf9122
+    description: Logotipo da Mercedes
+  LogotipoMitsubishi:
+    filename: logotipo-mitsubishi
+    md5: 9c2ae5820e824423a84fb961edb74e59
+    description: Logotipo da Mitsubishi
+  LogotipoNissan:
+    filename: logotipo-nissan
+    md5: 67cd720c64f2eff55e804e1cb5e120fa
+    description: logotipo da nissan
+  LogotipoPeugeot:
+    filename: logotipo-peugeot
+    md5: 972159fa38100ab78e168869588385d5
+    description: Logotio da Peugeot
+  LogotipoRenault:
+    filename: logotipo-renault
+    md5: 5444419d180479c13c3498359bedca8a
+    description: Logotipo da Renault
+  LogotipoToyota:
+    filename: logotipo-toyota
+    md5: e93dd6a1298a96c4a0662226fc84d497
+    description: Logotipo da Toyota
+  LogotipoVolkswagen:
+    filename: logotipo-volkswagen
+    md5: fdccc53120196ccfca5d397c625cdc66
+    description: logotipo da Volkswagen
+  LogotipoVolvo:
+    filename: logotipo-volvo
+    md5: 8ac3db244d5a24b08ca787eea841b1e5
+    description: Logotipo da Volvo
+
+
 Brand:
-  Volksvagen:
-    name: Volksvagen
-    url: volksvagen
-  Fiat:
-    name: Fiat
-    url: Fiat
+  AlfaRomeo:
+    name: Alfa Romeo
+    url: alfa-romeo
+    Logo: LogotipoAlfaRomeo
+  Audi:
+    name: Audi
+    url: audi
+    Logo: LogotipoAudi
+  Bmw:
+    name: BMW
+    url: bmw
+    Logo: LogotipoBmw
   Chevrolet:
     name: Chevrolet
     url: chevrolet
-  Ford:
-    url: Ford
-    name: ford
-  Peugeot:
-     name: Peugeot
-     url: peugeot
-  Citroen:
-     name: Citroën
-     url: citroen
-  Nissan:
-     name: Nissan
-     url: nissan
-  Hyundai:
-     name: Hyundai
-     url: hyundai
-  BMW:
-     name: BMW
-     url: bmw
-  Alfa_Romeo:
-     name: Alfa Romeo
-     url: alfa-romeo
-  Audi:
-     name: Audi
-     url: audi
-  Mitsubishi:
-     name: Mitsubishi
-     url: mitsubishi
-  Honda:
-     name: Honda
-     url: honda
-     logo: honda.jpg
-  Renault:
-    name: Renault
-    url: renault
-    logo: renault.jpg
+    Logo: LogotipoChevrolet
   Chrysler:
     name: Chrysler
     url: chrysler
+    Logo: LogotipoChrysler
+  Citroen:
+    name: Citroën
+    url: citroen
+    Logo: LogotipoCitroen
+  Fiat:
+    name: Fiat
+    url: fiat
+    Logo: LogotipoFiat
+  Ford:
+    name: ford
+    url: ford
+    Logo: LogotipoFord
+  Honda:
+    name: Honda
+    url: honda
+    Logo: LogotipoHonda
+  Hyundai:
+    name: Hyundai
+    url: hyundai
+    Logo: LogotipoHyundai
   Mercedes:
     name: Mercedes
     url: mercedes
-  Volvo:
-    name: Volvo
-    url: volvo
+    Logo: LogotipoMercedes
+  Mitsubishi:
+    name: Mitsubishi
+    url: mitsubishi
+    Logo: LogotipoMitsubishi
+  Nissan:
+    name: Nissan
+    url: nissan
+    Logo: LogotipoNissan
+  Peugeot:
+    name: Peugeot
+    url: peugeot
+    Logo: LogotipoPeugeot
+  Renault:
+    name: Renault
+    url: renault
+    Logo: LogotipoRenault
   Toyota:
     name: Toyota
     url: toyota
+    Logo: LogotipoToyota
+  Volkswagen:
+    name: Volkswagen
+    url: volkswagen
+    Logo: LogotipoVolkswagen
+  Volvo:
+    name: Volvo
+    url: volvo
+    Logo: LogotipoVolvo
+
+
+    
+  
 
 Car:
   Voyage:
@@ -87,7 +182,7 @@ Car:
     priority: 0
     licensePlate: BC-1234
     color: Branco
-    Brand: Volksvagen
+    Brand: Volkswagen
     url: /volksvagen/voyage/BC-1234
   Uno:
     model: Uno teste
