@@ -19,6 +19,7 @@ class ImageController extends Zend_Controller_Action
      */
     public function indexAction()
     {
+
         try {
             $request = $this->getRequest();
             $model = $this->model;
