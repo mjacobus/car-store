@@ -21,7 +21,7 @@ class ImageController extends Zend_Controller_Action
     {
         $request = $this->getRequest();
         $model = $this->model;
-        $model->setFile($request->getParam('file'))
+        $model->setFile($request->getParam('file') . '.'. $request->getParam('extention'))
             ->setWidth($request->getParam('width', 150))
             ->setHeight($request->getParam('height', 150))
             ->setToken($request->getParam('token'));
