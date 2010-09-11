@@ -124,9 +124,10 @@ abstract class Admin_Controller_Abstract extends Zend_Controller_Action
             $values = $this->getRequest()->getPost();
             $id = $this->model->save($values, $id);
             if ($id) {
-                $this->onSaveOk($id);
+                $this->postSave($id);
+            } else {
+                $this->view->errors($this->model->getMessages());
             }
-            $this->view->errors($this->model->getMessages());
         } else {
             if (array_key_exists('id', $params)) {
                 $this->model->populateForm($params['id']);
@@ -137,21 +138,24 @@ abstract class Admin_Controller_Abstract extends Zend_Controller_Action
     /**
      * After delete, shows message
      */
-    public function onDeleteOk($savedRecordId = null)
+    public function postDelete($savedRecordId = null)
     {
         $this->view->flash($this->model->getMessages());
+        $this->_redirect($this->getRequest()->getModuleName()
+            . '/' . $this->getRequest()->getControllerName()
+        );
     }
-    
+
     /**
      * After save succeed, redirects
      * Displays ok message and redirects
      */
-    public function onSaveOk($savedRecordId = null)
+    public function postSave($savedRecordId = null)
     {
         $this->view->flash($this->model->getMessages());
         $this->_redirect($this->getRequest()->getModuleName()
-                    . '/' . $this->getRequest()->getControllerName()
-                );
+            . '/' . $this->getRequest()->getControllerName()
+        );
     }
 
     /**
@@ -168,12 +172,9 @@ abstract class Admin_Controller_Abstract extends Zend_Controller_Action
                 if (!$id) {
                     $this->view->flash()->setDivClass('error');
                 }
-                $this->onDeleteOk($id);
             }
 
-            $this->_redirect($this->getRequest()->getModuleName()
-                . '/' . $this->getRequest()->getControllerName()
-            );
+            $this->postDelete($id);
         }
 
         $params = $this->getRequest()->getParams();
@@ -267,10 +268,9 @@ abstract class Admin_Controller_Abstract extends Zend_Controller_Action
     public function preDispatch()
     {
         $this->view->tabs = array(
-            'Veículos' => array('car','car-feature','car-image'),
+            'Veículos' => array('car', 'car-feature', 'car-image'),
             'Marcas' => array('brand'),
             'Imagens' => array('image-upload'),
-            
         );
         $this->view->params = $this->_getAllParams();
     }

@@ -28,12 +28,12 @@ class Admin_CarFeatureController extends Admin_Controller_Abstract
      * After save succeed, redirects
      * Displays ok message and redirects
      */
-    public function onSaveOk($savedRecordId = null)
+    public function postSave($savedRecordId = null)
     {
         $this->view->flash($this->model->getMessages());
         $url = $this->getRequest()->getModuleName()
             . '/' . $this->getRequest()->getControllerName();
-        $url .= "/index/car/" . $this->_getParam('car_id');
+        $url .= "/index/car/" . $this->_getParam('car');
         $this->_redirect($url);
     }
 
@@ -41,12 +41,12 @@ class Admin_CarFeatureController extends Admin_Controller_Abstract
      *
      * @param int $savedRecordId
      */
-    public function onDeleteOk($savedRecordId = null)
+    public function postDelete($savedRecordId = null)
     {
         $this->view->flash($this->model->getMessages());
         $url = $this->getRequest()->getModuleName()
             . '/' . $this->getRequest()->getControllerName();
-        $url .= "/index/car/" . $this->_getParam('car_id');
+        $url .= "/index/car/" . $this->_getParam('car');
         $this->_redirect($url);
 
     }

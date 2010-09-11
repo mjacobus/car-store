@@ -37,7 +37,7 @@ abstract class Admin_Model_Abstract extends Model_Abstract
     protected $_crudMessages = array(
         'SAVE_OK' => 'Registro salvo com sucesso.',
         'SAVE_ERROR' => '* Erro ao salvar registro:',
-        'REGISTER_DO_NOT_EXIST' => 'Registro não encontrado.',
+        'REGISTER_NOT_FOUND' => 'Registro não encontrado.',
         'DELETE_CONSTRAINT_ERROR' => 'O regististro não pode ser excluído pois possue vínculos.',
         'DELETE_ERROR' => 'O regististro não pode ser excluído.',
         'DELETE_OK' => 'Registro excluído com sucesso.',

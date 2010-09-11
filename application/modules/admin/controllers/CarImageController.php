@@ -28,7 +28,7 @@ class Admin_CarImageController extends Admin_Controller_Abstract
      * After save succeed, redirects
      * Displays ok message and redirects
      */
-    public function onSaveOk($savedRecordId = null)
+    public function postSave($savedRecordId = null)
     {
         $this->view->flash($this->model->getMessages());
         $url = $this->getRequest()->getModuleName()
@@ -41,10 +41,13 @@ class Admin_CarImageController extends Admin_Controller_Abstract
      *
      * @param int $savedRecordId
      */
-    public function onDeleteOk($savedRecordId = null)
+    public function postDelete($savedRecordId = null)
     {
         $this->view->flash($this->model->getMessages());
-        header("Location: " . $_SERVER['HTTP_REFERER']);
+        $url = $this->getRequest()->getModuleName()
+            . '/' . $this->getRequest()->getControllerName();
+        $url .= "/index/car/" . $this->_getParam('car');
+        $this->_redirect($url);
     }
 
     /**

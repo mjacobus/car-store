@@ -33,7 +33,8 @@
                             'module'=>'admin',
                             'controller' => 'car-feature',
                             'action' => 'edit',
-                            'id' => $register->id
+                            'id' => $register->id,
+                            'car' => $register->car_id
                         ),null,true)?>" >Editar</a>
                 
                 <a class="del" href="<?= $this->url(array(
@@ -41,6 +42,7 @@
                             'controller' => 'car-feature',
                             'action' => 'del',
                             'id' => $register->id,
+                            'car' => $register->car_id,
                             'car' => $register->car_id
                         ),null,true)?>" >Excluir</a>
             </td>

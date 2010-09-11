@@ -47,14 +47,16 @@
                             'module'=>'admin',
                             'controller' => 'car-image',
                             'action' => 'edit',
-                            'id' => $register->id
+                            'id' => $register->id,
+                            'car' => $register->car_id
                         ),null,true)?>" >Editar</a>
                 
                 <a class="del" href="<?= $this->url(array(
                             'module'=>'admin',
                             'controller' => 'car-image',
                             'action' => 'del',
-                            'id' => $register->id
+                            'id' => $register->id,
+                            'car' => $register->car_id
                         ),null,true)?>" >Excluir</a>
             </td>
         </tr>
