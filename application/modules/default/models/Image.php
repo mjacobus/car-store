@@ -342,7 +342,12 @@ class Model_Image extends Model_Abstract
         $width = $this->getWidth();
         $height = $this->getHeight();
         $token = $this->getValidToken();
-        return "?file=$file&width=$width&height=$height&token=$token";
+
+        $parts = explode('.',$file);
+        $extention = array_pop($parts);
+        $file = implode('.', $parts);
+
+        return "/{$file}_{$width}x{$height}.{$extention}?token=$token";
     }
 
     /**

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Exception App_Exception_RegisterNotFound
  *
@@ -6,5 +7,10 @@
  */
 class App_Exception_RegisterNotFound extends Exception
 {
-    
+
+    public function __construct($message = "Registro não encontrado.", $code, $previous)
+    {
+        parent::__construct($message, $code, $previous);
+    }
+
 }

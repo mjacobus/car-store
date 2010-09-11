@@ -19,15 +19,19 @@ class ImageController extends Zend_Controller_Action
      */
     public function indexAction()
     {
-        $request = $this->getRequest();
-        $model = $this->model;
-        $model->setFile($request->getParam('file'))
-            ->setWidth($request->getParam('width', 150))
-            ->setHeight($request->getParam('height', 150))
-            ->setToken($request->getParam('token'));
+        try {
+            $request = $this->getRequest();
+            $model = $this->model;
+            $model->setFile($request->getParam('file') . '.' . $request->getParam('extention'))
+                ->setWidth($request->getParam('width', 150))
+                ->setHeight($request->getParam('height', 150))
+                ->setToken($request->getParam('token'));
 
-        $content = $model->getFileContent();
-        $contentType = $model->getFileContentType();
+            $content = $model->getFileContent();
+            $contentType = $model->getFileContentType();
+        } catch (Exception $e) {
+            throw new App_Exception_RegisterNotFound();
+        }
         header("Content-type: $contentType");
         echo $content;
     }

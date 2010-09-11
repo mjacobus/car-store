@@ -130,5 +130,16 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         Zend_Locale::setCache($cache);
     }
 
+    public function _initRoutes()
+    {
+        $router = Zend_Controller_Front::getInstance()->getRouter();
+
+        $router->addRoute('image', new Zend_Controller_Router_Route_Regex(
+                'image/([\w-\d]+)_(\d+)x(\d+)\.(\w{3})',
+                array('module' => 'default', 'controller' => 'image', 'action' => 'index'),
+                array(1=>'file',2=>'width',3=>'height',4 => 'extention'))
+        );
+    }
+
 }
 
