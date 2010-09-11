@@ -305,4 +305,12 @@ abstract class Admin_Model_Abstract extends Model_Abstract
         return true;
     }
 
+    /**
+     * Get a register by id with its joins made
+     */
+    public function getRegister($id)
+    {
+       return $this->getById($this->getTablelName(), $id);
+    }
+
 }

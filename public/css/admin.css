@@ -169,10 +169,41 @@ table.crud td.thumb {
     background: gray;
 }
 
+.crud ul {
+    margin: 3px;
+    padding: 0;
+    width: 400px;
+    float: right;
+}
+.crud ul label {
+    background: #ddd;
+    float:left;
+    height:26px;
+    line-height: 26px;
+    vertical-align: middle;
+    width:150px;
+    padding:4px;
+    margin-right: 4px;
+}
+.crud li {
+    background:white;
+    width: 400px;
+    float:left;
+    text-align: left;
+    padding:1px;
+    line-height: 26px;
+    vertical-align: middle;
+}
+
 th {
     background:#eee;
     font-weight: normal;
     color: #999;
+}
+
+.crud .title {
+    width: 150px;
+    text-align: left;
 }
 
 tr.r0 {background: #dddddd;}

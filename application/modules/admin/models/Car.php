@@ -83,4 +83,15 @@ class Admin_Model_Car extends Admin_Model_Abstract
         return $dql;
     }
 
+    public function  getRegister($id)
+    {
+        $dql = Doctrine_Query::create()
+            ->from($this->getTablelName() . ' C')
+            ->leftJoin('C.Images CI')
+            ->leftJoin('CI.Image I')
+            ->leftJoin('C.Features F')
+            ->where('C.id = ?', $id)
+            ->orderBy('F.priority,CI.priority');
+        return $dql->fetchOne();
+    }
 }

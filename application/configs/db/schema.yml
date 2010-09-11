@@ -158,7 +158,7 @@ Car:
       local: brand_id
       foreign: id
     Features:
-      class: Feature
+      class: CarFeature
       foreign: car_id
       local: id
       type: many

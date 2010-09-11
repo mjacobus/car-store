@@ -19,8 +19,8 @@
  * @property string $url
  * @property CarStatus $Status
  * @property Brand $Brand
+ * @property Doctrine_Collection $Features
  * @property Doctrine_Collection $Images
- * @property Doctrine_Collection $CarFeature
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -119,11 +119,11 @@ abstract class Base_Car extends Doctrine_Record
              'local' => 'brand_id',
              'foreign' => 'id'));
 
-        $this->hasMany('CarImage as Images', array(
+        $this->hasMany('CarFeature as Features', array(
              'local' => 'id',
              'foreign' => 'car_id'));
 
-        $this->hasMany('CarFeature', array(
+        $this->hasMany('CarImage as Images', array(
              'local' => 'id',
              'foreign' => 'car_id'));
 

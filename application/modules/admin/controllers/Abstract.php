@@ -275,4 +275,13 @@ abstract class Admin_Controller_Abstract extends Zend_Controller_Action
         $this->view->params = $this->_getAllParams();
     }
 
+    /**
+     * view Action
+     */
+    public function viewAction()
+    {
+        $register = $this->model->getRegister($this->_getParam('id'));
+        $this->view->register = $register;
+    }
+
 }

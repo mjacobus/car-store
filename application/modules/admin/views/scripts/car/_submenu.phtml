@@ -1,6 +1,13 @@
 <?
-    $carId = array_key_exists('car',$this->params) ?
+   $carId = array_key_exists('car',$this->params) ?
                 $this->params['car'] : $this->params['id'];
+
+   $view = $this->url(array(
+            'module'=>'admin',
+            'controller' => 'car',
+            'action' => 'view',
+            'id' => $carId
+        ),null,true);
 
    $main = $this->url(array(
             'module'=>'admin',
@@ -25,10 +32,12 @@
 
 
    $controller = $this->params['controller'];
+   $action = $this->params['action'];
    ?>
 
 <ul class="submenu">
-    <li <? if ($controller == 'car') echo ' class="active"' ?>><a href="<?= $main ?>">Princial</a></li>
+    <li <? if ($controller == 'car' && $action == 'view') echo ' class="active"' ?>><a href="<?= $view ?>">Visualização</a></li>
+    <li <? if ($controller == 'car' && $action !== 'view') echo ' class="active"' ?>><a href="<?= $main ?>">Principal</a></li>
     <li <? if ($controller == 'car-feature') echo ' class="active"' ?>><a href="<?= $features ?>">Características</a></li>
     <li <? if ($controller == 'car-image') echo ' class="active"' ?>><a href="<?= $images ?>">Imagens</a></li>
 </ul>

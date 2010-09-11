@@ -1,0 +1,115 @@
+
+<div class="search top"><?= $this->search?></div>
+<? include '_submenu.phtml' ?>
+
+
+<?php $car = $this->register ?>
+
+
+<table class="crud">
+    <tr>
+        <th colspan="2">Principal</th>
+    </tr>
+    <tr>
+        <th class="title">Marca</th>
+        <td><?= $car->Brand->name ?></td>
+    </tr>
+    <tr>
+        <th class="title">Modelo</th>
+        <td><?= $car->model ?></td>
+    </tr>
+    <tr>
+        <th class="title">Placa</th>
+        <td><?= $car->licensePlate ?></td>
+    </tr>
+    <tr>
+        <th class="title">Cor</th>
+        <td><?= $car->color ?></td>
+    </tr>
+    <tr>
+        <th class="title">Ano</th>
+        <td><?= $car->year ?></td>
+    </tr>
+    <tr>
+        <th class="title">Ano Modelo</th>
+        <td><?= $car->modelYear ?></td>
+    </tr>
+    <tr>
+        <th class="title">Valor</th>
+        <td><?= $car->price ?></td>
+    </tr>
+    <tr>
+        <th class="title">Exibir valor</th>
+        <td><?= ($car->showPrice) ? 'Sim' : 'Não' ?></td>
+    </tr>
+    <tr>
+        <th class="title">Situação</th>
+        <td><?= $car->Status->name ?></td>
+    </tr>
+    <tr>
+        <th class="title">Ordem</th>
+        <td><?= $car->priority ?></td>
+    </tr>
+</table>
+<br />
+<table class="crud">
+    <tr>
+        <th  colspan="2">Características</th>
+    </tr>
+
+    <? foreach($car->Features as $feature): ?>
+        <tr>
+            <th class="title"><?= $feature->priority ?></th>
+            <td><?= $feature->description ?></td>
+        </tr>
+    <? endforeach; ?>
+</table>
+
+<br />
+
+<table class="crud">
+
+    <tr>
+        <th  colspan="2">Imagens</th>
+    </tr>
+
+    <? foreach($car->Images as $image): ?>
+        <tr>
+            <th>
+                <ul>
+                    <li>
+                        <label>Imagem</label>
+                        <?= $image->Image->filename ?>.png
+                    </li>
+                    <li>
+                        <label>Foto Ilustrativa</label>
+                        <?= ($image->illustrative) ? 'Sim' : 'Não' ?>
+                    </li>
+                    <li>
+                        <label>Texto alternativo</label>
+                        <?= $image->alt ?>
+                    </li>
+                    <li>
+                        <label>Títuo</label>
+                        <?= $image->title ?>
+                    </li>
+                    <li>
+                        <label>Descrição</label>
+                        <?= $image->description ?>
+                    </li>
+                    <li>
+                        <label>Ordem</label>
+                        <?= $image->priority ?>
+                    </li>
+                </ul>
+            
+                <img alt="<?= $image->alt ?>"
+                     title="<?= $image->title ?>"
+                     src="<?= $this->image($image->Image->filename . '.png','220x220') ?>"
+                     />
+
+            </th>
+        </tr>
+    <? endforeach; ?>
+
+</table>
