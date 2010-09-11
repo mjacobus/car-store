@@ -18,14 +18,13 @@ class Admin_Form_CarImage extends Admin_Form_Abstract
         parent::__construct($options);
         $this->addCarId($params);
         $this->addImage();
+        $this->addIlustrative();
         $this->addAlt();
         $this->addTitle();
         $this->addDescription();
         $this->addPriority();
         $this->addSubmit();
     }
-
-
 
     /**
      * Add Image wich is a Zend_Form_Element_Select
@@ -43,6 +42,18 @@ class Admin_Form_CarImage extends Admin_Form_Abstract
                 array(null => 'Selecione')
         );
         $this->setRequired($element);
+        $this->addElement($element);
+        return $this;
+    }
+
+    /**
+     * Add Illustrative checkbox wich is a Zend_Form_Element_Checkbox
+     * length 255
+     * @return Admin_Form_CarImage
+     */
+    public function addIlustrative()
+    {
+        $element = $this->getCheckElement('illustrative', 'Foto Ilustrativa');
         $this->addElement($element);
         return $this;
     }

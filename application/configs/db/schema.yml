@@ -221,6 +221,9 @@ CarImage:
       type: integer
       unsigned: true
       notnull: true
+    illustrative:
+      type: boolean
+      notnull: true
     priority:
       type: integer
       unsigned: true

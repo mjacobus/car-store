@@ -16,6 +16,7 @@
         <th>Título</th>
         <th>Descrição</th>
         <th>Ordem</th>
+        <th>Ilustrativa</th>
 
         <th><a class="new-register" href="<?= $this->url(array(
             'module'=>'admin',
@@ -39,6 +40,7 @@
             <td><?= $register->title ?></td>
             <td><?= $register->description ?></td>
             <td><?= $register->priority ?></td>
+            <td class="center"><?= ($register->illustrative) ? 'Sim' : 'Não' ?></td>
 
             <td class="actions">
                 <a class="edit" href="<?= $this->url(array(

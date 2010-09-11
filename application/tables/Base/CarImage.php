@@ -9,6 +9,7 @@
  * @property integer $car_id
  * @property integer $image_id
  * @property integer $priority
+ * @property boolean $illustrative
  * @property string $alt
  * @property string $title
  * @property string $description
@@ -44,6 +45,10 @@ abstract class Base_CarImage extends Doctrine_Record
         $this->hasColumn('priority', 'integer', null, array(
              'type' => 'integer',
              'unsigned' => true,
+             'notnull' => true,
+             ));
+        $this->hasColumn('illustrative', 'boolean', null, array(
+             'type' => 'boolean',
              'notnull' => true,
              ));
         $this->hasColumn('alt', 'string', 255, array(
