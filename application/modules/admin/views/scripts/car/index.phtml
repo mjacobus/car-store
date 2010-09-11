@@ -61,10 +61,17 @@
                 <a class="edit" href="<?= $this->url(array(
                             'module'=>'admin',
                             'controller' => 'car',
+                            'action' => 'view',
+                            'id' => $register->id
+                        ),null,true)?>" >Visualizar</a>
+                <br />
+                <a class="edit" href="<?= $this->url(array(
+                            'module'=>'admin',
+                            'controller' => 'car',
                             'action' => 'edit',
                             'id' => $register->id
                         ),null,true)?>" >Editar</a>
-                
+                <br />
                 <a class="del" href="<?= $this->url(array(
                             'module'=>'admin',
                             'controller' => 'car',
