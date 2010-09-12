@@ -13,6 +13,12 @@
 class Car extends Base_Car
 {
 
+    public function setUp()
+    {
+        parent::setUp();
+        $this->hasMutator('price', 'setPrice');
+    }
+
     /**
      * Get the main image
      * @return Doctrine_Record|stdClass
@@ -54,6 +60,32 @@ class Car extends Base_Car
         $url = Util_String::arrayToUrl($urlParts);
 
         $this->_set('url', $url);
+    }
+
+    /**
+     * Get formated price
+     * @return string
+     */
+    public function getPrice()
+    {
+        $value = $this->_get('price');
+        $options = array(
+            'format' => 'pt_BR',
+            'display' => Zend_Currency::NO_SYMBOL,
+        );
+        $cur = new Zend_Currency();
+        return $cur->toCurrency($value, $options);
+    }
+
+    /**
+     *
+     * @param string $value
+     */
+    public function setPrice($value)
+    {
+        $value = str_replace('.', '', $value);
+        $value = str_replace(',', '.', $value);
+        $this->_set('price', $value);
     }
 
 }

@@ -79,7 +79,16 @@ $(document).ready(function(){
     /**
      * Masks
      */
-    $('input.date').mask('99/99/9999');
+    //$('input.date').mask('99/99/9999');
+    $('input.money').maskMoney({
+        symbol:'R$',
+        decimal:',',
+        precision:2,
+        thousands:'.',
+        allowZero:true,
+        showSymbol:false
+
+    });
 
     /**
      * Search Form Validation
