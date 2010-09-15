@@ -11,7 +11,7 @@ root {
 .bg-white{background:white}
 
 body {
-    background: #667777;
+    background: #567;
 }
 #header {
     text-align: center;
@@ -119,6 +119,20 @@ ul.submenu li.active {
 }
 
 /* Forms */
+fieldset {
+    background:none repeat scroll 0 0 #EEEEEE;
+    border:1px solid #CCCCCC;
+    float:left;
+    margin:0 0 17px;
+    padding:30px 0 0;
+    width: 100%;
+}
+
+fieldset legend {
+    color:gray;
+    margin-left: 228px;
+}
+
 
 form { margin-top:50px;}
 input,select, textarea {
