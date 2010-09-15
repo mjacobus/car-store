@@ -271,6 +271,7 @@ abstract class Admin_Controller_Abstract extends Zend_Controller_Action
             'Veículos' => array('car', 'car-feature', 'car-image'),
             'Marcas' => array('brand'),
             'Imagens' => array('image-upload'),
+            'Usuários' => array('user'),
         );
         $this->view->params = $this->_getAllParams();
     }
