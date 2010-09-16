@@ -226,6 +226,7 @@ abstract class Admin_Controller_Abstract extends Zend_Controller_Action
             ->appendFile($view->baseUrl('/js/jquery.validate.min.js'))
             ->appendFile($view->baseUrl('/js/jquery.validate.messages.js'))
             ->appendFile($view->baseUrl('/js/jquery-ui-1.8.2.datepicker.min.js'))
+            ->appendFile($view->baseUrl('/js/jquery.maskedinput-1.2.2.min.js'))
             ->appendFile($view->baseUrl('/js/jquery.maskMoney.js'))
             ->appendFile($view->baseUrl('/js/admin.js'));
     }

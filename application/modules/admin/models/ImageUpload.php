@@ -100,7 +100,7 @@ class Admin_Model_ImageUpload extends Admin_Model_Abstract
 
         //on update image is not required
         if ($id !== null) {
-            $form->file->setRequired(false);
+            $form->setRequired($form->file,false);
             $register = $this->getById($this->getTablelName(), $id);
             $oldFilename = $register->filename;
             $fileRenamed = ($oldFilename !== $values['filename']);

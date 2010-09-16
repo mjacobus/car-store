@@ -29,6 +29,7 @@ class Form_Abstract extends Zend_Form
         $element->setLabel($label)
                 ->setAttrib('class', 'date')
                 ->addValidator(new Zend_Validate_Date('dd/mm/yyyy'));
+        $this->trim($element);
         $this->setRequired($element,$required);
         return $element;
     }
@@ -58,14 +59,11 @@ class Form_Abstract extends Zend_Form
     public function getTextElement($name,$label,$required = true ,$length = array('min' => 0, 'max' =>255))
     {
         $element = new Zend_Form_Element_Text($name);
+        $this->trim($element)->setRequired($element,$required);
         $element->setLabel($label)
-                ->setRequired($required)
                 ->addValidator(new Zend_Validate_StringLength($length))
                 ->addFilter(new Zend_Filter_StringTrim());
 
-        if ($required) {
-            $element->setAttrib('class', 'required');
-        }
         if (array_key_exists('max', $length)) {
             $element->setAttrib('maxlength', $length['max']);
         }
@@ -84,14 +82,12 @@ class Form_Abstract extends Zend_Form
     public function getPasswordElement($name,$label,$required = true ,$length = array('min' => 0, 'max' =>255))
     {
         $element = new Zend_Form_Element_Password($name);
+        $this->trim($element)->setRequired($element,$required);
         $element->setLabel($label)
                 ->setRequired($required)
                 ->addValidator(new Zend_Validate_StringLength($length))
                 ->addFilter(new Zend_Filter_StringTrim());
 
-        if ($required) {
-            $element->setAttrib('class', 'required');
-        }
         if (array_key_exists('max', $length)) {
             $element->setAttrib('maxlength', $length['max']);
         }
@@ -109,6 +105,7 @@ class Form_Abstract extends Zend_Form
     public function getTextareaElement($name,$label,$required = true)
     {
         $element = new Zend_Form_Element_Textarea($name);
+        $this->trim($element);
         $element->setLabel($label)
                 ->setRequired($required)
                 ->addFilter(new Zend_Filter_StringTrim());
@@ -315,6 +312,33 @@ class Form_Abstract extends Zend_Form
         $element->setRequired($required);
         $element->setDecorators(array('ViewHelper'));
         
+        return $element;
+    }
+
+
+    /**
+     *
+     * @param Zend_Form_Element $element
+     * @return Form_Abstract
+     */
+    public function trim(Zend_Form_Element $element)
+    {
+        $element->addFilter(new Zend_Filter_StringTrim());
+        return $this;
+    }
+
+    /**
+     *
+     * @param string $name
+     * @param string $label
+     * @param bool $required
+     * @return Zend_Form_Element_Text
+     */
+    public function getEmailElement($name,$label,$required = true)
+    {
+        $element = $this->getTextElement($name,$label,$required);
+        $element->addValidator(new Zend_Validate_EmailAddress());
+        $this->addClass('email', $element);
         return $element;
     }
 }

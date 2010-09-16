@@ -51,7 +51,7 @@ class Admin_Form_ImageUpload extends Admin_Form_Abstract
     public function addFile(array $params = array())
     {
         $element = new Zend_Form_Element_File('file');
-        $element->setRequired(true);
+        $this->setRequired($element);
         $element->setLabel('Arquivo')
             ->setDestination(APPLICATION_PATH . '/../tmp/uploads')
             ->addValidator('Extension', false, 'jpg,png,gif') //2MB
@@ -60,7 +60,8 @@ class Admin_Form_ImageUpload extends Admin_Form_Abstract
 
         if (array_key_exists('id', $params)) {
             $element->setDescription("Para alterar imagem prencha este campo.");
-            $element->setRequired(true)->setLabel('');
+            $this->setRequired($element,false);
+            $element->setLabel('');
         }
 
         $this->addElement($element);

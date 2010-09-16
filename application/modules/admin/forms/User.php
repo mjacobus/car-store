@@ -62,8 +62,7 @@ class Admin_Form_User extends Admin_Form_Abstract
      */
     public function addEmail()
     {
-        $element = $this->getTextElement('email', 'Email');
-        $element->addValidator(new Zend_Validate_EmailAddress());
+        $element = $this->getEmailElement('email','Email');
         $this->addElement($element);
         return $this;
     }
@@ -98,6 +97,7 @@ class Admin_Form_User extends Admin_Form_Abstract
     public function addPassword($required)
     {
         $element = $this->getPasswordElement('password', 'Senha');
+        $this->setRequired($element, $required);
         $element->setRequired($required);
         $this->addElement($element);
         return $this;
@@ -111,7 +111,7 @@ class Admin_Form_User extends Admin_Form_Abstract
     public function addPasswordConfirmation($required)
     {
         $element = $this->getPasswordElement('password_confirmation', 'Confirma Senha');
-        $element->setRequired($required);
+        $this->setRequired($element, $required);
         $this->addElement($element);
         return $this;
     }
@@ -136,19 +136,17 @@ class Admin_Form_User extends Admin_Form_Abstract
         return $this;
     }
 
-    public function  isValid($data)
+    public function isValid($data)
     {
         parent::isValid($data);
 
         //TODO: solve password problem
-
         //password validation
         $password = $this->getValue('password');
         if ($password) {
-            $confirmation = $this->getValue('password_confirmation');
-            if ($password !== $confirmation) {
-                $this->password_confirmation->addError('Senhas não conferem');
-            }
+            $validator = new MyZend_Validate_EqualsTo($password);
+            $validator->setMessage("As senhas não conferem", MyZend_Validate_EqualsTo::NOT_EQUAL);
+            $this->password_confirmation->addValidator($validator);
         }
 
         return parent::isValid($data);

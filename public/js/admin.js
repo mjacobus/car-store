@@ -73,13 +73,24 @@ $(document).ready(function(){
             }
             error.appendTo(parent.find('ul'));
         },
-        errorElement:"li"
+        errorElement:"li",
+        rules: {
+            password_confirmation: {
+                required: function () {
+                    return $('#password').val() !== '';
+                },
+                equalTo: '#password'
+            }
+        }
     });
 
     /**
      * Masks
      */
-    //$('input.date').mask('99/99/9999');
+    $.mask.definitions['w']='[a-zA-Z]';
+    $('#licensePlate').mask('www-9999').blur(function(){
+        $(this).val($(this).val().toUpperCase());
+    });
     $('input.money').maskMoney({
         symbol:'R$',
         decimal:',',
@@ -90,14 +101,6 @@ $(document).ready(function(){
 
     });
 
-    /**
-     * Search Form Validation
-     */
-    $('#search').validate({
-        errorPlacement: function(error, element) {
-            element.addClass('error');
-        }
-    });
 
 
 });
