@@ -9,6 +9,7 @@
  * @property string $model
  * @property string $color
  * @property integer $brand_id
+ * @property integer $fuel_id
  * @property integer $status_id
  * @property float $price
  * @property boolean $showPrice
@@ -19,6 +20,7 @@
  * @property string $url
  * @property CarStatus $Status
  * @property Brand $Brand
+ * @property Fuel $Fuel
  * @property Doctrine_Collection $Features
  * @property Doctrine_Collection $Images
  * 
@@ -50,6 +52,11 @@ abstract class Base_Car extends Doctrine_Record
              'length' => '255',
              ));
         $this->hasColumn('brand_id', 'integer', null, array(
+             'type' => 'integer',
+             'notnull' => true,
+             'unsigned' => true,
+             ));
+        $this->hasColumn('fuel_id', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
              'unsigned' => true,
@@ -117,6 +124,10 @@ abstract class Base_Car extends Doctrine_Record
 
         $this->hasOne('Brand', array(
              'local' => 'brand_id',
+             'foreign' => 'id'));
+
+        $this->hasOne('Fuel', array(
+             'local' => 'fuel_id',
              'foreign' => 'id'));
 
         $this->hasMany('CarFeature as Features', array(

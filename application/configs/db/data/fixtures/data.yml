@@ -166,15 +166,25 @@ Brand:
     url: volvo
     Logo: LogotipoVolvo
 
-
-    
-  
+Fuel:
+  Gasolina:
+    name: Gasolina
+    short: G
+  Alcool:
+    name: Álcool
+    short: A
+  Diesel:
+    name: Diesel
+    short: D
+  GNV:
+    name: Gás Natural
+    short: GNV  
 
 Car:
   Voyage:
     model: Voyage teste
     Status: Disponivel
-    Status: Disponivel
+    Fuel: Gasolina
     price: 5000.56
     showPrice: true
     year: 1984
@@ -187,7 +197,7 @@ Car:
   Uno:
     model: Uno teste
     Status: Disponivel
-    Status: Disponivel
+    Fuel: Gasolina
     price: 15000.56
     showPrice: true
     year: 1999
@@ -200,6 +210,7 @@ Car:
   Uno1:
     model: Uno teste 1
     Status: Disponivel
+    Fuel: Gasolina
     licensePlate: ABC1231
     price: 15000.56
     showPrice: true
@@ -209,10 +220,10 @@ Car:
     color: preto
     Brand: Fiat
     url: /fiat/uno/BC1231
-
   Uno2:
     model: Uno teste 2
     Status: Disponivel
+    Fuel: Gasolina
     licensePlate: ABC1232
     price: 15000.56
     showPrice: true

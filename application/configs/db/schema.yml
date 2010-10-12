@@ -94,6 +94,30 @@ Brand:
       foreign: id
       onDelete: RESTRICT
 
+Fuel:
+  tableName: fuel
+  columns:
+    id:
+      type: integer
+      primary: true
+      unsigned: true
+      autoincrement: true
+    name:
+      type: string(255)
+      unique: true
+      notnull: true
+    short:
+      type: string(255)
+      unique: true
+      notnull: true
+  actAs: [Timestampable]
+  relations:
+    Cars:
+      class: Car
+      foreign: fuel_id
+      local: id
+      type: many
+      onDelete: RESTRICT
   
 Car:
   tableName: car
@@ -111,6 +135,10 @@ Car:
       type: string(255)
       notnull: true
     brand_id:
+      type: integer
+      notnull: true
+      unsigned: true
+    fuel_id:
       type: integer
       notnull: true
       unsigned: true
@@ -156,6 +184,10 @@ Car:
     Brand:
       class: Brand
       local: brand_id
+      foreign: id
+    Fuel:
+      class: Fuel
+      local: fuel_id
       foreign: id
     Features:
       class: CarFeature
