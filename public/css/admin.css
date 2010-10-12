@@ -133,6 +133,10 @@ fieldset legend {
     margin-left: 228px;
 }
 
+li.error {
+    font-size: 12px;
+    margin-bottom: 7px;
+}
 
 form { margin-top:50px;}
 input,select, textarea {
@@ -350,4 +354,3 @@ dd.radio-multi.height-9 {
 }
 
 input.date {width:80px}
-
