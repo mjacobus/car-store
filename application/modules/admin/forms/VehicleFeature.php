@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Form for Car
+ * Form for Vehicle
  *
  * @author marcelo.jacobus
  */
-class Admin_Form_CarFeature extends Admin_Form_Abstract
+class Admin_Form_VehicleFeature extends Admin_Form_Abstract
 {
 
     protected $_availableYears = array();
@@ -16,7 +16,7 @@ class Admin_Form_CarFeature extends Admin_Form_Abstract
     public function __construct(array $params = null, $options = null)
     {
         parent::__construct($options);
-        $this->addCarId($params);
+        $this->addVehicleId($params);
         $this->addDescription();
         $this->addPriority();
         $this->addSubmit();
@@ -25,13 +25,13 @@ class Admin_Form_CarFeature extends Admin_Form_Abstract
     /**
      * Add Description wich is a Zend_Form_Element_Text
      * length 255
-     * @return Admin_Form_Car
+     * @return Admin_Form_Vehicle
      */
-    public function addCarId(array $params = null)
+    public function addVehicleId(array $params = null)
     {
-        $element = $this->getHiddenElement('car_id');
-        if (array_key_exists('car', $params)) {
-            $element->setValue($params['car']);
+        $element = $this->getHiddenElement('vehicle_id');
+        if (array_key_exists('vehicle', $params)) {
+            $element->setValue($params['vehicle']);
         }
         $this->addElement($element);
         return $this;
@@ -40,7 +40,7 @@ class Admin_Form_CarFeature extends Admin_Form_Abstract
     /**
      * Add Description wich is a Zend_Form_Element_Text
      * length 255
-     * @return Admin_Form_Car
+     * @return Admin_Form_Vehicle
      */
     public function addDescription()
     {
@@ -50,7 +50,7 @@ class Admin_Form_CarFeature extends Admin_Form_Abstract
 
     /**
      * Add priority
-     * @return Admin_Form_Car
+     * @return Admin_Form_Vehicle
      */
     public function addPriority()
     {

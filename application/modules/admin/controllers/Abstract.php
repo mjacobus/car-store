@@ -269,7 +269,7 @@ abstract class Admin_Controller_Abstract extends Zend_Controller_Action
     public function preDispatch()
     {
         $this->view->tabs = array(
-            'Veículos' => array('car', 'car-feature', 'car-image'),
+            'Veículos' => array('vehicle', 'vehicle-feature', 'vehicle-image'),
             'Marcas' => array('brand'),
             'Imagens' => array('image-upload'),
             'Usuários' => array('user'),

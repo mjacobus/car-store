@@ -33,7 +33,7 @@ class Brand extends Base_Brand
         if (array_key_exists('name', $modified)) {
             $url = Util_String::toUrl($this->name);
             $this->_set('url',$url);
-            foreach ($this->Vehicles as $car) {
+            foreach ($this->Vehicles as $vehicle) {
                 //loop to force changes
             }
         }

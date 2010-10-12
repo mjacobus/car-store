@@ -21,7 +21,7 @@
 
         <th><a class="new-register" href="<?= $this->url(array(
             'module'=>'admin',
-            'controller' => 'car',
+            'controller' => 'vehicle',
             'action' => 'add'
         ),null,true)?>" >Adicionar</a></th>
 
@@ -60,21 +60,21 @@
             <td class="actions">
                 <a class="edit" href="<?= $this->url(array(
                             'module'=>'admin',
-                            'controller' => 'car',
+                            'controller' => 'vehicle',
                             'action' => 'view',
                             'id' => $register->id
                         ),null,true)?>" >Visualizar</a>
                 <br />
                 <a class="edit" href="<?= $this->url(array(
                             'module'=>'admin',
-                            'controller' => 'car',
+                            'controller' => 'vehicle',
                             'action' => 'edit',
                             'id' => $register->id
                         ),null,true)?>" >Editar</a>
                 <br />
                 <a class="del" href="<?= $this->url(array(
                             'module'=>'admin',
-                            'controller' => 'car',
+                            'controller' => 'vehicle',
                             'action' => 'del',
                             'id' => $register->id
                         ),null,true)?>" >Excluir</a>

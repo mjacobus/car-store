@@ -5,7 +5,7 @@
  */
 require_once 'Abstract.php';
 
-class Admin_CarFeatureController extends Admin_Controller_Abstract
+class Admin_VehicleImageController extends Admin_Controller_Abstract
 {
 
     /**
@@ -20,8 +20,8 @@ class Admin_CarFeatureController extends Admin_Controller_Abstract
     {
         $this->requireAuthentication();
         $this->setLayout();
-        $this->view->headTitle('Veículos');
-        $this->model = new Admin_Model_CarFeature();
+        $this->view->headTitle('Veículos - Imagens');
+        $this->model = new Admin_Model_VehicleImage();
     }
 
     /**
@@ -33,7 +33,7 @@ class Admin_CarFeatureController extends Admin_Controller_Abstract
         $this->view->flash($this->model->getMessages());
         $url = $this->getRequest()->getModuleName()
             . '/' . $this->getRequest()->getControllerName();
-        $url .= "/index/car/" . $this->_getParam('car');
+        $url .= "/index/vehicle/" . $this->_getParam('vehicle_id');
         $this->_redirect($url);
     }
 
@@ -46,24 +46,22 @@ class Admin_CarFeatureController extends Admin_Controller_Abstract
         $this->view->flash($this->model->getMessages());
         $url = $this->getRequest()->getModuleName()
             . '/' . $this->getRequest()->getControllerName();
-        $url .= "/index/car/" . $this->_getParam('car');
+        $url .= "/index/vehicle/" . $this->_getParam('vehicle');
         $this->_redirect($url);
-
     }
 
     /**
-     * Set car on search form
+     * Set vehicle on search form
      */
     public function  postDispatch()
     {
         parent::postDispatch();
         $form = $this->view->search;
 
-        $element = new Zend_Form_Element_Hidden('car');
-        $element->setValue($this->_getParam('car'));
+        $element = new Zend_Form_Element_Hidden('vehicle');
+        $element->setValue($this->_getParam('vehicle'));
         $form->addElement($element);
 
         $element->setDecorators(array('ViewHelper'));
     }
-
 }

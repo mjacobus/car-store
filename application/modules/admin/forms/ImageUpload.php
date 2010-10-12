@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Form for Car
+ * Form for ImageUpload
  *
  * @author marcelo.jacobus
  */
@@ -60,7 +60,7 @@ class Admin_Form_ImageUpload extends Admin_Form_Abstract
 
         if (array_key_exists('id', $params)) {
             $element->setDescription("Para alterar imagem prencha este campo.");
-            $this->setRequired($element,false);
+            $this->setRequired($element, false);
             $element->setLabel('');
         }
 
@@ -78,7 +78,7 @@ class Admin_Form_ImageUpload extends Admin_Form_Abstract
             $element = new Zend_Form_Element_Image('image', $options);
             $element->setLabel('Imagem')
                 ->setAttrib('style', 'width:400px;');
-            $element->getDecorator('HtmlTag')->setOption('style','height:310px;');
+            $element->getDecorator('HtmlTag')->setOption('style', 'height:310px;');
             $this->addElement($element);
         }
         return $this;

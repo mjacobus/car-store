@@ -28,7 +28,7 @@ class Vehicle extends Base_Vehicle
         $dql = Doctrine_Query::create()
                 ->from('VehicleImage CI')
                 ->leftJoin('CI.Image')
-                ->where('Vehicle_id = ?', $this->id)
+                ->where('vehicle_id = ?', $this->id)
                 ->orderBy('priority ASC');
         if ($dql->count()) {
             $image = $dql->fetchOne();

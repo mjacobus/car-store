@@ -3,7 +3,7 @@
 <? include '_submenu.phtml' ?>
 
 
-<?php $car = $this->register ?>
+<?php $vehicle = $this->register ?>
 
 
 <table class="crud">
@@ -12,43 +12,43 @@
     </tr>
     <tr>
         <th class="title">Marca</th>
-        <td><?= $car->Brand->name ?></td>
+        <td><?= $vehicle->Brand->name ?></td>
     </tr>
     <tr>
         <th class="title">Modelo</th>
-        <td><?= $car->model ?></td>
+        <td><?= $vehicle->model ?></td>
     </tr>
     <tr>
         <th class="title">Placa</th>
-        <td><?= $car->licensePlate ?></td>
+        <td><?= $vehicle->licensePlate ?></td>
     </tr>
     <tr>
         <th class="title">Cor</th>
-        <td><?= $car->color ?></td>
+        <td><?= $vehicle->color ?></td>
     </tr>
     <tr>
         <th class="title">Ano</th>
-        <td><?= $car->year ?></td>
+        <td><?= $vehicle->year ?></td>
     </tr>
     <tr>
         <th class="title">Ano Modelo</th>
-        <td><?= $car->modelYear ?></td>
+        <td><?= $vehicle->modelYear ?></td>
     </tr>
     <tr>
         <th class="title">Valor</th>
-        <td><?= $car->price ?></td>
+        <td><?= $vehicle->price ?></td>
     </tr>
     <tr>
         <th class="title">Exibir valor</th>
-        <td><?= ($car->showPrice) ? 'Sim' : 'Não' ?></td>
+        <td><?= ($vehicle->showPrice) ? 'Sim' : 'Não' ?></td>
     </tr>
     <tr>
         <th class="title">Situação</th>
-        <td><?= $car->Status->name ?></td>
+        <td><?= $vehicle->Status->name ?></td>
     </tr>
     <tr>
         <th class="title">Ordem</th>
-        <td><?= $car->priority ?></td>
+        <td><?= $vehicle->priority ?></td>
     </tr>
 </table>
 <br />
@@ -57,7 +57,7 @@
         <th  colspan="2">Características</th>
     </tr>
 
-    <? foreach($car->Features as $feature): ?>
+    <? foreach($vehicle->Features as $feature): ?>
         <tr>
             <th class="title"><?= $feature->priority ?></th>
             <td><?= $feature->description ?></td>
@@ -73,7 +73,7 @@
         <th  colspan="2">Imagens</th>
     </tr>
 
-    <? foreach($car->Images as $image): ?>
+    <? foreach($vehicle->Images as $image): ?>
         <tr>
             <th>
                 <ul>

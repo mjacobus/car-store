@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Form for Car
+ * Form for Vehicle
  *
  * @author marcelo.jacobus
  */
-class Admin_Form_Car extends Admin_Form_Abstract
+class Admin_Form_Vehicle extends Admin_Form_Abstract
 {
 
     protected $_availableYears = array();
@@ -38,7 +38,7 @@ class Admin_Form_Car extends Admin_Form_Abstract
     /**
      * Add Model wich is a Zend_Form_Element_Text
      * length 255
-     * @return Admin_Form_Car
+     * @return Admin_Form_Vehicle
      */
     public function addModel()
     {
@@ -49,7 +49,7 @@ class Admin_Form_Car extends Admin_Form_Abstract
     /**
      * Add Color wich is a Zend_Form_Element_Text
      * length 255
-     * @return Admin_Form_Car
+     * @return Admin_Form_Vehicle
      */
     public function addColor()
     {
@@ -59,7 +59,7 @@ class Admin_Form_Car extends Admin_Form_Abstract
 
     /**
      * Add LicensePlate wich is a Zend_Form_Element_Text
-     * @return Admin_Form_Car
+     * @return Admin_Form_Vehicle
      */
     public function addLicensePlate()
     {
@@ -70,7 +70,7 @@ class Admin_Form_Car extends Admin_Form_Abstract
 
     /**
      * Add Brand wich is a Zend_Form_Element_Select
-     * @return Admin_Form_Car
+     * @return Admin_Form_Vehicle
      */
     public function addBrand()
     {
@@ -89,7 +89,7 @@ class Admin_Form_Car extends Admin_Form_Abstract
 
     /**
      * Add Brand wich is a Zend_Form_Element_Select
-     * @return Admin_Form_Car
+     * @return Admin_Form_Vehicle
      */
     public function addYear()
     {
@@ -104,7 +104,7 @@ class Admin_Form_Car extends Admin_Form_Abstract
 
     /**
      * Add Brand wich is a Zend_Form_Element_Select
-     * @return Admin_Form_Car
+     * @return Admin_Form_Vehicle
      */
     public function addModelYear()
     {
@@ -119,7 +119,7 @@ class Admin_Form_Car extends Admin_Form_Abstract
 
     /**
      * Add Brand wich is a Zend_Form_Element_Text
-     * @return Admin_Form_Car
+     * @return Admin_Form_Vehicle
      */
     public function addPrice()
     {
@@ -131,7 +131,7 @@ class Admin_Form_Car extends Admin_Form_Abstract
 
     /**
      * Add option to show price or not
-     * @return Admin_Form_Car 
+     * @return Admin_Form_Vehicle
      */
     public function addShowPrice()
     {
@@ -142,11 +142,11 @@ class Admin_Form_Car extends Admin_Form_Abstract
 
     /**
      * Add priority
-     * @return Admin_Form_Car
+     * @return Admin_Form_Vehicle
      */
     public function addStatus()
     {
-        $dql = Admin_Model_Car::getStatusDql();
+        $dql = Admin_Model_Vehicle::getStatusDql();
         $element = new MyZend_Form_Element_DoctrineSelect('status_id');
         $element->addMultiOptionFromDql($dql, 'id', 'name');
         $element->setRequired(true)->setLabel('Situação');
@@ -156,7 +156,7 @@ class Admin_Form_Car extends Admin_Form_Abstract
 
     /**
      * Add priority
-     * @return Admin_Form_Car
+     * @return Admin_Form_Vehicle
      */
     public function addPriority()
     {

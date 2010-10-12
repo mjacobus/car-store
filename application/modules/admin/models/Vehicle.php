@@ -5,10 +5,10 @@
  *
  * @author marcelo.jacobus
  */
-class Admin_Model_Car extends Admin_Model_Abstract
+class Admin_Model_Vehicle extends Admin_Model_Abstract
 {
 
-    protected $_tableName = 'Car';
+    protected $_tableName = 'Vehicle';
     protected $_ukMapping = array(
         'licensePlate' => array(
             'field' => 'licensePlate',
@@ -24,7 +24,7 @@ class Admin_Model_Car extends Admin_Model_Abstract
     public function getForm($id = null)
     {
         if ($this->_form == null) {
-            $this->_form = new Admin_Form_Car($id);
+            $this->_form = new Admin_Form_Vehicle($id);
         }
         return $this->_form;
     }
@@ -78,7 +78,7 @@ class Admin_Model_Car extends Admin_Model_Abstract
     public static function getStatusDql()
     {
         $dql = Doctrine_Query::create()
-                ->from('CarStatus')
+                ->from('VehicleStatus')
                 ->orderBy('id');
         return $dql;
     }

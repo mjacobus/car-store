@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Form for Car
+ * Form for Vehicle
  *
  * @author marcelo.jacobus
  */
-class Admin_Form_CarImage extends Admin_Form_Abstract
+class Admin_Form_VehicleImage extends Admin_Form_Abstract
 {
 
     protected $_availableYears = array();
@@ -16,7 +16,7 @@ class Admin_Form_CarImage extends Admin_Form_Abstract
     public function __construct(array $params = null, $options = null)
     {
         parent::__construct($options);
-        $this->addCarId($params);
+        $this->addVehicleId($params);
         $this->addImage();
         $this->addIlustrative();
         $this->addAlt();
@@ -29,7 +29,7 @@ class Admin_Form_CarImage extends Admin_Form_Abstract
     /**
      * Add Image wich is a Zend_Form_Element_Select
      * length 255
-     * @return Admin_Form_CarImage
+     * @return Admin_Form_VehicleImage
      */
     public function addImage()
     {
@@ -49,7 +49,7 @@ class Admin_Form_CarImage extends Admin_Form_Abstract
     /**
      * Add Illustrative checkbox wich is a Zend_Form_Element_Checkbox
      * length 255
-     * @return Admin_Form_CarImage
+     * @return Admin_Form_VehicleImage
      */
     public function addIlustrative()
     {
@@ -59,15 +59,15 @@ class Admin_Form_CarImage extends Admin_Form_Abstract
     }
 
     /**
-     * Add CarId wich is a Zend_Form_Element_Text
+     * Add VehicleId wich is a Zend_Form_Element_Text
      * length 255
-     * @return Admin_Form_Car
+     * @return Admin_Form_Vehicle
      */
-    public function addCarId(array $params = null)
+    public function addVehicleId(array $params = null)
     {
-        $element = $this->getHiddenElement('car_id');
-        if (array_key_exists('car', $params)) {
-            $element->setValue($params['car']);
+        $element = $this->getHiddenElement('vehicle_id');
+        if (array_key_exists('vehicle', $params)) {
+            $element->setValue($params['vehicle']);
         }
         $this->addElement($element);
         return $this;
@@ -76,7 +76,7 @@ class Admin_Form_CarImage extends Admin_Form_Abstract
     /**
      * Add Description wich is a Zend_Form_Element_Text
      * length 255
-     * @return Admin_Form_Car
+     * @return Admin_Form_Vehicle
      */
     public function addDescription()
     {
@@ -87,7 +87,7 @@ class Admin_Form_CarImage extends Admin_Form_Abstract
     /**
      * Add Alternative text wich is a Zend_Form_Element_Text
      * length 255
-     * @return Admin_Form_Car
+     * @return Admin_Form_Vehicle
      */
     public function addAlt()
     {
@@ -98,7 +98,7 @@ class Admin_Form_CarImage extends Admin_Form_Abstract
     /**
      * Add Title text wich is a Zend_Form_Element_Text
      * length 255
-     * @return Admin_Form_Car
+     * @return Admin_Form_Vehicle
      */
     public function addTitle()
     {
@@ -108,7 +108,7 @@ class Admin_Form_CarImage extends Admin_Form_Abstract
 
     /**
      * Add priority
-     * @return Admin_Form_Car
+     * @return Admin_Form_Vehicle
      */
     public function addPriority()
     {

@@ -5,7 +5,7 @@
  */
 require_once 'Abstract.php';
 
-class Admin_CarController extends Admin_Controller_Abstract
+class Admin_VehicleController extends Admin_Controller_Abstract
 {
 
     /**
@@ -21,7 +21,7 @@ class Admin_CarController extends Admin_Controller_Abstract
         $this->requireAuthentication();
         $this->setLayout();
         $this->view->headTitle('Veículos');
-        $this->model = new Admin_Model_Car();
+        $this->model = new Admin_Model_Vehicle();
     }
 
     /**

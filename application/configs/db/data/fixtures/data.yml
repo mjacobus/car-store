@@ -190,10 +190,10 @@ Vehicle:
     year: 1984
     modelYear: 1985
     priority: 0
-    licensePlate: BC-1234
+    licensePlate: ABC-1234
     color: Branco
     Brand: Volkswagen
-    url: /volksvagen/voyage/BC-1234
+    url: /volksvagen/voyage/ABC-1234
   Uno:
     model: Uno teste
     Status: Disponivel
@@ -203,15 +203,15 @@ Vehicle:
     year: 1999
     modelYear: 2000
     priority: 0
-    licensePlate: BC-1235
+    licensePlate: ABC-1235
     color: preto
     Brand: Fiat
-    url: /fiat/uno/BC-1235
+    url: /fiat/uno/ABC-1235
   Uno1:
     model: Uno teste 1
     Status: Disponivel
     Fuel: Gasolina
-    licensePlate: ABC1231
+    licensePlate: ABC-1231
     price: 15000.56
     showPrice: true
     year: 1999
@@ -219,12 +219,12 @@ Vehicle:
     priority: 0
     color: preto
     Brand: Fiat
-    url: /fiat/uno/BC1231
+    url: /fiat/uno/ABC-1231
   Uno2:
     model: Uno teste 2
     Status: Disponivel
     Fuel: Gasolina
-    licensePlate: ABC1232
+    licensePlate: ABC-1232
     price: 15000.56
     showPrice: true
     year: 1999

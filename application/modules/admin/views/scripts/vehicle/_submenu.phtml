@@ -1,0 +1,45 @@
+<?
+   $vehicleId = array_key_exists('vehicle',$this->params) ?
+                $this->params['vehicle'] : $this->params['id'];
+
+   $view = $this->url(array(
+            'module'=>'admin',
+            'controller' => 'vehicle',
+            'action' => 'view',
+            'id' => $vehicleId
+        ),null,true);
+
+   $main = $this->url(array(
+            'module'=>'admin',
+            'controller' => 'vehicle',
+            'action' => 'edit',
+            'id' => $vehicleId
+        ),null,true);
+
+   $features = $this->url(array(
+            'module'=>'admin',
+            'controller' => 'vehicle-feature',
+            'action' => 'index',
+            'vehicle' => $vehicleId
+        ),null,true);
+
+   $images = $this->url(array(
+            'module'=>'admin',
+            'controller' => 'vehicle-image',
+            'action' => 'index',
+            'vehicle' => $vehicleId
+        ),null,true);
+
+
+   $controller = $this->params['controller'];
+   $action = $this->params['action'];
+   ?>
+
+<ul class="submenu">
+    <li <? if ($controller == 'vehicle' && $action == 'view') echo ' class="active"' ?>><a href="<?= $view ?>">Visualização</a></li>
+    <li <? if ($controller == 'vehicle' && $action !== 'view') echo ' class="active"' ?>><a href="<?= $main ?>">Principal</a></li>
+    <li <? if ($controller == 'vehicle-feature') echo ' class="active"' ?>><a href="<?= $features ?>">Características</a></li>
+    <li <? if ($controller == 'vehicle-image') echo ' class="active"' ?>><a href="<?= $images ?>">Imagens</a></li>
+</ul>
+
+
