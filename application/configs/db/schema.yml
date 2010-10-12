@@ -82,8 +82,8 @@ Brand:
       notnull: true
   actAs: [Timestampable]
   relations:
-    Cars:
-      class: Car
+    Vehicles:
+      class: Vehicle
       foreign: brand_id
       local: id
       type: many
@@ -112,15 +112,15 @@ Fuel:
       notnull: true
   actAs: [Timestampable]
   relations:
-    Cars:
-      class: Car
+    Vehicles:
+      class: Vehicle
       foreign: fuel_id
       local: id
       type: many
       onDelete: RESTRICT
   
-Car:
-  tableName: car
+Vehicle:
+  tableName: Vehicle
   columns:
     id:
       type: integer
@@ -178,7 +178,7 @@ Car:
         model: []
   relations:
     Status:
-      class: CarStatus
+      class: VehicleStatus
       local: status_id
       foreign: id
     Brand:
@@ -190,25 +190,25 @@ Car:
       local: fuel_id
       foreign: id
     Features:
-      class: CarFeature
-      foreign: car_id
+      class: VehicleFeature
+      foreign: vehicle_id
       local: id
       type: many
     Images:
-      class: CarImage
-      foreign: car_id
+      class: VehicleImage
+      foreign: vehicle_id
       local: id
       type: many
 
-CarFeature:
-  tableName: car_feature
+VehicleFeature:
+  tableName: vehicle_feature
   columns:
     id:
       type: integer
       primary: true
       unsigned: true
       autoincrement: true
-    car_id:
+    vehicle_id:
       type: integer
       unsigned: true
       notnull: true
@@ -221,27 +221,27 @@ CarFeature:
       notnull: true
   actAs: [Timestampable]
   relations:
-    Car:
-      class: Car
-      local: car_id
+    Vehicle:
+      class: Vehicle
+      local: vehicle_id
       foreign: id
       onDelete: CASCADE
   indexes:
-    car_id_description_uk:
+    vehicle_id_description_uk:
       fields:
-        car_id: []
+        vehicle_id: []
         description: []
       type: unique
 
-CarImage:
-  tableName: car_image
+VehicleImage:
+  tableName: vehicle_image
   columns:
     id:
       type: integer
       primary: true
       unsigned: true
       autoincrement: true
-    car_id:
+    vehicle_id:
       type: integer
       unsigned: true
       notnull: true
@@ -271,9 +271,9 @@ CarImage:
       notnull: true
   actAs: [Timestampable]
   relations:
-    Car:
-      class: Car
-      local: car_id
+    Vehicle:
+      class: Vehicle
+      local: vehicle_id
       foreign: id
       onDelete: CASCADE
     Image:
@@ -281,14 +281,14 @@ CarImage:
       local: image_id
       foreign: id
   indexes:
-    car_id_image_id:
+    vehicle_id_image_id:
       fields:
         image_id: []
-        car_id: []
+        vehicle_id: []
       type: unique
 
-CarStatus:
-  tableName: car_status
+VehicleStatus:
+  tableName: vehicle_status
   columns:
     id:
       type: integer
@@ -300,8 +300,8 @@ CarStatus:
       notnull: true
       unique: ture
   relations:
-    Cars:
-      class: Car
+    Vehicles:
+      class: Vehicle
       local: id
       foreign: status_id
 
@@ -326,8 +326,8 @@ Image:
       type: string(255)
       notnull: true
   relations:
-    CarImage:
-      class: CarImage
+    VehicleImage:
+      class: VehicleImage
       foreign: image_id
       local: id
       type: many

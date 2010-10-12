@@ -8,7 +8,7 @@
  * @property integer $id
  * @property string $name
  * @property string $short
- * @property Doctrine_Collection $Cars
+ * @property Doctrine_Collection $Vehicles
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -47,7 +47,7 @@ abstract class Base_Fuel extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->hasMany('Car as Cars', array(
+        $this->hasMany('Vehicle as Vehicles', array(
              'local' => 'id',
              'foreign' => 'fuel_id',
              'onDelete' => 'RESTRICT'));

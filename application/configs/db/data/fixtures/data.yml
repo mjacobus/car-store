@@ -180,7 +180,7 @@ Fuel:
     name: Gás Natural
     short: GNV  
 
-Car:
+Vehicle:
   Voyage:
     model: Voyage teste
     Status: Disponivel
@@ -236,17 +236,17 @@ Car:
 
 
 
-CarFeature:
+VehicleFeature:
   4p:
     description: 4 portas
-    Car: Voyage
+    Vehicle: Voyage
     priority: 2
   Direcao:
     description: Dir. Hidráulica
     priority: 1
-    Car: Voyage
+    Vehicle: Voyage
 
-CarStatus:
+VehicleStatus:
   Disponivel:
     name: Disponível
   Cancelado:

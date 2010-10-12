@@ -9,7 +9,7 @@
  * @property string $filename
  * @property string $md5
  * @property string $description
- * @property Doctrine_Collection $CarImage
+ * @property Doctrine_Collection $VehicleImage
  * @property Doctrine_Collection $Brands
  * 
  * @package    ##PACKAGE##
@@ -61,7 +61,7 @@ abstract class Base_Image extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->hasMany('CarImage', array(
+        $this->hasMany('VehicleImage', array(
              'local' => 'id',
              'foreign' => 'image_id',
              'onDelete' => 'RESTRICT'));

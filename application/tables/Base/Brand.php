@@ -9,7 +9,7 @@
  * @property string $name
  * @property integer $image_id
  * @property string $url
- * @property Doctrine_Collection $Cars
+ * @property Doctrine_Collection $Vehicles
  * @property Image $Logo
  * 
  * @package    ##PACKAGE##
@@ -54,7 +54,7 @@ abstract class Base_Brand extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->hasMany('Car as Cars', array(
+        $this->hasMany('Vehicle as Vehicles', array(
              'local' => 'id',
              'foreign' => 'brand_id',
              'onDelete' => 'RESTRICT'));
