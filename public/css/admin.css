@@ -153,7 +153,7 @@ dd.html-editor,dt.html-editor {
 }
 
 dd, dt {
-    height:60px;
+    min-height: 30px;
     margin:0;
 }
 
