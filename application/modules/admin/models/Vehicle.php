@@ -51,6 +51,7 @@ class Admin_Model_Vehicle extends Admin_Model_Abstract
         $dql = Doctrine_Core::getTable($this->getTablelName())
                 ->createQuery('C')
                 ->innerJoin('C.Brand B')
+                ->innerJoin('C.Fuel F')
                 ->innerJoin('C.Status S')
                 ->orderBy('C.model ASC,B.name ASC');
 
@@ -61,7 +62,8 @@ class Admin_Model_Vehicle extends Admin_Model_Abstract
                 ->orWhere('C.licensePlate like ?', "%$search%")
                 ->orWhere('C.year like ?', "%$search%")
                 ->orWhere('C.color like ?', "%$search%")
-                ->orWhere('C.modelYear like ?', "%$search%");
+                ->orWhere('C.modelYear like ?', "%$search%")
+                ->orWhere('F.name like ?', "%$search%");
 
             $status = strtolower($search);
             if (($status == 'cancelado') || ($status == 'vendido') || ($status == 'disponível') || ($status == 'disponivel')) {

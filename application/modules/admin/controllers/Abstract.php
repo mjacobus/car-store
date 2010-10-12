@@ -270,8 +270,9 @@ abstract class Admin_Controller_Abstract extends Zend_Controller_Action
     {
         $this->view->tabs = array(
             'Veículos' => array('vehicle', 'vehicle-feature', 'vehicle-image'),
-            'Marcas' => array('brand'),
             'Imagens' => array('image-upload'),
+            'Marcas' => array('brand'),
+            'Combustível' => array('fuel'),
             'Usuários' => array('user'),
         );
         $this->view->params = $this->_getAllParams();
