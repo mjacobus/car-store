@@ -51,6 +51,7 @@ class Admin_Model_Vehicle extends Admin_Model_Abstract
         $dql = Doctrine_Core::getTable($this->getTablelName())
                 ->createQuery('C')
                 ->innerJoin('C.Brand B')
+                ->innerJoin('C.Type T')
                 ->innerJoin('C.Fuel F')
                 ->innerJoin('C.Status S')
                 ->orderBy('C.model ASC,B.name ASC');
@@ -59,6 +60,7 @@ class Admin_Model_Vehicle extends Admin_Model_Abstract
             $search = $params['search'];
             $dql->addWhere('C.model like ?', "%$search%")
                 ->orWhere('B.name like ?', "%$search%")
+                ->orWhere('T.name like ?', "%$search%")
                 ->orWhere('C.licensePlate like ?', "%$search%")
                 ->orWhere('C.year like ?', "%$search%")
                 ->orWhere('C.color like ?', "%$search%")
@@ -84,7 +86,24 @@ class Admin_Model_Vehicle extends Admin_Model_Abstract
                 ->orderBy('id');
         return $dql;
     }
+    
+    /**
+     * Get dql for listing types
+     * @return Doctrine_Query
+     */
+    public static function getTypeDql()
+    {
+        $dql = Doctrine_Query::create()
+                ->from('VehicleType')
+                ->orderBy('name');
+        return $dql;
+    }
 
+    /**
+     * Get Vehicle by id
+     * @param int $id
+     * @return Vehicle
+     */
     public function  getRegister($id)
     {
         $dql = Doctrine_Query::create()

@@ -20,7 +20,6 @@ UserRole:
       type: many
       onDelete: RESTRICT
 
-
 User:
   columns:
     id:
@@ -94,6 +93,31 @@ Brand:
       foreign: id
       onDelete: RESTRICT
 
+
+VehicleType:
+  tableName: vehicle_type
+  columns:
+    id:
+      type: integer
+      primary: true
+      unsigned: true
+      autoincrement: true
+    name:
+      type: string(255)
+      unique: true
+      notnull: true
+    license:
+      type: string(5)
+      unique: true
+  actAs: [Timestampable]
+  relations:
+    Vehicles:
+      class: Vehicle
+      foreign: type_id
+      local: id
+      type: many
+      onDelete: RESTRICT
+
 Fuel:
   tableName: fuel
   columns:
@@ -142,6 +166,10 @@ Vehicle:
       type: integer
       notnull: true
       unsigned: true
+    type_id:
+      type: integer
+      notnull: true
+      unsigned: true
     status_id:
       type: integer
       notnull: true
@@ -180,6 +208,10 @@ Vehicle:
     Status:
       class: VehicleStatus
       local: status_id
+      foreign: id
+    Type:
+      class: VehicleType
+      local: type_id
       foreign: id
     Brand:
       class: Brand

@@ -10,11 +10,12 @@
 <table class="crud">
     <tr>
         <th>Foto</th>
+        <th>Marca</th>
+        <th>Tipo</th>
         <th>Modelo</th>
         <th>Cor</th>
         <th>Ano/Mod</th>
         <th>Valor</th>
-        <th>Marca</th>
         <th>Comb.</th>
         <th>Placa</th>
         <th>Situação</th>
@@ -45,11 +46,12 @@
             </td>
 
 
+            <td><?= $register->Brand->name ?></td>
+            <td><?= $register->Type->name ?></td>
             <td><?= $register->model ?></td>
             <td><?= $register->color ?></td>
             <td class="right"><?= $register->year ?>/<?= $register->modelYear ?></td>
             <td class="right"><?= $register->price ?></td>
-            <td><?= $register->Brand->name ?></td>
             <td class="center"><?= $register->Fuel->short ?></td>
             <td class="right"><?= $register->licensePlate ?></td>
             <td>

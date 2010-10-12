@@ -2,6 +2,7 @@
 <div class="search top"><?= $this->search?></div>
 <? include '_submenu.phtml' ?>
 
+<?= $this->flash()->render() ?>
 
 <?php $vehicle = $this->register ?>
 
@@ -9,6 +10,10 @@
 <table class="crud">
     <tr>
         <th colspan="2">Principal</th>
+    </tr>
+    <tr>
+        <th class="title">Tipo</th>
+        <td><?= $vehicle->Type->name ?></td>
     </tr>
     <tr>
         <th class="title">Marca</th>

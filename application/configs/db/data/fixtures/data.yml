@@ -178,12 +178,21 @@ Fuel:
     short: D
   GNV:
     name: Gás Natural
-    short: GNV  
+    short: GNV
+
+VehicleType:
+  Motocicleta:
+    name: Motocicleta
+    license: A
+  Carro:
+    name: Carro
+    license: B
 
 Vehicle:
   Voyage:
     model: Voyage teste
     Status: Disponivel
+    Type: Carro
     Fuel: Gasolina
     price: 5000.56
     showPrice: true
@@ -197,6 +206,7 @@ Vehicle:
   Uno:
     model: Uno teste
     Status: Disponivel
+    Type: Carro
     Fuel: Gasolina
     price: 15000.56
     showPrice: true
@@ -210,6 +220,7 @@ Vehicle:
   Uno1:
     model: Uno teste 1
     Status: Disponivel
+    Type: Carro
     Fuel: Gasolina
     licensePlate: ABC-1231
     price: 15000.56
@@ -223,6 +234,7 @@ Vehicle:
   Uno2:
     model: Uno teste 2
     Status: Disponivel
+    Type: Carro
     Fuel: Gasolina
     licensePlate: ABC-1232
     price: 15000.56

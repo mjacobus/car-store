@@ -10,6 +10,7 @@
  * @property string $color
  * @property integer $brand_id
  * @property integer $fuel_id
+ * @property integer $type_id
  * @property integer $status_id
  * @property float $price
  * @property boolean $showPrice
@@ -19,6 +20,7 @@
  * @property string $licensePlate
  * @property string $url
  * @property VehicleStatus $Status
+ * @property VehicleType $Type
  * @property Brand $Brand
  * @property Fuel $Fuel
  * @property Doctrine_Collection $Features
@@ -57,6 +59,11 @@ abstract class Base_Vehicle extends Doctrine_Record
              'unsigned' => true,
              ));
         $this->hasColumn('fuel_id', 'integer', null, array(
+             'type' => 'integer',
+             'notnull' => true,
+             'unsigned' => true,
+             ));
+        $this->hasColumn('type_id', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
              'unsigned' => true,
@@ -120,6 +127,10 @@ abstract class Base_Vehicle extends Doctrine_Record
         parent::setUp();
         $this->hasOne('VehicleStatus as Status', array(
              'local' => 'status_id',
+             'foreign' => 'id'));
+
+        $this->hasOne('VehicleType as Type', array(
+             'local' => 'type_id',
              'foreign' => 'id'));
 
         $this->hasOne('Brand', array(

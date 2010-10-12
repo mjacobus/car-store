@@ -36,4 +36,17 @@ class Admin_VehicleController extends Admin_Controller_Abstract
         $url .= "/edit/id/$savedRecordId";
         $this->_redirect($url);
     }
+
+    /**
+     * After save succeed, redirects
+     * Displays ok message and redirects
+     */
+    public function postSave($savedRecordId = null)
+    {
+        $this->view->flash($this->model->getMessages());
+        $url = $this->getRequest()->getModuleName()
+            . '/' . $this->getRequest()->getControllerName();
+        $url .= "/view/id/" . $savedRecordId;
+        $this->_redirect($url);
+    }
 }
