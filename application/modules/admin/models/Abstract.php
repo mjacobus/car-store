@@ -72,6 +72,7 @@ abstract class Admin_Model_Abstract extends Model_Abstract
     {
         try {
             if ($this->getForm()->isValid($values)) {
+                $values = $this->getForm()->getValues();
                 $id = $this->persist($values, $id);
                 $this->addMessage($this->_crudMessages[self::SAVE_OK]);
                 return $id;
