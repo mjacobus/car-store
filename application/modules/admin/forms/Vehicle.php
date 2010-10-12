@@ -25,6 +25,7 @@ class Admin_Form_Vehicle extends Admin_Form_Abstract
         $this->addModel();
         $this->addLicensePlate();
         $this->addBrand();
+        $this->addFuel();
         $this->addColor();
         $this->addYear();
         $this->addModelYear();
@@ -78,6 +79,25 @@ class Admin_Form_Vehicle extends Admin_Form_Abstract
         $element->setLabel('Marca')
             ->addMultiOptionFromDql(
                 Admin_Model_Brand::getSelectDql(),
+                'id',
+                'name',
+                array(null => 'Selecione')
+        );
+        $this->setRequired($element);
+        $this->addElement($element);
+        return $this;
+    }
+
+    /**
+     * Add Brand wich is a Zend_Form_Element_Select
+     * @return Admin_Form_Vehicle
+     */
+    public function addFuel()
+    {
+        $element = new MyZend_Form_Element_DoctrineSelect('fuel_id');
+        $element->setLabel('Combustível')
+            ->addMultiOptionFromDql(
+                Admin_Model_Fuel::getSelectDql(),
                 'id',
                 'name',
                 array(null => 'Selecione')
@@ -162,7 +182,7 @@ class Admin_Form_Vehicle extends Admin_Form_Abstract
     {
         $element = $this->getTextElement('priority', 'Prioridade');
         $element->addValidator(new Zend_Validate_Int());
-        $element->addValidator(new Zend_Validate_Between(0,500));
+        $element->addValidator(new Zend_Validate_Between(0, 500));
         $this->addElement($element);
         return $this;
     }
