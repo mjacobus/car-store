@@ -207,6 +207,7 @@ class Admin_Model_ImageUpload extends Admin_Model_Abstract
                 unlink("$dir/$filename");
             }
         }
+        closedir($dh);
     }
 
     /**
