@@ -292,7 +292,7 @@ class Model_Image extends Model_Abstract
 
         $original = $this->getFile();
         $resized = $this->getResizedFile();
-        $with = $this->getWidth();
+        $width = $this->getWidth();
         $height = $this->getHeight();
 
         $image = WideImage::load($original);

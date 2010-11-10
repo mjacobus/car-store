@@ -68,9 +68,10 @@ class MyZend_View_Helper_Messager extends Zend_View_Helper_Abstract
 
     /**
      * Renders the message
+     * @param bool $escape
      * @return String
      */
-    function render()
+    function render($escape = false)
     {
         $htmlMessage = '<div class="messages ' . $this->_class . '"><ul>';
 
