@@ -4,7 +4,7 @@
  *
  * @author marcelo.jacobus
  */
-class Form_ChangePassword extends Form_Abstract
+class Admin_Form_ChangePassword extends Form_Abstract
 {
     
     public function __construct($options = null)

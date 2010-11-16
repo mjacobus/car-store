@@ -5,7 +5,7 @@
  *
  * @author marcelo.jacobus
  */
-class Model_Authentication extends Model_Abstract implements Zend_Auth_Adapter_Interface
+class Admin_Model_Authentication extends Model_Abstract implements Zend_Auth_Adapter_Interface
 {
 
     /**
@@ -21,7 +21,7 @@ class Model_Authentication extends Model_Abstract implements Zend_Auth_Adapter_I
      */
     protected $_salt;
     /**
-     * @var Form_Authentication
+     * @var Admin_Form_Authentication
      */
     protected $_form;
     /**
@@ -30,12 +30,12 @@ class Model_Authentication extends Model_Abstract implements Zend_Auth_Adapter_I
     protected $_encriptPassword = true;
 
     /**
-     * @return Form_Authentication
+     * @return Admin_Form_Authentication
      */
     public function getForm()
     {
         if ($this->_form == null) {
-            $this->_form = new Form_Authentication();
+            $this->_form = new Admin_Form_Authentication();
         }
         return $this->_form;
     }
@@ -43,7 +43,7 @@ class Model_Authentication extends Model_Abstract implements Zend_Auth_Adapter_I
     /**
      * Set login
      * @param string $login
-     * @return Model_Authentication
+     * @return Admin_Model_Authentication
      */
     public function setLogin($login)
     {
@@ -54,7 +54,7 @@ class Model_Authentication extends Model_Abstract implements Zend_Auth_Adapter_I
     /**
      * Username
      * @param string $name
-     * @return Model_Authentication
+     * @return Admin_Model_Authentication
      */
     public function setPassword($name)
     {
@@ -65,7 +65,7 @@ class Model_Authentication extends Model_Abstract implements Zend_Auth_Adapter_I
     /**
      * Hash
      * @param string $salt
-     * @return Model_Authentication
+     * @return Admin_Model_Authentication
      */
     public function setSecuritySalt($salt)
     {

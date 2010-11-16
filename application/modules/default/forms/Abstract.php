@@ -85,12 +85,15 @@ class Form_Abstract extends Zend_Form
         $this->trim($element)->setRequired($element,$required);
         $element->setLabel($label)
                 ->setRequired($required)
-                ->addValidator(new Zend_Validate_StringLength($length))
                 ->addFilter(new Zend_Filter_StringTrim());
 
-        if (array_key_exists('max', $length)) {
-            $element->setAttrib('maxlength', $length['max']);
+        if (count($length)) {
+            $element->addValidator(new Zend_Validate_StringLength($length));
+            if (array_key_exists('max', $length)) {
+                $element->setAttrib('maxlength', $length['max']);
+            }
         }
+
 
         return $element;
     }

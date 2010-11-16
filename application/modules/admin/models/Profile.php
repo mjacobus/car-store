@@ -5,15 +5,15 @@
  *
  * @author marcelo.jacobus
  */
-class Model_Profile extends Model_Abstract
+class Admin_Model_Profile extends Model_Abstract
 {
 
     /**
-     * @var Form_ChangePasswordForm
+     * @var Admin_Form_ChangePasswordForm
      */
     protected $_changePassowrdForm;
     /**
-     * @var Form_Profile
+     * @var Admin_Form_Profile
      */
     protected $_form;
     /**
@@ -23,23 +23,23 @@ class Model_Profile extends Model_Abstract
     protected $_salt;
 
     /**
-     * @return Form_Authentication
+     * @return Admin_Form_Authentication
      */
     public function getChangePasswordForm()
     {
         if ($this->_changePassowrdForm == null) {
-            $this->_changePassowrdForm = new Form_ChangePassword();
+            $this->_changePassowrdForm = new Admin_Form_ChangePassword();
         }
         return $this->_changePassowrdForm;
     }
 
     /**
-     * @return Form_Authentication
+     * @return Admin_Form_Authentication
      */
     public function getForm()
     {
         if ($this->_form == null) {
-            $this->_form = new Form_Profile();
+            $this->_form = new Admin_Form_Profile();
             $this->_form->populate(Zend_Auth::getInstance()->getIdentity()->toArray());
         }
         return $this->_form;
@@ -52,8 +52,8 @@ class Model_Profile extends Model_Abstract
      */
     public function changePassword(array $values = array())
     {
-        if (Model_Authentication::isLogged()) {
-            $user = Model_Authentication::getIdentity();
+        if (Admin_Model_Authentication::isLogged()) {
+            $user = Admin_Model_Authentication::getIdentity();
             $form = $this->getChangePasswordForm();
 
             //Basic validation

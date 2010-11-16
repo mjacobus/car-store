@@ -8,7 +8,7 @@
  * @property string $image
  * @author marcelo.jacobus
  */
-class Form_Profile extends Form_Abstract
+class Admin_Form_Profile extends Form_Abstract
 {
     
     public function __construct($options = null)

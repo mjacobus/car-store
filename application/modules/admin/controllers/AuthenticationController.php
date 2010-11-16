@@ -1,23 +1,23 @@
 <?php
 
-class AuthenticationController extends Zend_Controller_Action
+class Admin_AuthenticationController extends Zend_Controller_Action
 {
 
     /**
-     * @var Model_Authentication
+     * @var Admin_Model_Authentication
      */
     public  $model;
 
     public function init()
     {
         $this->view->headTitle('Login');
-        $this->model = new Model_Authentication();
+        $this->model = new Admin_Model_Authentication();
     }
 
     public function indexAction()
     {
         $url = $this->getRequest()->getParam('redirect','/');
-        if (Model_Authentication::isLogged() == false) {
+        if (Admin_Model_Authentication::isLogged() == false) {
             $this->view->form = $this->model->getForm();
             $this->setScripts();
 

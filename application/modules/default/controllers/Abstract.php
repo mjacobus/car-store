@@ -1,5 +1,7 @@
 <?php
 
+require_once '../../default/controllers/Abstract.php';
+
 /**
  * Commum tasks for admin controller
  *
@@ -35,11 +37,12 @@ abstract class Controller_Abstract extends Zend_Controller_Action
 
     /**
      * Get base url
+     * @param string $append
      * @return string
      */
-    public function getBaseUrl()
+    public function getBaseUrl($append = '/')
     {
-        return Zend_Controller_Front::getInstance()->getBaseUrl();
+        return Zend_Controller_Front::getInstance()->getBaseUrl() . $append;
     }
 
     /**
@@ -87,7 +90,7 @@ abstract class Controller_Abstract extends Zend_Controller_Action
             $this->_absoluteBaseUrl = $protocol . $host . $port;
         }
 
-        return $this->_absoluteBaseUrl . $append;
+        return $this->_absoluteBaseUrl . $this->getBaseUrl($append);
     }
 
 }

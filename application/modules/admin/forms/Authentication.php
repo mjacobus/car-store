@@ -2,7 +2,7 @@
 /**
  * @author marcelo.jacobus
  */
-class Form_Authentication extends Form_Abstract
+class Admin_Form_Authentication extends Form_Abstract
 {
 
     /**
@@ -12,7 +12,7 @@ class Form_Authentication extends Form_Abstract
     {
         parent::__construct($options);
         $this->addElement($this->getTextElement('username', 'Login'));
-        $this->addElement($this->getPasswordElement('password', 'Password'));
+        $this->addElement($this->getPasswordElement('password', 'Password', true, array()));
         $this->addSubmit('Login');
     }
 
@@ -22,13 +22,11 @@ class Form_Authentication extends Form_Abstract
         $script = "$(document).ready(function(){
             $('#password').change(function(){
                 if($(this).val().length !== 40){
-                    var encripted = SHA1('$salt' + $(this).val() + '$salt');
+                    var encripted = SHA1($(this).val());
                     $(this).val(encripted);
-                    $(this).val();
                 }
             });
         });";
-
         return $script;
     }
 

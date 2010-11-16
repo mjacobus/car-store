@@ -19,7 +19,8 @@ class Model_Security
             $string = sha1($string);
         }
         $salt = self::getPasswordSalt();
-        return sha1($salt . $string . $salt);
+        $hash = sha1($salt . $string . $salt);
+        return $hash;
     }
 
     /**

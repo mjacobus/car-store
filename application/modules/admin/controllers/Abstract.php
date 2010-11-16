@@ -13,7 +13,7 @@ abstract class Admin_Controller_Abstract extends Zend_Controller_Action
      */
     protected function requireAuthentication()
     {
-        if (Model_Authentication::isLogged() == false) {
+        if (Admin_Model_Authentication::isLogged() == false) {
 
             $base = $this->getBaseUrl();
             $url = $this->view->url();
@@ -29,7 +29,7 @@ abstract class Admin_Controller_Abstract extends Zend_Controller_Action
                 }
             }
 
-            $loginUrl = 'authentication';
+            $loginUrl = 'admin/authentication';
             $this->_redirect("$loginUrl?redirect=$url");
         }
     }
@@ -274,6 +274,7 @@ abstract class Admin_Controller_Abstract extends Zend_Controller_Action
             'Marcas' => array('brand'),
             'Combustível' => array('fuel'),
             'Usuários' => array('user'),
+            'Perfil' => array('profile'),
         );
         $this->view->params = $this->_getAllParams();
     }

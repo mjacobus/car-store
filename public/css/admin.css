@@ -12,6 +12,8 @@ root {
 
 body {
     background: #567;
+    font-family: arial;
+    font-size: 13px;
 }
 #header {
     text-align: center;
@@ -28,6 +30,7 @@ body {
     background:white;
     min-height:600px;
     overflow: auto;
+    float: left;
 }
 
 .hidden {display:none;}
@@ -48,13 +51,14 @@ a, a:hover,a:active,a:visited {
 .center {text-align: center}
 
 #left-menu {
+    width: 980px;
 }
 
 #left-menu ul {
 }
 
 #left-menu ul li {
-    width: 150px;
+    min-width: 100px;
     line-height:26px;
     list-style:none outside none;
     height:26px;
@@ -65,6 +69,7 @@ a, a:hover,a:active,a:visited {
     border:1px solid #dddddd;
     background:#eeeeee;
     border-bottom: #dddddd solid 4px;
+
 }
 
 #left-menu ul li.active a {
@@ -284,12 +289,12 @@ div.messages.success {
 }
 
 div.search {
-    height:40px;
-    margin-left:548px;
-    margin-top:80px;
-    position:absolute;
-    top:0;
-    width:376px;
+    font-size:10px;
+    height:0;
+    margin-left:584px;
+    margin-top:-56px;
+    width:326px;
+    position: absolute;
 }
 
 div.total {

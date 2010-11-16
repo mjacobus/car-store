@@ -4,19 +4,27 @@
  */
 require_once 'Abstract.php';
 
-class ProfileController extends Controller_Abstract
+class Admin_ProfileController extends Admin_Controller_Abstract
 {
 
     /**
-     * @var Model_Profile
+     * @var Admin_Admin_Model_Profile
      */
     public  $model;
+
+    /**
+     * Just to disable search form
+     */
+    public function setSearchForm()
+    {
+        
+    }
 
     public function init()
     {
         $this->requireAuthentication();
         $this->view->headTitle('Profile');
-        $this->model = new Model_Profile();
+        $this->model = new Admin_Model_Profile();
         $this->view->user = Zend_Auth::getInstance()->getIdentity();
     }
 
@@ -31,7 +39,7 @@ class ProfileController extends Controller_Abstract
         if ($this->getRequest()->isPost()) {
             if ($this->model->changePassword($this->_getAllParams())) {
                 $this->view->flash($this->model->getMessages());
-                $this->_redirect($this->getRequest()->getControllerName());
+                $this->_redirect($this->getRequest()->getModuleName() . '/' . $this->getRequest()->getControllerName());
             } else {
                 $this->view->errors()->addMessages($this->model->getMessages());
             }
@@ -45,7 +53,7 @@ class ProfileController extends Controller_Abstract
         if ($this->getRequest()->isPost()) {
             if ($this->model->saveProfile($this->_getAllParams())) {
                 $this->view->flash($this->model->getMessages());
-                $this->_redirect($this->getRequest()->getControllerName());
+                $this->_redirect($this->getRequest()->getModuleName() . '/' . $this->getRequest()->getControllerName());
             } else {
                 $this->view->errors($this->model->getMessages());
             }
