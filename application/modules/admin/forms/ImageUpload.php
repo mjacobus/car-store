@@ -75,7 +75,7 @@ class Admin_Form_ImageUpload extends Admin_Form_Abstract
     public function addImage(array $params = array())
     {
         if (array_key_exists('id', $params)) {
-            $element = new Zend_Form_Element_Image('image', $options);
+            $element = new Zend_Form_Element_Image('image', array());
             $element->setLabel('Imagem')
                 ->setAttrib('style', 'width:400px;');
             $element->getDecorator('HtmlTag')->setOption('style', 'height:310px;');
