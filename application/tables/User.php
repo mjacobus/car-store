@@ -12,5 +12,8 @@
  */
 class User extends Base_User
 {
-
+    public function setPassword($value)
+    {
+        $this->_set('password',Model_Security::stringToPasswordHash($value));
+    }
 }

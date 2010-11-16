@@ -22,15 +22,6 @@ class AuthenticationController extends Zend_Controller_Action
             $this->setScripts();
 
             if ($this->getRequest()->isPost()) {
-
-                //if password is already already sha1()ed
-                if (strlen($this->getRequest()->getPost('password')) == 40) {
-                    $this->model->setEncriptPassword(false);
-                } else {
-                    $salt = Zend_Registry::get('securitySalt');
-                    $this->model->setSecuritySalt($salt);
-                }
-                
                 if ($this->model->performLogin($this->_getAllParams())) {
                     $this->_redirect($url);
                 } else {

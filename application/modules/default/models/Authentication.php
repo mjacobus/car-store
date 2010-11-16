@@ -1,33 +1,29 @@
 <?php
+
 /**
  *
  *
  * @author marcelo.jacobus
  */
-class Model_Authentication extends Model_Abstract
-implements Zend_Auth_Adapter_Interface
+class Model_Authentication extends Model_Abstract implements Zend_Auth_Adapter_Interface
 {
 
     /**
      * @var string
      */
     protected $_login;
-
     /**
      * @var string
      */
     protected $_password;
-    
     /**
      * @var string
      */
     protected $_salt;
-
     /**
      * @var Form_Authentication
      */
     protected $_form;
-
     /**
      * @var bool
      */
@@ -90,13 +86,7 @@ implements Zend_Auth_Adapter_Interface
                 ->findOneByLogin($this->_login);
 
         if ($user !== false) {
-            if ($this->getEncriptPassword()) {
-                $salt = $this->_salt;
-                $password = $salt . $this->_password . $salt;
-                $password = sha1($password);
-            } else {
-                $password = $this->_password;
-            }
+            $password = Model_Security::stringToPasswordHash($this->_password);
 
             if ($password === $user->password) {
                 return new Zend_Auth_Result(Zend_Auth_Result::SUCCESS, $user);
@@ -123,8 +113,10 @@ implements Zend_Auth_Adapter_Interface
                     return true;
                 }
             }
-        }catch(Zend_Auth_Adapter_Exception $e) {}
-        
+        } catch (Zend_Auth_Adapter_Exception $e) {
+            
+        }
+
         $this->_messages[] = 'Usuário e ou senha não conferem.';
         return false;
     }
@@ -156,6 +148,5 @@ implements Zend_Auth_Adapter_Interface
     {
         return $this->_encriptPassword;
     }
-
 
 }
