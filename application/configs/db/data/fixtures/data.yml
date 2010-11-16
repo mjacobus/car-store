@@ -12,8 +12,7 @@ User:
     email: admin@somedomain.com
     login: admin
     # password is changeme with salt "salt"
-    # sha1(concat("salt", "changeme", "salt"))
-    password: f7d7b50eea0db27d64e36cbc12c3b74a8ba4767b
+    password: b69f144fb5483b867298a5bcf57ad8ea00bc5f3d
     Role: Role_Admin
     enabled: true
 

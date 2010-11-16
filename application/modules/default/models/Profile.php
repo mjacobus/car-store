@@ -1,4 +1,5 @@
 <?php
+
 /**
  *
  *
@@ -11,12 +12,10 @@ class Model_Profile extends Model_Abstract
      * @var Form_ChangePasswordForm
      */
     protected $_changePassowrdForm;
-    
     /**
      * @var Form_Profile
      */
     protected $_form;
-
     /**
      * Password Security Salt
      * @var string
@@ -33,7 +32,7 @@ class Model_Profile extends Model_Abstract
         }
         return $this->_changePassowrdForm;
     }
-    
+
     /**
      * @return Form_Authentication
      */
@@ -54,37 +53,37 @@ class Model_Profile extends Model_Abstract
     public function changePassword(array $values = array())
     {
         if (Model_Authentication::isLogged()) {
-            $user = Zend_Auth::getInstance()->getIdentity();
+            $user = Model_Authentication::getIdentity();
             $form = $this->getChangePasswordForm();
 
-            //confere validacoes basicas
+            //Basic validation
             if (!$form->isValid($values)) {
                 $this->_messages[] = "O formulário contém valores inválidos.";
                 return false;
             }
 
             //confere se a confirmacao combina com o novo password
-            $newPassword =  $form->getValue('newPassword');
+            $newPassword = $form->getValue('newPassword');
             $validator = new Zend_Validate_InArray(array($newPassword));
             $validator->setMessage('Senha não confere.', Zend_Validate_InArray::NOT_IN_ARRAY);
             $form->passwordConfirmation->addValidator($validator);
-            
+
             if (!$form->isValid($values)) {
                 $this->_messages[] = "O formulário contém valores inválidos.";
                 return false;
             }
 
             //confere se a senha antiga confere
-            $password =  $form->getValue('oldPassword');
-            $password = sha1($this->addSalt($password));
-            
+            $password = $form->getValue('oldPassword');
+            $password = Model_Security::stringToPasswordHash($password);
+
             if ($user->password !== $password) {
                 $this->_messages[] = "Senha incorreta.";
                 return false;
             }
 
             try {
-                $user->password = sha1($this->addSalt($newPassword));
+                $user->password = $newPassword;
                 $user->save();
                 $this->_messages = 'Senha alterada com sucesso.';
                 return true;
@@ -111,23 +110,13 @@ class Model_Profile extends Model_Abstract
                 $user->save();
                 $this->_messages[] = 'Profile salvo com sucesso.';
                 return true;
-            }catch(Exception $e) {
+            } catch (Exception $e) {
+
             }
         }
 
         $this->_messages[] = 'Erro ao salvar profile.';
         return false;
-    }
-
-    /**
-     * Adiciona o Security Salt
-     * @param addSalt to a string $password
-     * @return string
-     */
-    public function addSalt($password)
-    {
-        $salt = $this->_salt;
-        return $salt . $password . $salt;
     }
 
     /**
@@ -140,4 +129,5 @@ class Model_Profile extends Model_Abstract
         $this->_salt = $salt;
         return $this;
     }
+
 }

@@ -79,7 +79,7 @@ class Form_Abstract extends Zend_Form
      * @param array $length default to array('min' => 0, 'max' => 255)
      * @return Zend_Form_Element_Text
      */
-    public function getPasswordElement($name,$label,$required = true ,$length = array('min' => 0, 'max' =>255))
+    public function getPasswordElement($name,$label,$required = true ,$length = array('min' => 8, 'max' =>39))
     {
         $element = new Zend_Form_Element_Password($name);
         $this->trim($element)->setRequired($element,$required);

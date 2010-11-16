@@ -149,4 +149,13 @@ class Model_Authentication extends Model_Abstract implements Zend_Auth_Adapter_I
         return $this->_encriptPassword;
     }
 
+    /**
+     * Get authenticated user
+     * @return User
+     */
+    public static function getIdentity()
+    {
+        return Zend_Auth::getInstance()->getIdentity();
+    }
+
 }

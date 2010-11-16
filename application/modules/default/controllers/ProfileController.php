@@ -29,11 +29,6 @@ class ProfileController extends Controller_Abstract
         $this->view->form = $this->model->getChangePasswordForm();
         
         if ($this->getRequest()->isPost()) {
-            $application = $this->getInvokeArg('bootstrap')->getApplication();
-            $security = $application->getOption('security');
-            $salt = $security['password']['salt'];
-            $this->model->setSecuritySalt($salt);
-
             if ($this->model->changePassword($this->_getAllParams())) {
                 $this->view->flash($this->model->getMessages());
                 $this->_redirect($this->getRequest()->getControllerName());
