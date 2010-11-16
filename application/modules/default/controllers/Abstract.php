@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Commum tasks for admin controller
  *
@@ -8,12 +9,18 @@ abstract class Controller_Abstract extends Zend_Controller_Action
 {
 
     /**
+     * The absolute base url
+     * @var string
+     */
+    protected $_absoluteBaseUrl;
+
+    /**
      * Enforces Authentication
      */
     protected function requireAuthentication()
     {
         if (Model_Authentication::isLogged() == false) {
-            $url = explode($this->getBaseUrl(),$this->view->url());
+            $url = explode($this->getBaseUrl(), $this->view->url());
             if (isset($url[1])) {
                 $url = $url[1];
             } else if (count($url)) {
@@ -22,7 +29,7 @@ abstract class Controller_Abstract extends Zend_Controller_Action
                 $url = '/';
             }
             $loginUrl = 'authentication';
-            $this->_redirect("$loginUrl?redirect=$url");// . '?redirect=' . $url);
+            $this->_redirect("$loginUrl?redirect=$url"); // . '?redirect=' . $url);
         }
     }
 
@@ -53,10 +60,34 @@ abstract class Controller_Abstract extends Zend_Controller_Action
         $view = $this->view;
         $view->headLink()->appendStylesheet($view->baseUrl('/css/default.css'));
         $view->headScript()
-                ->appendFile($view->baseUrl('/js/jquery-1.4.2.min.js'))
-                ->appendFile($view->baseUrl('/js/jquery.validate.min.js'))
-                ->appendFile($view->baseUrl('/js/jquery.validate.messages.js'))
-                ->appendFile($view->baseUrl('/js/default.js'));
+            ->appendFile($view->baseUrl('/js/jquery-1.4.2.min.js'))
+            ->appendFile($view->baseUrl('/js/jquery.validate.min.js'))
+            ->appendFile($view->baseUrl('/js/jquery.validate.messages.js'))
+            ->appendFile($view->baseUrl('/js/default.js'));
     }
-  
+
+    /**
+     * Return url in format protocol://host:port
+     * @return string
+     */
+    public function getAbsoluteBaseUrl($append = '/')
+    {
+        if ($this->_absoluteBaseUrl == null) {
+
+            $protocol = explode('/', $_SERVER['SERVER_PROTOCOL']);
+            $protocol = strtolower($protocol[0]) . '://';
+
+            $port = ':' . $_SERVER['SERVER_PORT'];
+
+            if (($protocol == 'http://' && $port == ':80') || ($protocol == 'https://' && $port == ':443')) {
+                $port = '';
+            }
+
+            $host = $_SERVER['HTTP_HOST'];
+            $this->_absoluteBaseUrl = $protocol . $host . $port;
+        }
+
+        return $this->_absoluteBaseUrl . $append;
+    }
+
 }
