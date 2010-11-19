@@ -124,7 +124,7 @@ class Admin_Form_User extends Admin_Form_Abstract
     public function addRole()
     {
         $element = new MyZend_Form_Element_DoctrineSelect('role_id');
-        $element->setLabel('Logotipo')
+        $element->setLabel('Permissão')
             ->addMultiOptionFromCollection(
                 Admin_Model_User::getRoles(),
                 'id',
