@@ -88,7 +88,7 @@ class Admin_Model_Authentication extends Model_Abstract implements Zend_Auth_Ada
         if ($user !== false) {
             $password = Model_Security::stringToPasswordHash($this->_password);
 
-            if ($password === $user->password) {
+            if ($password === $user->password && $user->enabled == 1) {
                 return new Zend_Auth_Result(Zend_Auth_Result::SUCCESS, $user);
             }
         }

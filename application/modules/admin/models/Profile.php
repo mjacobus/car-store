@@ -106,9 +106,9 @@ class Admin_Model_Profile extends Model_Abstract
 
         if ($form->isValid($values)) {
             try {
-                $user->merge($values);
+                $user->merge($form->getValues());
                 $user->save();
-                $this->_messages[] = 'Profile salvo com sucesso.';
+                $this->_messages[] = 'Perfil salvo com sucesso.';
                 return true;
             } catch (Exception $e) {
 

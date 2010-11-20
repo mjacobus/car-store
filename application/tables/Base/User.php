@@ -39,6 +39,8 @@ abstract class Base_User extends Doctrine_Record
              ));
         $this->hasColumn('email', 'string', 255, array(
              'type' => 'string',
+             'unique' => true,
+             'notnull' => true,
              'length' => '255',
              ));
         $this->hasColumn('login', 'string', 50, array(

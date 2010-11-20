@@ -29,7 +29,10 @@ User:
     name:
       type: string(255)
       unique: true
-    email: string(255)
+    email:
+      type: string(255)
+      unique: true
+      notnull: true
     login:
       type: string(50)
       unique: true

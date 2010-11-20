@@ -11,10 +11,15 @@ class Admin_Model_User extends Admin_Model_Abstract
     protected $_tableName = 'User';
 
     protected $_ukMapping = array(
-        'name' => array(
-            'field' => 'name',
-            'label' => 'Nome',
-            'message' => 'Marca de nome "{value}" já existe no sistema.'
+        'login' => array(
+            'field' => 'login',
+            'label' => 'Login',
+            'message' => 'Usuario com login "{value}" já existe no sistema.'
+        ),
+        'email' => array(
+            'field' => 'email',
+            'label' => 'Email',
+            'message' => 'Usuario com email "{value}" já existe no sistema.'
         )
     );
 
