@@ -50,4 +50,28 @@ class Admin_Model_User extends Admin_Model_Abstract
 
         return $dql->execute();
     }
+
+    /**
+     * Persist a Record
+     * @param array $values the values to persist
+     * @param int $id the record id
+     * @throws Exception
+     * @return Admin_Model_Abstract
+     */
+    public function persist($values, $id = null)
+    {
+        if ($id !== null) {
+            $record = $this->getById($this->getTablelName(), $id);
+        } else {
+            $record = Doctrine_Core::getTable($this->getTablelName())->create();
+        }
+
+        if (array_key_exists('password', $values) && (strlen($values['password']) == 0) ) {
+            unset($values['password']);
+        }
+
+        $record->fromArray($values);
+        $record->save();
+        return $record->id;
+    }
 }
