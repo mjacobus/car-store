@@ -65,21 +65,21 @@ class App_Acl extends Zend_Acl
         }
 
         foreach ($config->resources as $resourceName => $resource) {
-            
+
             $this->addResource($resourceName);
 
             $this->deny($roles, $resourceName);
 
             if ($resource->allow) {
                 $roles = explode(',', $resource->allow);
-                foreach($roles as $role) {
+                foreach ($roles as $role) {
                     $this->allow(trim($role), $resourceName);
                 }
             }
-            
+
             if ($resource->deny) {
                 $roles = explode(',', $resource->deny);
-                foreach($roles as $role) {
+                foreach ($roles as $role) {
                     $this->deny(trim($role), $resourceName);
                 }
             }
@@ -96,6 +96,25 @@ class App_Acl extends Zend_Acl
             self::$_instance = new self();
         }
         return self::$_instance;
+    }
+
+    /**
+     * Check whether user has access to the given resource
+     * @param string $resource
+     * @return bool
+     */
+    public static function canAccess($resource)
+    {
+        $role = 'guest';
+        if (Admin_Model_Authentication::isLogged()) {
+            $role = Admin_Model_Authentication::getIdentity()->Role->name;
+        }
+
+        $acl = self::getInstance();
+        if ($acl->has($resource)) {
+            return $acl->isAllowed($role, $resource);
+        }
+        return true;
     }
 
 }

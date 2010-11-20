@@ -29,6 +29,7 @@ class Admin_AuthenticationController extends Zend_Controller_Action
                 }
             }
         } else {
+            $this->model->logout();
             $this->_redirect($url);
         }
     }

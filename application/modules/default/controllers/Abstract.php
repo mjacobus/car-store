@@ -28,7 +28,7 @@ abstract class Controller_Abstract extends Zend_Controller_Action
             } else if (count($url)) {
                 $url[0];
             } else {
-                $url = '/';
+                $url = '/admin';
             }
             $loginUrl = 'authentication';
             $this->_redirect("$loginUrl?redirect=$url"); // . '?redirect=' . $url);

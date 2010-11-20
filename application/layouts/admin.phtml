@@ -25,6 +25,12 @@ $user = Zend_Auth::getInstance()->getIdentity();
             <div id="left-menu">
                 <ul>
                     <?php foreach ($this->tabs as $label => $controllers ): ?>
+                        <?php
+                            $resource = 'module-admin-controller-' . $controllers[0];
+
+
+                        ?>
+                        <?php if(App_Acl::canAccess($resource)) : ?>
                         <? $class = (in_array($controllerName, $controllers)) ? 'active' : '' ?>
                             <li class="<?= $class ?>">
                                 <a href="<?= $this->url(array(
@@ -33,6 +39,7 @@ $user = Zend_Auth::getInstance()->getIdentity();
                                 'action' => ''), null, true)
                             ?>"><?= $label ?></a>
                         </li>
+                        <?php endif ?>
                     <?php endforeach ?>
                     <li>
                         <a href="<?= $this->baseUrl() ?>/admin/authentication/logout">Sair</a>
