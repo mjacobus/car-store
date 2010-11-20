@@ -51,7 +51,7 @@ class Admin_ProfileController extends Admin_Controller_Abstract
         $this->view->form = $this->model->getForm();
 
         if ($this->getRequest()->isPost()) {
-            if ($this->model->saveProfile($this->_getAllParams())) {
+            if ($this->model->save($this->_getAllParams())) {
                 $this->view->flash($this->model->getMessages());
                 $this->_redirect($this->getRequest()->getModuleName() . '/' . $this->getRequest()->getControllerName());
             } else {

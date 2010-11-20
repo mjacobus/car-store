@@ -5,7 +5,7 @@
  *
  * @author marcelo.jacobus
  */
-class Admin_Model_Profile extends Model_Abstract
+class Admin_Model_Profile extends Admin_Model_Abstract
 {
 
     /**
@@ -17,10 +17,21 @@ class Admin_Model_Profile extends Model_Abstract
      */
     protected $_form;
     /**
-     * Password Security Salt
-     * @var string
+     * Mapping of unique keys
+     * @var array
      */
-    protected $_salt;
+    protected $_ukMapping = array(
+        'email' => array(
+            'field' => 'email',
+            'label' => 'Email',
+            'message' => 'Um email já existe com o valor "{value}".'
+        ),
+        'login' => array(
+            'field' => 'login',
+            'label' => 'Login',
+            'message' => 'Já existe um login "{value}".'
+        )
+    );
 
     /**
      * @return Admin_Form_Authentication
@@ -97,37 +108,15 @@ class Admin_Model_Profile extends Model_Abstract
     /**
      * Save profile
      * @param array $values
-     * @return Model_Profile
+     * @return Admin_ Model_Profile
      */
-    public function saveProfile(array $values = array())
+    public function persist(array $values = array())
     {
         $user = Zend_Auth::getInstance()->getIdentity();
         $form = $this->getForm();
-
-        if ($form->isValid($values)) {
-            try {
-                $user->merge($form->getValues());
-                $user->save();
-                $this->_messages[] = 'Perfil salvo com sucesso.';
-                return true;
-            } catch (Exception $e) {
-
-            }
-        }
-
-        $this->_messages[] = 'Erro ao salvar profile.';
-        return false;
-    }
-
-    /**
-     * Set security salt for password verification
-     * @param string $salt
-     * @return Model_User
-     */
-    public function setSecuritySalt($salt)
-    {
-        $this->_salt = $salt;
-        return $this;
+        $user->merge($form->getValues());
+        $user->save();
+        return $user->id;
     }
 
 }

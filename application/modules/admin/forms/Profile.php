@@ -15,6 +15,9 @@ class Admin_Form_Profile extends Form_Abstract
     {
         parent::__construct($options);
 
+        $element = $this->getTextElement('login', 'Login');
+        $this->addElement($element);
+
         $element = $this->getTextElement('name', 'Nome');
         $this->addElement($element);
         
