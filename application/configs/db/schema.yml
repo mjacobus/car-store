@@ -177,6 +177,8 @@ Vehicle:
       type: integer
       notnull: true
       unsigned: true
+    status_modified_at:
+      type: timestamp
     price:
       type: float
       default: 0

@@ -259,10 +259,13 @@ VehicleFeature:
 
 VehicleStatus:
   Disponivel:
+    id: 1
     name: Disponível
   Cancelado:
+    id: 2
     name: Cancelado
   Vendido:
+    id: 3
     name: Vendido
 
 

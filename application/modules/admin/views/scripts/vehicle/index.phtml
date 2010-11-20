@@ -76,12 +76,14 @@
                             'id' => $register->id
                         ),null,true)?>" >Editar</a>
                 <br />
+                <?php if(App_Acl::canAccess('module-admin-controller-vehicle-action-del')) :?>
                 <a class="del" href="<?= $this->url(array(
                             'module'=>'admin',
                             'controller' => 'vehicle',
                             'action' => 'del',
                             'id' => $register->id
                         ),null,true)?>" >Excluir</a>
+                <?php endif ?>
             </td>
         </tr>
 

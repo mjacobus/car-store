@@ -12,6 +12,7 @@
  * @property integer $fuel_id
  * @property integer $type_id
  * @property integer $status_id
+ * @property timestamp $status_modified_at
  * @property float $price
  * @property boolean $showPrice
  * @property integer $year
@@ -72,6 +73,9 @@ abstract class Base_Vehicle extends Doctrine_Record
              'type' => 'integer',
              'notnull' => true,
              'unsigned' => true,
+             ));
+        $this->hasColumn('status_modified_at', 'timestamp', null, array(
+             'type' => 'timestamp',
              ));
         $this->hasColumn('price', 'float', null, array(
              'type' => 'float',

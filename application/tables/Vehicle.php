@@ -12,12 +12,9 @@
  */
 class Vehicle extends Base_Vehicle
 {
-
-    public function setUp()
-    {
-        parent::setUp();
-        $this->hasMutator('price', 'setPrice');
-    }
+    const VEHICLE_STATUS_AVAILABLE = 1;
+    const VEHICLE_STATUS_CANCELED = 2;
+    const VEHICLE_STATUS_SOLD = 3;
 
     /**
      * Get the main image
@@ -44,6 +41,7 @@ class Vehicle extends Base_Vehicle
     public function preSave()
     {
         $this->calculateUrl();
+        $this->changeStatusDate();
     }
 
     /**
@@ -86,6 +84,21 @@ class Vehicle extends Base_Vehicle
         $value = str_replace('.', '', $value);
         $value = str_replace(',', '.', $value);
         $this->_set('price', $value);
+    }
+
+    /**
+     * change the date the vehicle had the satus changed
+     */
+    public function changeStatusDate()
+    {
+        $modified = $this->getModified();
+
+        if (array_key_exists('status_id', $modified)) {
+            if ($this->status_id !== self::VEHICLE_STATUS_AVAILABLE) {
+                $date = new Zend_Date();
+                $this->status_modified_at = $date->toString('YYYY-MM-dd HH:mm:ss');
+            }
+        }
     }
 
 }
