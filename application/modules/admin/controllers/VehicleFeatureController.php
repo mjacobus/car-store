@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Admin_Controller_Abstract
- */
-require_once 'Abstract.php';
-
 class Admin_VehicleFeatureController extends Admin_Controller_Abstract
 {
 
@@ -48,13 +43,12 @@ class Admin_VehicleFeatureController extends Admin_Controller_Abstract
             . '/' . $this->getRequest()->getControllerName();
         $url .= "/index/vehicle/" . $this->_getParam('vehicle');
         $this->_redirect($url);
-
     }
 
     /**
      * Set vehicle on search form
      */
-    public function  postDispatch()
+    public function postDispatch()
     {
         parent::postDispatch();
         $form = $this->view->search;

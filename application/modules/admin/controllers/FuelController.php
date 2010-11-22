@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Admin_Controller_Abstract
- */
-require_once 'Abstract.php';
-
 class Admin_FuelController extends Admin_Controller_Abstract
 {
 

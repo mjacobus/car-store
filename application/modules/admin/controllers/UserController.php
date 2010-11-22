@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Admin_Controller_Abstract
- */
-require_once 'Abstract.php';
-
 class Admin_UserController extends Admin_Controller_Abstract
 {
 

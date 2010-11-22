@@ -1,8 +1,4 @@
 <?php
-/**
- * Admin_Controller_Abstract
- */
-require_once 'Abstract.php';
 
 class Admin_IndexController extends Admin_Controller_Abstract
 {

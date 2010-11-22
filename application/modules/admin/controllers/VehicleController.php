@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Admin_Controller_Abstract
- */
-require_once 'Abstract.php';
-
 class Admin_VehicleController extends Admin_Controller_Abstract
 {
 
@@ -49,4 +44,5 @@ class Admin_VehicleController extends Admin_Controller_Abstract
         $url .= "/view/id/" . $savedRecordId;
         $this->_redirect($url);
     }
+
 }

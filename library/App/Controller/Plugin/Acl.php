@@ -5,7 +5,7 @@
  *
  * @author marcelo.jacobus
  */
-class Plugin_ControllerAcl extends Zend_Controller_Plugin_Abstract
+class App_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
 {
 
     /**

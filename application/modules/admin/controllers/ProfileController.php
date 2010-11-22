@@ -1,8 +1,4 @@
 <?php
-/**
- * ControllerAbstract
- */
-require_once 'Abstract.php';
 
 class Admin_ProfileController extends Admin_Controller_Abstract
 {
@@ -10,7 +6,7 @@ class Admin_ProfileController extends Admin_Controller_Abstract
     /**
      * @var Admin_Admin_Model_Profile
      */
-    public  $model;
+    public $model;
 
     /**
      * Just to disable search form
@@ -35,7 +31,7 @@ class Admin_ProfileController extends Admin_Controller_Abstract
     {
         $this->view->headTitle('Profile - Alteração de Senha');
         $this->view->form = $this->model->getChangePasswordForm();
-        
+
         if ($this->getRequest()->isPost()) {
             if ($this->model->changePassword($this->_getAllParams())) {
                 $this->view->flash($this->model->getMessages());
@@ -59,6 +55,6 @@ class Admin_ProfileController extends Admin_Controller_Abstract
             }
         }
     }
- 
+
 }
 

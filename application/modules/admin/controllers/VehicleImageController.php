@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Admin_Controller_Abstract
- */
-require_once 'Abstract.php';
-
 class Admin_VehicleImageController extends Admin_Controller_Abstract
 {
 
@@ -53,7 +48,7 @@ class Admin_VehicleImageController extends Admin_Controller_Abstract
     /**
      * Set vehicle on search form
      */
-    public function  postDispatch()
+    public function postDispatch()
     {
         parent::postDispatch();
         $form = $this->view->search;
@@ -64,4 +59,5 @@ class Admin_VehicleImageController extends Admin_Controller_Abstract
 
         $element->setDecorators(array('ViewHelper'));
     }
+
 }
