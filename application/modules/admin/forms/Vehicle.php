@@ -5,7 +5,7 @@
  *
  * @author marcelo.jacobus
  */
-class Admin_Form_Vehicle extends Admin_Form_Abstract
+class Admin_Form_Vehicle extends App_Form
 {
 
     protected $_availableYears = array();

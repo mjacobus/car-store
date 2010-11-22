@@ -5,7 +5,7 @@
  *
  * @author marcelo.jacobus
  */
-class Admin_Form_ImageUpload extends Admin_Form_Abstract
+class Admin_Form_ImageUpload extends App_Form
 {
 
     /**

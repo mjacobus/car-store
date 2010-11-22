@@ -2,7 +2,7 @@
 /**
  * @author marcelo.jacobus
  */
-class Admin_Form_Authentication extends Form_Abstract
+class Admin_Form_Authentication extends App_Form
 {
 
     /**

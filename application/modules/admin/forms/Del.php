@@ -4,7 +4,7 @@
  *
  * @author marcelo.jacobus
  */
-class Admin_Form_Del extends Admin_Form_Abstract
+class Admin_Form_Del extends App_Form
 {
     public function __construct(array $params = array())
     {

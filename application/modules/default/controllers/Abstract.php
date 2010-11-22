@@ -1,7 +1,5 @@
 <?php
 
-require_once '../../default/controllers/Abstract.php';
-
 /**
  * Commum tasks for admin controller
  *

@@ -5,7 +5,7 @@
  *
  * @author marcelo.jacobus
  */
-class App_Model_Crud
+class App_Model_Crud extends App_Model_Abstract
 {
 
     /**

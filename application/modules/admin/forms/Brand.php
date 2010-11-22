@@ -5,7 +5,7 @@
  *
  * @author marcelo.jacobus
  */
-class Admin_Form_Brand extends Admin_Form_Abstract
+class Admin_Form_Brand extends App_Form
 {
 
     /**

@@ -5,7 +5,7 @@
  *
  * @author marcelo.jacobus
  */
-class Admin_Form_User extends Admin_Form_Abstract
+class Admin_Form_User extends App_Form
 {
 
     /**

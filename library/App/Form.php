@@ -1,10 +1,10 @@
 <?php
 /**
- * Description of Abstract
+ * App_Form
  *
  * @author marcelo.jacobus
  */
-class Form_Abstract extends Zend_Form
+class App_Form extends Zend_Form
 {
 
     /**
