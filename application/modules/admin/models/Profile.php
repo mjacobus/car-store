@@ -5,7 +5,7 @@
  *
  * @author marcelo.jacobus
  */
-class Admin_Model_Profile extends Admin_Model_Abstract
+class Admin_Model_Profile extends App_Model_Crud
 {
 
     /**

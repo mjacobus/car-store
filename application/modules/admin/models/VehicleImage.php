@@ -5,7 +5,7 @@
  *
  * @author marcelo.jacobus
  */
-class Admin_Model_VehicleImage extends Admin_Model_Abstract
+class Admin_Model_VehicleImage extends App_Model_Crud
 {
 
     protected $_tableName = 'VehicleImage';

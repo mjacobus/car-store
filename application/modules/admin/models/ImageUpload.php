@@ -5,7 +5,7 @@
  *
  * @author marcelo.jacobus
  */
-class Admin_Model_ImageUpload extends Admin_Model_Abstract
+class Admin_Model_ImageUpload extends App_Model_Crud
 {
 
     protected $_tableName = 'Image';
