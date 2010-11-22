@@ -5,7 +5,7 @@
  *
  * @author marcelo.jacobus
  */
-class Admin_Model_Authentication extends Model_Abstract implements Zend_Auth_Adapter_Interface
+class Admin_Model_Authentication extends App_Model_Abstract implements Zend_Auth_Adapter_Interface
 {
 
     /**
@@ -96,6 +96,11 @@ class Admin_Model_Authentication extends Model_Abstract implements Zend_Auth_Ada
         throw new Zend_Auth_Adapter_Exception('Could not nog in.');
     }
 
+    /**
+     *
+     * @param array $values
+     * @return bool
+     */
     public function performLogin(array $values = array())
     {
         if (self::isLogged()) {
@@ -121,11 +126,18 @@ class Admin_Model_Authentication extends Model_Abstract implements Zend_Auth_Ada
         return false;
     }
 
+    /**
+     * logout
+     */
     public function logout()
     {
         Zend_Auth::getInstance()->clearIdentity();
     }
 
+    /**
+     * Checks whether the user is logged or not
+     * @return bool
+     */
     public static function isLogged()
     {
         return Zend_Auth::getInstance()->hasIdentity();
