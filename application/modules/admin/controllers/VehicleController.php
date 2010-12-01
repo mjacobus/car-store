@@ -1,5 +1,5 @@
 <?php
-
+require_once 'Abstract.php'
 class Admin_VehicleController extends Admin_Controller_Abstract
 {
 
